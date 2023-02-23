@@ -2,3 +2,20 @@ include:
   - project: ci/core-cicd
     ref: main
     file: luminet.gitlab-ci.yml
+    
+.base_transform_config: &base_transform_config
+  stage: transform-config
+
+  tags:
+    - docker
+
+  script:
+    - echo "====== Build ReactJS ======"
+    - echo $DEPLOY_ENV
+    - echo $STACK_NAME
+    - cp ./sg-connect-site/configs/$STACK_NAME/configs.$DEPLOY_ENV.json ./sg-connect-site/src/configs.json
+
+  artifacts:
+    paths:
+      - ./sg-connect-site/src/configs.json
+    expire_in: 1 day
