@@ -1,0 +1,29 @@
+.time-out {
+    height: 100vh;
+    background-color: white;
+    text-align: center;
+    position: relative;
+
+    div {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        .title {
+            font-size: calc(1rem + 1vw);
+            padding: 0 1rem 0 1rem;
+            margin-top: calc(1rem + 1vh);
+            margin-bottom: calc(0.5rem + 1vh);
+            width: 90vw;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .image {
+            width: auto;
+            height: auto;
+        }
+    }
+}
