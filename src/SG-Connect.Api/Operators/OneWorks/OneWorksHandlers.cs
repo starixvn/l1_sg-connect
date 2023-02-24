@@ -1,22 +1,73 @@
-﻿namespace SGConnect.Api.Operators.OneWorks
+﻿using SGConnect.Api._Shared;
+using SGConnect.Api.Operators.OneWorks.Models;
+
+namespace SGConnect.Api.Operators.OneWorks
 {
-    public class OneWorksHandlers
+    public interface IOneWorksHandlers
     {
-        private readonly IOWApi owapi;
+        Task<OWLoginResult> HandleLogin(ConnectSiteLogin connectSiteLogin);
+    }
+
+    public class OneWorksHandlers : IOneWorksHandlers
+    {
+        private readonly IOWApi owApi;
         private readonly IMemberApi memberApi;
+        private readonly OneWorksSettings settings;
 
-        public OneWorksHandlers(IOWApi owapi, IMemberApi memberApi) { }
-
-        public async Task<string> HandleLogin(string username, string password)
+        public OneWorksHandlers(IOWApi owApi, IMemberApi memberApi, OperatorSettings operatorSettings)
         {
-            var memberLoginRersult = await memberApi.Login(new MemberLogin { UserName = username, Password = password });
+            this.owApi = owApi;
+            this.memberApi = memberApi;
+            this.settings = operatorSettings.OneWorks;
+        }
 
-            if(memberLoginRersult.ErrorCode == 0)
+        public async Task<OWLoginResult> HandleLogin(ConnectSiteLogin connectSiteLogin)
+        {
+            var memberLoginRersult = await memberApi.Login(
+                new MemberLogin
+                {
+                    UserName = connectSiteLogin.Username,
+                    Password = connectSiteLogin.Password,
+                    PasswordEncodeKey = settings.MemberPassWordEncodeKey
+                });
+
+            if (memberLoginRersult.ErrorCode == 0)
             {
-
+                return AppendAppType(await owApi.Login(InitOWLoginModel(connectSiteLogin, memberLoginRersult)));
             }
 
-            return string.Empty;
+            return new()
+            {
+                ErrorCode = memberLoginRersult.ErrorCode
+            };
+        }
+
+        private OWLoginResult AppendAppType(OWLoginResult owLoginResult)
+        {
+            if (!string.IsNullOrWhiteSpace(owLoginResult.RedirectUrl))
+            {
+                owLoginResult.RedirectUrl = $"{owLoginResult.RedirectUrl}&appType={AppTypes.MobileApp}";
+            }
+
+            return owLoginResult;
+        }
+
+        private OWLogin InitOWLoginModel(ConnectSiteLogin connectSiteLogin, MemberLoginResult memberLoginRersult)
+        {
+            return new(settings.ApiAuth.Login, settings.ApiAuth.Password)
+            {
+                Call = new()
+                {
+                    ObCustId = memberLoginRersult.PublicUserInfo.UserID,
+                    ObCustName = memberLoginRersult.PublicUserInfo.UserName,
+                    Currency = memberLoginRersult.PublicUserInfo.UserInfo.Currency,
+                    SiteId = memberLoginRersult.PublicUserInfo.SiteID,
+                    SiteName = memberLoginRersult.PublicUserInfo.SiteName,
+                    IP = connectSiteLogin.Ip,
+                    BrowserUserAgent = connectSiteLogin.BrowserUserAgent,
+                    Language = connectSiteLogin.Language
+                }
+            };
         }
     }
 }

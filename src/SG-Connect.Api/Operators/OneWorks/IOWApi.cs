@@ -5,6 +5,6 @@ namespace SGConnect.Api.Operators.OneWorks
     public interface IOWApi
     {
         [Post("/api/SabaClubInternal/Login")]
-        Task<string> GetMemberInfo(string username);
+        Task<OWLoginResult> Login([Body] OWLogin login);
     }
 }

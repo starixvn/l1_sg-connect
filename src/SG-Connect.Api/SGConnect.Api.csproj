@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="Refit" Version="6.3.2" />
+    <PackageReference Include="Sentry.AspNetCore" Version="3.28.1" />
   </ItemGroup>
 
 </Project>

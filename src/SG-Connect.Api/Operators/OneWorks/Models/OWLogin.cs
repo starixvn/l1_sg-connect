@@ -11,7 +11,7 @@
             };
         }
 
-        public DateTimeOffset TimeStamp { get; set; } = DateTimeOffset.Now;
+        public DateTimeOffset TimeStamp { get; set; } = DateTimeOffset.UtcNow;
         public OWAuth Auth { get; set; }
         public OWLoginCall Call { get; set; }
     }
