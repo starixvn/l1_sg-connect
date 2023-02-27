@@ -8,7 +8,7 @@ namespace SGConnect.Api.Operators.OneWorks
 
         public string Password { get; set; }
 
-        public string EncodedKey { get; set; }
+        public string EncodeKey { get; set; }
 
         public string Language { get; set; }
 
@@ -24,7 +24,7 @@ namespace SGConnect.Api.Operators.OneWorks
             RuleFor(x => x.Username).NotNull().NotEmpty();
             RuleFor(x => x.Password).NotNull().NotEmpty();
             RuleFor(x => x.Language).NotNull().NotEmpty();
-            RuleFor(x => x.EncodedKey).NotNull().NotEmpty();
+            RuleFor(x => x.EncodeKey).NotNull().NotEmpty();
         }
     }
 }
