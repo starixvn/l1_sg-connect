@@ -28,7 +28,7 @@ namespace SGConnect.Api.Operators.OneWorks
                 {
                     UserName = connectSiteLogin.Username,
                     Password = connectSiteLogin.Password,
-                    PasswordEncodeKey = settings.MemberPassWordEncodeKey
+                    PasswordEncodeKey = connectSiteLogin.EncodedKey
                 });
 
             if (memberLoginRersult.ErrorCode == 0)
