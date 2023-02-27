@@ -1,8 +1,9 @@
-﻿namespace SGConnect.Api.Operators.OneWorks
+﻿using SGConnect.Api.Operators.OneWorks.Models;
+
+namespace SGConnect.Api.Operators.OneWorks
 {
-    public class OWLoginResult
+    public class OWLoginResult : OWResult
     {
-        public int ErrorCode { get; set; }
-        public string RedirectUrl { get; set; }
+        public string RedirectUri { get; set; }
     }
 }

@@ -33,7 +33,8 @@ namespace SGConnect.Api.Operators.OneWorks
 
             if (memberLoginRersult.ErrorCode == 0)
             {
-                return AppendAppType(await owApi.Login(InitOWLoginModel(connectSiteLogin, memberLoginRersult)));
+                var response = await owApi.Login(InitOWLoginModel(connectSiteLogin, memberLoginRersult));
+                return AppendAppType(response.Result);
             }
 
             return new()
@@ -44,9 +45,9 @@ namespace SGConnect.Api.Operators.OneWorks
 
         private OWLoginResult AppendAppType(OWLoginResult owLoginResult)
         {
-            if (!string.IsNullOrWhiteSpace(owLoginResult.RedirectUrl))
+            if (!string.IsNullOrWhiteSpace(owLoginResult.RedirectUri))
             {
-                owLoginResult.RedirectUrl = $"{owLoginResult.RedirectUrl}&appType={AppTypes.MobileApp}";
+                owLoginResult.RedirectUri = $"{owLoginResult.RedirectUri}&appType={AppTypes.MobileApp}";
             }
 
             return owLoginResult;

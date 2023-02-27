@@ -1,10 +1,11 @@
 ﻿using Refit;
+using SGConnect.Api.Operators.OneWorks.Models;
 
 namespace SGConnect.Api.Operators.OneWorks
 {
     public interface IOWApi
     {
         [Post("/api/SabaClubInternal/Login")]
-        Task<OWLoginResult> Login([Body] OWLogin login);
+        Task<OWResponse<OWLoginResult>> Login([Body] OWLogin login);
     }
 }
