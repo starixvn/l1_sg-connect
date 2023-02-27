@@ -18,7 +18,7 @@ namespace SGConnect.Api.Operators.OneWorks
         {
             this.owApi = owApi;
             this.memberApi = memberApi;
-            this.settings = operatorSettings.OneWorks;
+            settings = operatorSettings.OneWorks;
         }
 
         public async Task<OWLoginResult> HandleLogin(ConnectSiteLogin connectSiteLogin)

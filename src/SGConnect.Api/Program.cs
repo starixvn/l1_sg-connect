@@ -4,6 +4,7 @@ using SGConnect.Api.Filters;
 using SGConnect.Api.Operators.OneWorks;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors();
 builder.Services.AddServices(builder.Configuration);
 builder.WebHost.UseSentry(opt => opt.Environment = builder.Configuration["Env"]);
 
@@ -18,6 +19,6 @@ app.MapPost("/api/ow/login", async ([FromBody] ConnectSiteLogin model, HttpConte
     model.BrowserUserAgent = userAgent;
 
     return Results.Ok(await handlers.HandleLogin(model));
-}).AddEndpointFilter<ValidationFilter<ConnectSiteLogin>>();
+}).AddEndpointFilter<ValidationFilter<ConnectSiteLogin>>().RequireCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.Run($"http://0.0.0.0:{builder.Configuration["HostingPort"]}");
