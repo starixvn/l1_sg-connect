@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
 import { languageMapper } from "@/shared/constants";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import bg from "../../public/static/images/timeout-bg.jpg";
+import bg from "../../public/images/timeout-bg.jpg";
 
 export default function Timeout() {
     const router = useRouter();

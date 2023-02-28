@@ -1,5 +1,6 @@
 {
     "system": "L1",
+    "defaultOperatorId": "ONEworks1",
     "sgConnectApi": {
         "url": "https://l1-connectapi3.lumigame.com/api/ow/"
     },

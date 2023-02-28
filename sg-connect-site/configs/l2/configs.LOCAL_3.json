@@ -1,5 +1,6 @@
 {
     "system": "L2",
+    "defaultOperatorId": "ONEworksVGCash",
     "sgConnectApi": {
         "url": "https://l2-connectapi3.lumigame.com/api/ow/"
     },
