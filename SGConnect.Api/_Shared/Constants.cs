@@ -5,7 +5,12 @@
         public const byte MobileApp = 5;
     }
 
-    public static class VendorId
+    public static class OperatorIds
+    {
+        public const string Oneworks = "ONEworks1";
+    }
+
+    public static class Vendors
     {
         public const string Saba = "42";
         public const string VGaming = "66";

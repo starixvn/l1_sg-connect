@@ -1,8 +1,10 @@
-﻿using SGConnect.Api.Operators.OneWorks.Models;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using SGConnect.Api.Operators.OneWorks.Models;
 
 namespace SGConnect.Api.Operators.OneWorks
 {
-    public class OWLoginResult : OWResult
+    [BsonDiscriminator("OWSignInResult")]
+    public class OWLoginResult : OWResult, IResultLog
     {
         public string RedirectUri { get; set; }
     }

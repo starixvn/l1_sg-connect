@@ -1,6 +1,9 @@
-﻿namespace SGConnect.Api.Operators.OneWorks
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace SGConnect.Api.Operators.OneWorks
 {
-    public class OWLogin
+    [BsonDiscriminator("OWSignInCall")]
+    public class OWLogin : IRequestLog
     {
         public OWLogin(string login, string password)
         {

@@ -1,6 +1,9 @@
-﻿namespace SGConnect.Api.Operators.OneWorks.Models
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace SGConnect.Api.Operators.OneWorks
 {
-    public class MemberLoginResult
+    [BsonDiscriminator("MemberSignInResult")]
+    public class MemberLoginResult : IResultLog
     {
         public int ErrorCode { get; set; }
         public string ErrorMsg { get; set; }

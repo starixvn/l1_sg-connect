@@ -12,9 +12,10 @@ namespace SGConnect.Api.Operators.OneWorks
     {
         private readonly IOWApi owApi;
         private readonly IMemberApi memberApi;
+        private readonly ILogService logService;
         private readonly OneWorksSettings settings;
 
-        public OneWorksHandlers(IOWApi owApi, IMemberApi memberApi, OperatorSettings operatorSettings)
+        public OneWorksHandlers(IOWApi owApi, IMemberApi memberApi, ILogService logService, OperatorSettings operatorSettings)
         {
             this.owApi = owApi;
             this.memberApi = memberApi;
@@ -23,24 +24,77 @@ namespace SGConnect.Api.Operators.OneWorks
 
         public async Task<OWLoginResult> HandleLogin(ConnectSiteLogin connectSiteLogin)
         {
-            var memberLoginRersult = await memberApi.Login(
+            var memberLoginRersult = await CallMemberLogin(
                 new MemberLogin
                 {
-                    UserName = connectSiteLogin.Username,
+                    Username = connectSiteLogin.Username,
                     Password = connectSiteLogin.Password,
                     PasswordEncodeKey = connectSiteLogin.EncodeKey
                 });
 
             if (memberLoginRersult.ErrorCode == 0)
             {
-                var response = await owApi.Login(InitOWLoginModel(connectSiteLogin, memberLoginRersult));
+                var response = await CallOWLogin(InitOWLoginModel(connectSiteLogin, memberLoginRersult));
                 return AppendAppType(response.Result);
             }
 
             return new()
             {
-                ErrorCode = memberLoginRersult.ErrorCode
+                ErrorCode = memberLoginRersult.ErrorCode,
+                ErrorDescription = memberLoginRersult.ErrorMsg
             };
+        }
+
+        private async Task<OWResponse<OWLoginResult>> CallOWLogin(OWLogin request)
+        {
+            var response = await owApi.Login(request);
+
+            if (response.Result.ErrorCode == 0)
+            {
+                await logService.WriteOWLoginLog(new (request.TimeStamp, DateTimeOffset.UtcNow)
+                {
+                    Request = request,
+                    Result = response.Result
+                });
+            } else
+            {
+                await logService.WriteFailedLog(new FailedLog(request.TimeStamp, response.TimeStamp)
+                {
+                    Call = request,
+                    Result = response.Result,
+                    OperatorId = OperatorIds.Oneworks,
+                    System = AppTypes.MobileApp
+                });
+            }
+
+            return response;
+        }
+
+        private async Task<MemberLoginResult> CallMemberLogin(MemberLogin request)
+        {
+            var requestTime = DateTimeOffset.UtcNow;
+            var result = await memberApi.Login(request);
+
+            if (result.ErrorCode == 0)
+            {
+                await logService.WriteMemberLoginLog(new (requestTime, DateTimeOffset.UtcNow)
+                {
+                    Request = request,
+                    Result = result
+                });
+            }
+            else
+            {
+                await logService.WriteFailedLog(new FailedLog(requestTime, DateTimeOffset.UtcNow)
+                {
+                    Call = request,
+                    Result = result,
+                    OperatorId = OperatorIds.Oneworks,
+                    System = AppTypes.MobileApp
+                });
+            }
+
+            return result;
         }
 
         private OWLoginResult AppendAppType(OWLoginResult owLoginResult)
