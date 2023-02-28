@@ -2,5 +2,6 @@
     "system": "L1",
     "sgConnectApi": {
         "url": "https://l1uatconnectapi.lumigame.com/api/ow/"
-    }
+    },
+    "userServiceApi": "https://l1uatproxy.sgamesuat.com/uat/user"
 }

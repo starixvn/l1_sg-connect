@@ -1,6 +1,7 @@
 {
     "system": "L2",
     "sgConnectApi": {
-        "url":"https://vg-connectapi.lumigame.com/api/ow/"
-    }
+        "url": "https://vg-connectapi.lumigame.com/api/ow/"
+    },
+    "userServiceApi": "https://proxy.v-gaming.net/user"
 }

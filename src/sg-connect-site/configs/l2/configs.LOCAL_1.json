@@ -2,5 +2,6 @@
     "system": "L2",
     "sgConnectApi": {
         "url": "https://l2-connectapi1.lumigame.com/api/ow/"
-    }
+    },
+    "userServiceApi": "https://l2-proxy1.lumigame.com/user"
 }

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
-import { languageMapper } from "@/constants";
+import { languageMapper } from "@/shared/constants";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import bg from "../../public/static/images/timeout-bg.jpg";
 

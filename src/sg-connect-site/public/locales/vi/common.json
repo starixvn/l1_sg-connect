@@ -1,4 +1,7 @@
 {
     "sessionTimeout": "Your session has timed out. Please login again.",
-    "login": "Đăng nhập"
+    "login": "Đăng nhập",
+    "maintenanceTime": "Maintenance time",
+    "from": "from",
+    "to": "to"
 }
