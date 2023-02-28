@@ -1,18 +1,17 @@
-FROM registry.nexdev.net:5050/docker/node:14.16-alpine AS builder
+FROM hub.lumigame.com/docker-hub/library/node:18.1-alpine AS builder
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY sg-connect-site/package.json sg-connect-site/yarn.lock ./
 RUN yarn install --frozen-lockfile
 
-COPY . .
+COPY sg-connect-site/ .
 RUN yarn build
 
-FROM registry.nexdev.net:5050/docker/node:14.16-alpine AS runner
+FROM hub.lumigame.com/docker-hub/library/node:18.1-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV production
 
-COPY --from=builder /app/configs.json ./configs.json
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
