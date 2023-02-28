@@ -13,9 +13,9 @@ include:
     - echo "====== Build ReactJS ======"
     - echo $DEPLOY_ENV
     - echo $STACK_NAME
-    - cp ./src/sg-connect-site/configs/$STACK_NAME/configs.$DEPLOY_ENV.json ./src/sg-connect-site/src/configs.json
+    - cp ./sg-connect-site/configs/$STACK_NAME/configs.$DEPLOY_ENV.json ./sg-connect-site/src/configs.json
 
   artifacts:
     paths:
-      - ./src/sg-connect-site/src/configs.json
+      - ./sg-connect-site/src/configs.json
     expire_in: 1 day
