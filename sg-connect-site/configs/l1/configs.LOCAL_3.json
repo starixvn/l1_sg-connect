@@ -4,5 +4,9 @@
     "sgConnectApi": {
         "url": "https://l1-connectapi3.lumigame.com/api/ow/"
     },
-    "userServiceApi": "https://l1-proxy3.lumigame.com/user"
+    "userServiceApi": "https://l1-proxy3.lumigame.com/user",
+    "sentry": {
+        "dsn": "https://9f9238fac97b4a8ca50e835cb4aac8ad@sentry.lumigame.com/4",
+        "environment": "LOCAL_3"
+    }
 }

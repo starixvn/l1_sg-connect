@@ -4,8 +4,9 @@ import Styles from "./styles.module.scss";
 import { LocalStorageKeys, getStorage, setStorage } from "./helpers/local-storage";
 import { encodePwd } from "./helpers/encode";
 import crypto from "crypto";
-import configs from "../../configs.json";
+import appSettings from "@/common/app-settings";
 import { getUnfinishedUM } from "@/shared/userService";
+import * as Sentry from "@sentry/nextjs";
 
 export default class Login extends React.Component<any, any> {
     private UMInterval: any;
@@ -92,13 +93,13 @@ export default class Login extends React.Component<any, any> {
             EncodeKey: encodeKey,
         };
 
-        Axios.post(`${configs.sgConnectApi.url}/Login`, request)
+        Axios.post(`${appSettings.sgConnectApi.url}/Login`, request)
             .then((data) => data.data)
             .then((data) => (data.error ? Promise.reject(data.error) : data))
             .then((data) => {
                 location.href = data.redirectUri;
             })
-            .catch((error) => alert(error));
+            .catch((error) => Sentry.captureException(error));
     }
 
     render() {

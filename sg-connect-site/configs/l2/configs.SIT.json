@@ -4,5 +4,9 @@
     "sgConnectApi": {
         "url": "https://l2sitconnectapi.lumigame.com/api/ow/"
     },
-    "userServiceApi": "https://l2uatproxy.sgamesuat.com/sit/user"
+    "userServiceApi": "https://l2uatproxy.sgamesuat.com/sit/user",
+    "sentry": {
+        "dsn": "http://2589366e00b74945ae920194c18c25fe@10.2.190.51:9009/255",
+        "environment": "LOCAL_1"
+    }
 }
