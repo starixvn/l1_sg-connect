@@ -7,7 +7,7 @@ import { languageMapper } from "@/shared/constants";
 import { UMInfo, getUnfinishedUM } from "@/shared/userService";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import bg from "../../public/images/um-bg.jpg";
-import Config from "../configs.json";
+import appSettings from "@/common/app-settings";
 
 const defaultUMInfo: UMInfo = {
     finish: false,
@@ -43,7 +43,7 @@ export default function UM() {
         return () => clearInterval(interval);
     }, [operatorId]);
 
-    const getUMInfo = (operator = Config.defaultOperatorId) => {
+    const getUMInfo = (operator = appSettings.defaultOperatorId) => {
         getUnfinishedUM(operator).then((data) => {
             setIsUM(data.isUM);
             setUMInfo(data.umInfo);

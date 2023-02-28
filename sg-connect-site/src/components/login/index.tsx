@@ -54,7 +54,7 @@ export default class Login extends React.Component<any, any> {
     }
 
     getUMInfo = () => {
-        getUnfinishedUM(configs.defaultOperatorId).then((data) => {
+        getUnfinishedUM(appSettings.defaultOperatorId).then((data) => {
             const { language } = this.state;
             if (data.isUM) {
                 this.UMInterval && clearInterval(this.UMInterval);

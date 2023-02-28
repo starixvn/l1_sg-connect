@@ -12,4 +12,5 @@ export default interface AppSettings {
     userServiceApi: string;
     sgConnectApi: SGConnectApi;
     system: string;
+    defaultOperatorId: string;
 }

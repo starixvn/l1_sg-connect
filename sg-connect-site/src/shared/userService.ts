@@ -1,4 +1,4 @@
-import config from "../configs.json";
+import appSettings from "@/common/app-settings";
 import axios from "axios";
 
 export type UMResult = {
@@ -14,5 +14,5 @@ export type UMInfo = {
 };
 export const getUnfinishedUM = async (operatorId = ""): Promise<UMResult> => {
     const path = operatorId ? `/um/getUnfinishedUM?operatorId=${operatorId}` : "/um/getUnfinishedUM";
-    return axios.get<UMResult>(`${config.userServiceApi}${path}`).then(({ data }) => data);
+    return axios.get<UMResult>(`${appSettings.userServiceApi}${path}`).then(({ data }) => data);
 };
