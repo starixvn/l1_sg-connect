@@ -1,0 +1,6 @@
+{
+    "system": "L1",
+    "sgConnectApi": {
+        "url": "https://l1-connectapi.lumigame.com/api/ow/"
+    }
+}

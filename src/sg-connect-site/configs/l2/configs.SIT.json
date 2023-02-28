@@ -1,6 +1,6 @@
 {
-    "system": "L1",
+    "system": "L2",
     "sgConnectApi": {
-        "url": "https://l1sitconnectapi.lumigame.com/api/ow/"
+        "url": "https://l2sitconnectapi.lumigame.com/api/ow/"
     }
 }
