@@ -20,6 +20,7 @@ namespace SGConnect.Api.Operators.OneWorks
             this.owApi = owApi;
             this.memberApi = memberApi;
             settings = operatorSettings.OneWorks;
+            this.logService = logService;
         }
 
         public async Task<OWLoginResult> HandleLogin(ConnectSiteLogin connectSiteLogin)
