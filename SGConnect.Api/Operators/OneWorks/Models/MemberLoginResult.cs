@@ -1,11 +1,12 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using SGConnect.Api.Operators.OneWorks.Models;
 
 namespace SGConnect.Api.Operators.OneWorks
 {
     [BsonDiscriminator("MemberSignInResult")]
-    public class MemberLoginResult : IResultLog
+    public class MemberLoginResult : OWResult
     {
-        public int ErrorCode { get; set; }
+        //public int ErrorCode { get; set; }
         public string ErrorMsg { get; set; }
 
         public PublicUserInfo PublicUserInfo { get; set; }

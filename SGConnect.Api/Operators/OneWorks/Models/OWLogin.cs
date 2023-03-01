@@ -1,9 +1,10 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace SGConnect.Api.Operators.OneWorks
 {
     [BsonDiscriminator("OWSignInCall")]
-    public class OWLogin : IRequestLog
+    public class OWLogin : RequestLog
     {
         public OWLogin(string login, string password)
         {
@@ -14,6 +15,7 @@ namespace SGConnect.Api.Operators.OneWorks
             };
         }
 
+        [BsonRepresentation(BsonType.String)]
         public DateTimeOffset TimeStamp { get; set; } = DateTimeOffset.UtcNow;
         public OWAuth Auth { get; set; }
         public OWLoginCall Call { get; set; }

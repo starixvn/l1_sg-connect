@@ -1,4 +1,6 @@
-﻿namespace SGConnect.Api.Operators.OneWorks
+﻿using SGConnect.Api.Operators.OneWorks.Models;
+
+namespace SGConnect.Api.Operators.OneWorks
 {
     public class FailedLog : Log
     {
@@ -7,16 +9,16 @@
         }
 
         public string OperatorId { get; set; }
-        public IRequestLog Call { get; set; }
-        public IResultLog Result { get; set; }
+        public RequestLog Call { get; set; }
+        public ResultLog Result { get; set; }
         public byte System { get; set; }
     }
 
-    public interface IRequestLog
+    public class RequestLog
     {
     }
 
-    public interface IResultLog
+    public class ResultLog
     {
     }
 }

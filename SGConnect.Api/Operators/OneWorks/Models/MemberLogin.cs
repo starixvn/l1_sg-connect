@@ -4,7 +4,7 @@ using SGConnect.Api._Shared;
 namespace SGConnect.Api.Operators.OneWorks
 {
     [BsonDiscriminator("MemberSignInCall")]
-    public class MemberLogin : IRequestLog
+    public class MemberLogin : RequestLog
     {
         public string VendorId { get; set; } = Vendors.Saba;
 
