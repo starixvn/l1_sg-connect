@@ -9,7 +9,6 @@ builder.Services.AddServices(builder.Configuration);
 builder.WebHost.UseSentry(opt => opt.Environment = builder.Configuration["Env"]);
 
 var app = builder.Build();
-app.UseSentryTracing();
 app.UseCors();
 app.MapGet("/", () => Results.Ok("SG Connect Api is running!"));
 
