@@ -7,6 +7,7 @@ import crypto from "crypto";
 import appSettings from "@/common/app-settings";
 import { getUnfinishedUM } from "@/shared/userService";
 import * as Sentry from "@sentry/nextjs";
+import Router from "next/router";
 
 export default class Login extends React.Component<any, any> {
     private UMInterval: any;
@@ -59,7 +60,7 @@ export default class Login extends React.Component<any, any> {
             if (data.isUM) {
                 this.UMInterval && clearInterval(this.UMInterval);
                 this.setState({ isUM: true }, () => {
-                    window.location.href = `/um?language=${language}`;
+                    Router.push(`/um?language=${language}`);
                 });
             } else {
                 this.setState({ isUM: false });

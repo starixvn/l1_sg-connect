@@ -9,15 +9,8 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import bg from "../../public/images/um-bg.jpg";
 import appSettings from "@/common/app-settings";
 
-const defaultUMInfo: UMInfo = {
-    finish: false,
-    end: new Date(),
-    start: new Date(),
-    operatorId: "",
-};
-
 export default function UM() {
-    const [umInfo, setUMInfo] = useState<UMInfo>(defaultUMInfo);
+    const [umInfo, setUMInfo] = useState<UMInfo | null>(null);
     const [isUM, setIsUM] = useState<boolean>(true);
     const [operatorId, setOperatorId] = useState<string>();
     const router = useRouter();
