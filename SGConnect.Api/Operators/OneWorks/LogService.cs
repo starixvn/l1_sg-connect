@@ -1,4 +1,5 @@
-﻿using SGConnect.Api.Operators.OneWorks.Models;
+﻿using MongoDB.Driver;
+using SGConnect.Api._Shared;
 
 namespace SGConnect.Api.Operators.OneWorks
 {
@@ -10,14 +11,32 @@ namespace SGConnect.Api.Operators.OneWorks
     }
     public class LogService : ILogService
     {
-        public Task WriteFailedLog(FailedLog log)
+        private const string FailedRequestsCollectionName = "failed_requests";
+        private const string MemberLoginCollectionName = "membersignin_requests";
+        private const string OWLogCollectionName = "owsignin_requests";
+
+
+        private readonly IMongoCollection<MemberLoginLog> memberLoginLogCollection;
+        private readonly IMongoCollection<OWLoginLog> owLoginLogCollection;
+        private readonly IMongoCollection<FailedLog> failedLogCollection;
+
+        public  LogService(IMongoClient mongoClient)
         {
-            throw new NotImplementedException();
+            var database = mongoClient.GetDatabase(MongoDatabases.Log);
+
+            failedLogCollection = database.GetCollection<FailedLog>(FailedRequestsCollectionName);
+            memberLoginLogCollection = database.GetCollection<MemberLoginLog>(MemberLoginCollectionName);
+            owLoginLogCollection = database.GetCollection<OWLoginLog>(OWLogCollectionName);
         }
 
+        public Task WriteFailedLog(FailedLog log)
+            => failedLogCollection.InsertOneAsync(log);
+
         public Task WriteMemberLoginLog(MemberLoginLog log)
-        {
-            throw new NotImplementedException();
-        }
+            => memberLoginLogCollection.InsertOneAsync(log);
+
+        public Task WriteOWLoginLog(OWLoginLog log)
+            => owLoginLogCollection.InsertOneAsync(log);
+
     }
 }

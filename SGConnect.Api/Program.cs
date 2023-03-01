@@ -11,7 +11,7 @@ builder.WebHost.UseSentry(opt => opt.Environment = builder.Configuration["Env"])
 var app = builder.Build();
 app.UseSentryTracing();
 app.UseCors();
-app.MapGet("/healthcheck", () => Results.Ok("SG Connect Api is running!"));
+app.MapGet("/", () => Results.Ok("SG Connect Api is running!"));
 
 app.MapPost("/api/ow/login", async ([FromBody] ConnectSiteLogin model, HttpContext context, [FromHeader(Name = "user-agent")] string userAgent, [FromServices] IOneWorksHandlers handlers) =>
 {
