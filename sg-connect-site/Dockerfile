@@ -2,10 +2,10 @@ FROM hub.lumigame.com/docker-hub/library/node:18.1-alpine AS builder
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY sg-connect-site/package.json sg-connect-site/yarn.lock ./
+COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
-COPY sg-connect-site/ .
+COPY . .
 RUN yarn build
 
 FROM hub.lumigame.com/docker-hub/library/node:18.1-alpine AS runner
