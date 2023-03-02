@@ -7,6 +7,6 @@
     "userServiceApi": "https://l1-proxy.lumigame.com/user",
     "sentry": {
         "dsn": "https://9f9238fac97b4a8ca50e835cb4aac8ad@sentry.lumigame.com/4",
-        "environment": "LOCAL_1"
+        "environment": "LOCAL"
     }
 }

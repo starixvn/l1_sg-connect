@@ -7,9 +7,23 @@ import crypto from "crypto";
 import appSettings from "@/common/app-settings";
 import { getUnfinishedUM } from "@/shared/userService";
 import * as Sentry from "@sentry/nextjs";
+import { withTranslation } from "react-i18next";
 import Router from "next/router";
 
-export default class Login extends React.Component<any, any> {
+interface Props {
+    t: Function;
+}
+
+interface State {
+    username: string;
+    password: string;
+    rememberMe: boolean;
+    passwordHint: boolean;
+    isUM: boolean;
+    language: string;
+}
+
+class Login extends React.Component<Props, State> {
     private UMInterval: any;
 
     constructor(props: any) {
@@ -104,6 +118,7 @@ export default class Login extends React.Component<any, any> {
     }
 
     render() {
+        const { t } = this.props;
         const { username, password, rememberMe, passwordHint, isUM } = this.state;
         if (isUM) {
             return null;
@@ -123,7 +138,7 @@ export default class Login extends React.Component<any, any> {
 
                 <div className="d-plex p-2">
                     <form className={Styles["login-form"]} onSubmit={this.onSubmit.bind(this)}>
-                        <p className={Styles.description}>Please use the betting account given by your Upline to login</p>
+                        <p className={Styles.description}>{t("description")}</p>
                         <div className={Styles["form-action"]}>
                             <div className="form-group">
                                 <div className={`input-group ${Styles["input"]}`}>
@@ -134,7 +149,7 @@ export default class Login extends React.Component<any, any> {
                                         className="form-control"
                                         type="text"
                                         value={username}
-                                        placeholder="Username"
+                                        placeholder={t("username")}
                                         id="username"
                                         onChange={this.onInputUsernameChange.bind(this)}
                                     />
@@ -149,7 +164,7 @@ export default class Login extends React.Component<any, any> {
                                         className="form-control"
                                         type={passwordHint ? "text" : "password"}
                                         value={password}
-                                        placeholder="Password"
+                                        placeholder={t("password")}
                                         onChange={this.onInputPasswordChange.bind(this)}
                                         id="password"
                                     />
@@ -173,11 +188,11 @@ export default class Login extends React.Component<any, any> {
                                 ></input>
                                 <label htmlFor="rememberMe">
                                     <span className={`${Styles["checkmark"]} ${rememberMe ? Styles["checked"] : null}`}></span>
-                                    Remember Me
+                                    {t("rememberMe")}
                                 </label>
                             </div>
                             <div style={{ textAlign: "center" }}>
-                                <input className={Styles["signin-btn"]} type="submit" value="SIGN IN" />
+                                <input className={Styles["signin-btn"]} type="submit" value={t("signIn")} />
                             </div>
                         </div>
                     </form>
@@ -188,3 +203,5 @@ export default class Login extends React.Component<any, any> {
         );
     }
 }
+
+export default withTranslation("login")(Login);
