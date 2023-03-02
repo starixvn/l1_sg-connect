@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using SGConnect.Api.Extensions;
 using SGConnect.Api.Filters;
@@ -10,6 +11,11 @@ builder.WebHost.UseSentry(opt => opt.Environment = builder.Configuration["Env"])
 
 var app = builder.Build();
 app.UseCors();
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+
 app.MapGet("/", () => Results.Ok("SG Connect Api is running!"));
 
 app.MapPost("/api/ow/login", async ([FromBody] ConnectSiteLogin model, HttpContext context, [FromHeader(Name = "user-agent")] string userAgent, [FromServices] IOneWorksHandlers handlers) =>
