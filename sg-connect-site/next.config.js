@@ -2,6 +2,7 @@
 const { i18n } = require("./next-i18next.config");
 const configs = require("./configs.json");
 const { withSentryConfig } = require("@sentry/nextjs");
+const { redirect } = require("next/dist/server/api-utils");
 
 const appSettings = {
     ...configs,
@@ -17,6 +18,15 @@ const nextConfig = withSentryConfig({
         disableClientWebpackPlugin: true,
     },
     excludeFile: (str) => /\*.{spec,test}.js/.test(str),
+    redirect() {
+        return [
+            {
+                source: "/login",
+                destination: "/",
+                permanent: true,
+            },
+        ];
+    },
 });
 
 module.exports = nextConfig;
