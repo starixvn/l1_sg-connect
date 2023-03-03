@@ -1,12 +1,9 @@
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { languageMapper } from "@/shared/constants";
 import { UMInfo, getUnfinishedUM } from "@/shared/userService";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import bg from "../../public/images/um-bg.jpg";
 import appSettings from "@/common/app-settings";
 
 export default function UM() {
@@ -22,8 +19,7 @@ export default function UM() {
                 setOperatorId(router.query?.operatorId as string);
             }
             getUMInfo(router.query?.operatorId as string);
-            const language = languageMapper[(router.query?.language as string) ?? "en-US"];
-            i18n.changeLanguage(language);
+            i18n.changeLanguage((router.query?.language as string) ?? "en");
         }
     }, [router]);
 
@@ -37,7 +33,7 @@ export default function UM() {
     }, [operatorId]);
 
     const getUMInfo = (operator = appSettings.defaultOperatorId) => {
-        getUnfinishedUM(operator).then((data) => {
+        getUnfinishedUM(operator || appSettings.defaultOperatorId).then((data) => {
             setIsUM(data.isUM);
             setUMInfo(data.umInfo);
         });
@@ -45,31 +41,32 @@ export default function UM() {
 
     const convertToGMT8 = (date: Date): string => {
         return dayjs(
-            new Date(
-                date.toLocaleString("en-US", {
-                    timeZone: "Asia/Manila",
-                })
-            )
-        ).format("DD/MM/YYYY hh:mm A");
+            new Date(date).toLocaleString("en-US", {
+                timeZone: "Asia/Manila",
+            })
+        ).format("HH:mm DD/MM/YYYY");
     };
 
     return (
         <div className="um">
             {umInfo && (
                 <div>
-                    <Image className="image" src={bg} alt="Image" />
-                    <h1 className="text-center">{t("maintenanceTime")}</h1>
-                    <p>{`(GMT +8)`}</p>
                     <div>
+                        <img className="logo" src="/images/um/logo.png" alt="Image" decoding="async" />
+                    </div>
+                    <img className="image" src="/images/um/icon-um.png" alt="Image" />
+                    <div className="title">{t("maintenanceTime")}</div>
+                    <div>{`(GMT + 8)`}</div>
+                    <div className="time">
                         {umInfo?.start && (
-                            <p>
-                                {t("from")} <b>{convertToGMT8(umInfo.start)}</b>
-                            </p>
+                            <div>
+                                {t("from")} <span>{convertToGMT8(umInfo.start)}</span>
+                            </div>
                         )}
                         {umInfo?.end && (
-                            <p>
-                                {t("to")} <b>{convertToGMT8(umInfo.end)}</b>
-                            </p>
+                            <div>
+                                {t("to")} <span>{convertToGMT8(umInfo.end)}</span>
+                            </div>
                         )}
                     </div>
                 </div>

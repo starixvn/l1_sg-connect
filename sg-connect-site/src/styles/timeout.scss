@@ -1,29 +1,77 @@
 .time-out {
+    font-family: "Roboto", sans-serif;
+    background-image: url("/images/timeout/bg-timeout.jpg");
+    background-size: cover;
     height: 100vh;
-    background-color: white;
     text-align: center;
+    color: white;
     position: relative;
 
     div {
         margin: 0;
         position: absolute;
-        top: 50%;
+        top: 57%;
         left: 50%;
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
+
         .title {
-            font-size: calc(1rem + 1vw);
-            padding: 0 1rem 0 1rem;
-            margin-top: calc(1rem + 1vh);
-            margin-bottom: calc(0.5rem + 1vh);
+            font-size: 43px;
+            margin-top: 7vh;
+            margin-bottom: 9vh;
             width: 90vw;
             text-align: center;
             margin-left: auto;
             margin-right: auto;
         }
         .image {
-            width: auto;
+            width: 18vw;
             height: auto;
+        }
+        button {
+            background: linear-gradient(180deg, #ff7144 0%, #f99f2c 100%);
+            border-radius: 200px;
+            width: 490px;
+            height: 95px;
+            border: none;
+            color: white;
+            text-transform: uppercase;
+            font-size: 30px;
+        }
+    }
+}
+@media only screen and (orientation: portrait) {
+    .time-out {
+        transform: rotate(90deg);
+        transform-origin: left top;
+        top: 0;
+        left: 100%;
+        height: 100vw;
+        width: 100vh;
+        div {
+            .title {
+                margin-top: 7vw;
+                margin-bottom: 9vw;
+                width: 90vh;
+            }
+            .image {
+                width: 18vh;
+            }
+        }
+    }
+}
+
+@media (max-width: 991.98px) {
+    .time-out {
+        div {
+            .title {
+                font-size: 20px;
+            }
+            button {
+                width: 210px;
+                height: 45px;
+                font-size: 16px;
+            }
         }
     }
 }

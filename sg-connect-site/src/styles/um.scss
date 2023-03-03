@@ -1,20 +1,67 @@
 .um {
+    font-family: "Roboto", sans-serif;
+    background-image: url("/images/um/bg-um.png");
+    background-size: cover;
     height: 100vh;
-    background-color: white;
     text-align: center;
+    color: white;
     position: relative;
 
     > div {
         margin: 0;
         position: absolute;
-        top: 50%;
+        top: 47%;
         left: 50%;
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
+        width: max-content;
 
+        .logo {
+            width: auto;
+            height: auto;
+            max-width: 50vw;
+        }
         .image {
             width: auto;
             height: auto;
+            max-width: 65vw;
+            margin-top: 4rem;
+        }
+        .title {
+            text-transform: uppercase;
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .time {
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: end;
+            margin-top: 2rem;
+            div {
+                span {
+                    color: #f89c26;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    .um {
+        > div {
+            transform: rotate(270deg);
+            transform-origin: left top;
+            top: 100%;
+            left: 20%;
+            height: 100vw;
+            width: 100vh;
+            .logo {
+                max-width: 50vh;
+            }
+            .image {
+                max-width: 60vh;
+            }
         }
     }
 }
