@@ -20,8 +20,3 @@ include:
     paths:
       - ./sg-connect-site/configs.json
     expire_in: 1 day
-
-build_noenv: &build_noenv
-  needs:
-  - prepare_vars
-  - transform_config
