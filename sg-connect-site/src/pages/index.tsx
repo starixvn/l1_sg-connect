@@ -11,7 +11,7 @@ export default class Login extends React.Component<{}, {}> {
 export async function getStaticProps({ locale }: any) {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ["login", "common"])),
+            ...(await serverSideTranslations(locale, ["login", "common", "message"])),
         },
     };
 }

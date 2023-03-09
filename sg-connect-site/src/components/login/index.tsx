@@ -11,6 +11,8 @@ import { withTranslation } from "react-i18next";
 import Router from "next/router";
 import LanguageSelector from "./components/language-selector";
 import NotificationPopup from "./components/notification-popup";
+import { DefaultLanguage } from "@/common/constants/language";
+import ErrorCodeDictionary from "@/common/constants/error-code-dictionary";
 
 interface Props {
     t: Function;
@@ -77,9 +79,13 @@ class Login extends React.Component<Props, State> {
 
     updateLanguage(language: string) {
         this.setState({ language });
+        setStorage(LocalStorageKeys.language, language);
     }
 
     async componentDidMount() {
+        const language = getStorage(LocalStorageKeys.language);
+        this.setState({ language: language ?? DefaultLanguage });
+
         this.getUMInfo();
         this.UMInterval = setInterval(() => this.getUMInfo(), 1000 * 60); // 1m
     }
@@ -105,7 +111,7 @@ class Login extends React.Component<Props, State> {
     async onSubmit(event: any) {
         event && event.preventDefault();
 
-        const { username, password } = this.state;
+        const { username, password, language } = this.state;
         if (!username) {
             alert("Username are required");
             return;
@@ -125,14 +131,18 @@ class Login extends React.Component<Props, State> {
             Username: username,
             EncodeKey: encodeKey,
             Password: encodePwd(password, encodeKey),
-            Language: "en-US",
+            Language: language,
         };
 
         Axios.post(`${appSettings.sgConnectApi.url}/Login`, request)
             .then((data) => data.data)
             .then((data) => (data.error ? Promise.reject(data.error) : data))
             .then((data) => {
-                location.href = data.redirectUri;
+                if (data.errorCode) {
+                    this.showNotification(this.props.t(`message:${ErrorCodeDictionary[data.errorCode]}`, { errorCode: data.errorCode }));
+                } else {
+                    location.href = data.redirectUri;
+                }
             })
             .catch((error) => {
                 this.showNotification(error.toString());
@@ -236,4 +246,4 @@ class Login extends React.Component<Props, State> {
     }
 }
 
-export default withTranslation("login")(Login);
+export default withTranslation(["login", "message"])(Login);

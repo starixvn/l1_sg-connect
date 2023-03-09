@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Trans, useTranslation } from "react-i18next";
 
 import Styles from "./styles.module.scss";
 
@@ -9,6 +10,7 @@ type Props = {
 
 const BaseDialog: React.FC<Props> = ({ onCloseModal, content }: Props) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const { t } = useTranslation(["common"]);
 
     useEffect(() => {
         const handleClickOutside = (event: any) => {
@@ -32,8 +34,10 @@ const BaseDialog: React.FC<Props> = ({ onCloseModal, content }: Props) => {
                     <div className={Styles.header}>
                         <i className={Styles["close-icon"]} onClick={() => onCloseModal()}></i>
                     </div>
-                    <div className={Styles.title}>Notification</div>
-                    <div className={Styles.content}>Your Account is locked. Please contact CSD to unlock your account.</div>
+                    <div className={Styles.title}>{t("notification")}</div>
+                    <div className={Styles.content}>
+                        <Trans>{content}</Trans>
+                    </div>
                 </div>
             </div>
         </>

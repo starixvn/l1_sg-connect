@@ -22,11 +22,12 @@
 }
 .actions {
   flex-grow: 2;
-  margin-top: 90px;
+  display: inline-grid;
 
   .login-form {
     text-align: center;
-    margin: 25px;
+    margin: auto 25px;
+    vertical-align: middle;
 
     .description {
         padding: 0px 20px;
