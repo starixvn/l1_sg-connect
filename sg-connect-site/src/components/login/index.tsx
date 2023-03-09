@@ -9,6 +9,8 @@ import { getUnfinishedUM } from "@/shared/userService";
 import * as Sentry from "@sentry/nextjs";
 import { withTranslation } from "react-i18next";
 import Router from "next/router";
+import LanguageSelector from "./components/language-selector";
+import NotificationPopup from "./components/notification-popup";
 
 interface Props {
     t: Function;
@@ -21,6 +23,10 @@ interface State {
     passwordHint: boolean;
     isUM: boolean;
     language: string;
+
+    showNotification: boolean;
+
+    notificationContent: string;
 }
 
 class Login extends React.Component<Props, State> {
@@ -36,7 +42,17 @@ class Login extends React.Component<Props, State> {
             passwordHint: false,
             isUM: true,
             language: "en-US",
+            showNotification: false,
+            notificationContent: "",
         };
+    }
+
+    hideNotification() {
+        this.setState({ showNotification: false, notificationContent: "" });
+    }
+
+    showNotification(content: string) {
+        this.setState({ showNotification: true, notificationContent: content });
     }
 
     updatePasswordHint() {
@@ -57,6 +73,10 @@ class Login extends React.Component<Props, State> {
         const value = event.target.value;
 
         this.setState({ password: value });
+    }
+
+    updateLanguage(language: string) {
+        this.setState({ language });
     }
 
     async componentDidMount() {
@@ -103,9 +123,9 @@ class Login extends React.Component<Props, State> {
 
         const request = {
             Username: username,
+            EncodeKey: encodeKey,
             Password: encodePwd(password, encodeKey),
             Language: "en-US",
-            EncodeKey: encodeKey,
         };
 
         Axios.post(`${appSettings.sgConnectApi.url}/Login`, request)
@@ -114,30 +134,39 @@ class Login extends React.Component<Props, State> {
             .then((data) => {
                 location.href = data.redirectUri;
             })
-            .catch((error) => Sentry.captureException(error));
+            .catch((error) => {
+                this.showNotification(error.toString());
+                Sentry.captureException(error);
+            });
     }
 
     render() {
         const { t } = this.props;
-        const { username, password, rememberMe, passwordHint, isUM } = this.state;
+        const { username, password, rememberMe, passwordHint, isUM, language, showNotification, notificationContent } = this.state;
         if (isUM) {
             return null;
         }
         return (
             <div
-                className={`d-flex flex-column justify-content-around ${Styles.container}`}
+                className={`d-flex flex-column ${Styles.container}`}
                 style={{
                     backgroundImage: `url("/images/login/background.jpg")`,
                     backgroundSize: "100%",
                     height: "100%",
                 }}
             >
+                {showNotification && <NotificationPopup onCloseModal={this.hideNotification.bind(this)} content={notificationContent} />}
+                <div className={Styles.header}>
+                    <div className={Styles.actions}>
+                        <LanguageSelector langCode={language} onUpdateLanguage={this.updateLanguage.bind(this)} />
+                    </div>
+                </div>
                 <div className={`${Styles.logo}`}>
                     <img src="/images/login/logo.png" alt="logo" />
                 </div>
 
-                <div className="d-plex p-2">
-                    <form className={Styles["login-form"]} onSubmit={this.onSubmit.bind(this)}>
+                <div className={`d-plex p-2 ${Styles["actions"]}`}>
+                    <form id="login-form" className={Styles["login-form"]} onSubmit={this.onSubmit.bind(this)}>
                         <p className={Styles.description}>{t("description")}</p>
                         <div className={Styles["form-action"]}>
                             <div className="form-group">
@@ -192,7 +221,10 @@ class Login extends React.Component<Props, State> {
                                 </label>
                             </div>
                             <div style={{ textAlign: "center" }}>
-                                <input className={Styles["signin-btn"]} type="submit" value={t("signIn")} />
+                                <button className={Styles["signin-btn"]} type="submit" disabled={password == "" || username == ""}>
+                                    {t("signIn")}
+                                    {(password == "" || username == "") && <div className={Styles["overlay"]}></div>}
+                                </button>
                             </div>
                         </div>
                     </form>

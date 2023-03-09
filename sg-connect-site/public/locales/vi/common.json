@@ -3,5 +3,11 @@
     "login": "Đăng nhập",
     "maintenanceTime": "Maintenance time",
     "from": "from",
-    "to": "to"
+    "to": "to",
+    "en-US": "English",
+    "vi-VN": "Vietnamese",
+    "th-TH": "Thailand",
+    "id-ID": "Indonesia",
+    "zh-CN": "Chinese Simplified",
+    "zh-TW": "Chinese Original"
 }
