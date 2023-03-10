@@ -24,10 +24,6 @@ export default function UM() {
     }, [router]);
 
     useEffect(() => {
-        !isUM && router.push("/login");
-    }, [isUM]);
-
-    useEffect(() => {
         const interval = setInterval(() => getUMInfo(operatorId), 1000 * 60); // 1m
         return () => clearInterval(interval);
     }, [operatorId]);

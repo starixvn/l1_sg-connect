@@ -2,7 +2,6 @@ const LocalStorageKeys = {
     username: buildLocalStorageKey("username"),
     password: buildLocalStorageKey("password"),
     encodeKey: buildLocalStorageKey("encode-key"),
-    rememberMe: buildLocalStorageKey("rememberme"),
     language: buildLocalStorageKey("language"),
 };
 

@@ -22,7 +22,6 @@ interface Props {
 interface State {
     username: string;
     password: string;
-    rememberMe: boolean;
     passwordHint: boolean;
     isUM: boolean;
     language: string;
@@ -41,7 +40,6 @@ class Login extends React.Component<Props, State> {
         this.state = {
             username: "",
             password: "",
-            rememberMe: false,
             passwordHint: false,
             isUM: true,
             language: "en-US",
@@ -60,10 +58,6 @@ class Login extends React.Component<Props, State> {
 
     updatePasswordHint() {
         this.setState({ passwordHint: !this.state.passwordHint });
-    }
-
-    clickRememberHandle() {
-        this.setState({ rememberMe: !this.state.rememberMe });
     }
 
     onInputUsernameChange(event: any) {
@@ -118,13 +112,7 @@ class Login extends React.Component<Props, State> {
             return;
         }
 
-        if (this.state.rememberMe) {
-            setStorage(LocalStorageKeys.username, this.state.username);
-            setStorage(LocalStorageKeys.rememberMe, true);
-        } else {
-            setStorage(LocalStorageKeys.username, "");
-            setStorage(LocalStorageKeys.rememberMe, false);
-        }
+        setStorage(LocalStorageKeys.username, this.state.username);
 
         const encodeKey = crypto.randomBytes(20).toString("hex");
 
@@ -153,7 +141,7 @@ class Login extends React.Component<Props, State> {
 
     render() {
         const { t } = this.props;
-        const { username, password, rememberMe, passwordHint, isUM, language, showNotification, notificationContent } = this.state;
+        const { username, password, passwordHint, isUM, language, showNotification, notificationContent } = this.state;
         if (isUM) {
             return null;
         }
@@ -199,23 +187,10 @@ class Login extends React.Component<Props, State> {
                                 <img src={`/images/login/password-append-icon.png`}></img>
                             </button>
                         </div>
-                        <div className={Styles["remember-btn"]}>
-                            <input
-                                className={Styles["checkbox"]}
-                                type="checkbox"
-                                id="rememberMe"
-                                value="rememberMe"
-                                onChange={this.clickRememberHandle.bind(this)}
-                                checked={rememberMe}
-                            ></input>
-                            <label htmlFor="rememberMe">
-                                <span className={`${Styles["checkmark"]} ${rememberMe ? Styles["checked"] : null}`}></span>
-                                {t("rememberMe")}
-                            </label>
-                        </div>
+
                         <div style={{ textAlign: "center" }}>
-                            <button className={Styles["signin-btn"]} type="submit" disabled={password == "" || username == ""}>
-                                {t("signIn")}
+                            <button className={Styles["login-btn"]} type="submit" disabled={password == "" || username == ""}>
+                                {t("login")}
                                 {(password == "" || username == "") && <div className={Styles["overlay"]}></div>}
                             </button>
                         </div>
