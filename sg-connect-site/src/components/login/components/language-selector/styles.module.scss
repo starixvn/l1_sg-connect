@@ -1,65 +1,74 @@
-
 .language-btn {
+    position: fixed;
+    right: 3.2rem;
     display: flex;
     background: none;
     border: none;
     text-align: center;
-    padding: 8px;
-  
-    .flag-icon {
-      margin-right: 8px;
-      height: 24px;
-    }
-  
-    .caret-down {
-      margin: auto;
-      width: 0; 
-      height: 0; 
-      border-radius: 20px;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 8px solid #FFF;
-  
-      &.open {
-        border-top: 8px solid #B8B8B8;
-      }
-    }
-  }
-
-  .language-selector {
-    position: fixed;
-    padding: 16px 24px 16px 24px; 
+    padding: 0.8rem;
     z-index: 110;
-    right: 24px;
-    left: 24px;
-    background: #F8F8F8;
-    border-radius: 14px;
+
+    .flag-icon {
+        margin-right: 0.8rem;
+        max-width: 2.4rem;
+    }
+
+    .caret-down {
+        margin: auto;
+        width: 0;
+        height: 0;
+        border-left: 0.8rem solid transparent;
+        border-right: 0.8rem solid transparent;
+        border-top: 0.8rem solid #fff;
+
+        &.open {
+            z-index: 110;
+            border-top: 0.8rem solid #b8b8b8;
+        }
+    }
+}
+
+.language-selector {
+    position: fixed;
+    right: 2.4rem;
+    left: 2.4rem;
+    top: 6rem;
+    padding: 1.6rem 2.4rem 1.6rem 2.4rem;
+    z-index: 110;
+    background: #f8f8f8;
+    border-radius: 1.4rem;
 
     .select-lang-btn {
         display: flex;
         align-items: center;
-        padding-left: 21px;
-        padding-right: 21px;
-        background: #FFFFFF;
+        padding-left: 2.1rem;
+        padding-right: 2.1rem;
+        background: #ffffff;
         width: 100%;
-        height: 54px;
-        margin: 16px 0px 16px 0px;
+        height: 5.4rem;
+        margin: 1.6rem 0 1.6rem 0;
         border: 1px solid rgba(0, 0, 0, 0.2);
-        border-radius: 8px;
+        border-radius: 0.8rem;
+        font-weight: 500;
 
         .locale-name {
             flex-grow: 3;
             text-align: left;
-            padding-left: 15px;
+            padding-left: 1.5rem;
 
             &.blur {
-              color: rgba(0, 0, 0, 0.4);
+                color: rgba(0, 0, 0, 0.4);
+                font-weight: normal;
             }
         }
-    }
-  }
 
-  .overlay {
+        .status {
+            margin-right: -0.5rem;
+        }
+    }
+}
+
+.overlay {
     position: absolute;
     top: 0;
     bottom: 0;

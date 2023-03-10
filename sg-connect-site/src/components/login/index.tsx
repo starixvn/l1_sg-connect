@@ -1,18 +1,19 @@
-import Axios from "axios";
-import React from "react";
-import Styles from "./styles.module.scss";
-import { LocalStorageKeys, getStorage, setStorage } from "./helpers/local-storage";
-import { encodePwd } from "./helpers/encode";
-import crypto from "crypto";
 import appSettings from "@/common/app-settings";
+import ErrorCodeDictionary from "@/common/constants/error-code-dictionary";
+import { DefaultLanguage } from "@/common/constants/language";
 import { getUnfinishedUM } from "@/shared/userService";
 import * as Sentry from "@sentry/nextjs";
-import { withTranslation } from "react-i18next";
+import Axios from "axios";
+import crypto from "crypto";
 import Router from "next/router";
+import React from "react";
+import { withTranslation } from "react-i18next";
+
 import LanguageSelector from "./components/language-selector";
 import NotificationPopup from "./components/notification-popup";
-import { DefaultLanguage } from "@/common/constants/language";
-import ErrorCodeDictionary from "@/common/constants/error-code-dictionary";
+import { encodePwd } from "./helpers/encode";
+import { getStorage, LocalStorageKeys, setStorage } from "./helpers/local-storage";
+import Styles from "./styles.module.scss";
 
 interface Props {
     t: Function;
@@ -157,90 +158,71 @@ class Login extends React.Component<Props, State> {
             return null;
         }
         return (
-            <div
-                className={`d-flex flex-column ${Styles.container}`}
-                style={{
-                    backgroundImage: `url("/images/login/background.jpg")`,
-                    backgroundSize: "100%",
-                    height: "100%",
-                }}
-            >
+            <div className={Styles.container}>
                 {showNotification && <NotificationPopup onCloseModal={this.hideNotification.bind(this)} content={notificationContent} />}
                 <div className={Styles.header}>
-                    <div className={Styles.actions}>
-                        <LanguageSelector langCode={language} onUpdateLanguage={this.updateLanguage.bind(this)} />
-                    </div>
+                    <LanguageSelector langCode={language} onUpdateLanguage={this.updateLanguage.bind(this)} />
                 </div>
-                <div className={`${Styles.logo}`}>
+                <div className={Styles.logo}>
                     <img src="/images/login/logo.png" alt="logo" />
                 </div>
 
-                <div className={`d-plex p-2 ${Styles["actions"]}`}>
-                    <form id="login-form" className={Styles["login-form"]} onSubmit={this.onSubmit.bind(this)}>
-                        <p className={Styles.description}>{t("description")}</p>
-                        <div className={Styles["form-action"]}>
-                            <div className="form-group">
-                                <div className={`input-group ${Styles["input"]}`}>
-                                    <span className={`input-group-text ${Styles["icon"]}`}>
-                                        <img className="" src={`/images/login/username-icon.png`}></img>
-                                    </span>
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        value={username}
-                                        placeholder={t("username")}
-                                        id="username"
-                                        onChange={this.onInputUsernameChange.bind(this)}
-                                    />
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <div className={`input-group ${Styles["input"]}`}>
-                                    <span className={`input-group-text ${Styles["icon"]}`}>
-                                        <img src={`/images/login/password-icon.png`}></img>
-                                    </span>
-                                    <input
-                                        className="form-control"
-                                        type={passwordHint ? "text" : "password"}
-                                        value={password}
-                                        placeholder={t("password")}
-                                        onChange={this.onInputPasswordChange.bind(this)}
-                                        id="password"
-                                    />
-                                    <button
-                                        type="button"
-                                        className={`input-group-text ${Styles["icon"]}`}
-                                        onClick={this.updatePasswordHint.bind(this)}
-                                    >
-                                        <img src={`/images/login/password-append-icon.png`}></img>
-                                    </button>
-                                </div>
-                            </div>
-                            <div className={`container ${Styles["remember-btn"]}`}>
-                                <input
-                                    className={Styles["checkbox"]}
-                                    type="checkbox"
-                                    id="rememberMe"
-                                    value="rememberMe"
-                                    onChange={this.clickRememberHandle.bind(this)}
-                                    checked={rememberMe}
-                                ></input>
-                                <label htmlFor="rememberMe">
-                                    <span className={`${Styles["checkmark"]} ${rememberMe ? Styles["checked"] : null}`}></span>
-                                    {t("rememberMe")}
-                                </label>
-                            </div>
-                            <div style={{ textAlign: "center" }}>
-                                <button className={Styles["signin-btn"]} type="submit" disabled={password == "" || username == ""}>
-                                    {t("signIn")}
-                                    {(password == "" || username == "") && <div className={Styles["overlay"]}></div>}
-                                </button>
-                            </div>
+                <form id="login-form" className={Styles["login-form"]} onSubmit={this.onSubmit.bind(this)}>
+                    <p className={Styles.description}>{t("description")}</p>
+                    <div className={Styles["form-action"]}>
+                        <div className={Styles["input-group"]}>
+                            <span className={Styles["icon"]}>
+                                <img className="" src={`/images/login/username-icon.png`}></img>
+                            </span>
+                            <input
+                                className={Styles["form-control"]}
+                                type="text"
+                                value={username}
+                                placeholder={t("username")}
+                                id="username"
+                                onChange={this.onInputUsernameChange.bind(this)}
+                            />
                         </div>
-                    </form>
-                </div>
+                        <div className={Styles["input-group"]}>
+                            <span className={Styles["icon"]}>
+                                <img src={`/images/login/password-icon.png`}></img>
+                            </span>
+                            <input
+                                className={Styles["form-control"]}
+                                type={passwordHint ? "text" : "password"}
+                                value={password}
+                                placeholder={t("password")}
+                                onChange={this.onInputPasswordChange.bind(this)}
+                                id="password"
+                            />
+                            <button type="button" className={Styles["icon-view"]} onClick={this.updatePasswordHint.bind(this)}>
+                                <img src={`/images/login/password-append-icon.png`}></img>
+                            </button>
+                        </div>
+                        <div className={Styles["remember-btn"]}>
+                            <input
+                                className={Styles["checkbox"]}
+                                type="checkbox"
+                                id="rememberMe"
+                                value="rememberMe"
+                                onChange={this.clickRememberHandle.bind(this)}
+                                checked={rememberMe}
+                            ></input>
+                            <label htmlFor="rememberMe">
+                                <span className={`${Styles["checkmark"]} ${rememberMe ? Styles["checked"] : null}`}></span>
+                                {t("rememberMe")}
+                            </label>
+                        </div>
+                        <div style={{ textAlign: "center" }}>
+                            <button className={Styles["signin-btn"]} type="submit" disabled={password == "" || username == ""}>
+                                {t("signIn")}
+                                {(password == "" || username == "") && <div className={Styles["overlay"]}></div>}
+                            </button>
+                        </div>
+                    </div>
+                </form>
 
-                <div className={`p-2 ${Styles.footer}`}>Version 1.124</div>
+                <div className={Styles.footer}>Version 1.124</div>
             </div>
         );
     }
