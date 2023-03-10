@@ -1,10 +1,10 @@
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { useEffect, useState } from "react";
-import dayjs from "dayjs";
-import { UMInfo, getUnfinishedUM } from "@/shared/userService";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import appSettings from "@/common/app-settings";
+import { getUnfinishedUM, UMInfo } from "@/shared/userService";
+import dayjs from "dayjs";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function UM() {
     const [umInfo, setUMInfo] = useState<UMInfo | null>(null);

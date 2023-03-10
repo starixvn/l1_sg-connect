@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { useEffect } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Timeout() {
     const router = useRouter();
@@ -21,7 +21,7 @@ export default function Timeout() {
         <div className="time-out">
             <div>
                 <img className="image" src="/images/timeout/icon-expired.png" alt="Image" />
-                <p className="text-center title">{t("sessionTimeout")}</p>
+                <p className="title">{t("sessionTimeout")}</p>
                 <button type="button" onClick={redirectToLoginPage}>
                     {t("login")}
                 </button>

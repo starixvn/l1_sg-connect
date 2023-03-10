@@ -1,5 +1,4 @@
 .time-out {
-    font-family: "Roboto", sans-serif;
     background-image: url("/images/timeout/bg-timeout.jpg");
     background-size: cover;
     height: 100vh;
@@ -30,13 +29,13 @@
         }
         button {
             background: linear-gradient(180deg, #ff7144 0%, #f99f2c 100%);
-            border-radius: 200px;
-            width: 490px;
-            height: 95px;
+            border-radius: 20rem;
+            width: 49rem;
+            height: 9.5rem;
             border: none;
-            color: white;
+            color: #fff;
             text-transform: uppercase;
-            font-size: 30px;
+            font-size: 3rem;
         }
     }
 }
@@ -65,12 +64,12 @@
     .time-out {
         div {
             .title {
-                font-size: 20px;
+                font-size: 2rem;
             }
             button {
-                width: 210px;
-                height: 45px;
-                font-size: 16px;
+                width: 21rem;
+                height: 4.5rem;
+                font-size: 1.6rem;
             }
         }
     }
