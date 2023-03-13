@@ -6,7 +6,7 @@ namespace SGConnect.Api.Operators.OneWorks
     {
         public string Username { get; set; }
 
-        public string Password { get; set; }
+        public string EncryptedPassword { get; set; }
 
         public string EncodeKey { get; set; }
 
@@ -22,7 +22,7 @@ namespace SGConnect.Api.Operators.OneWorks
         public ConnectSiteLoginValidator()
         {
             RuleFor(x => x.Username).NotNull().NotEmpty();
-            RuleFor(x => x.Password).NotNull().NotEmpty();
+            RuleFor(x => x.EncryptedPassword).NotNull().NotEmpty();
             RuleFor(x => x.Language).NotNull().NotEmpty();
             RuleFor(x => x.EncodeKey).NotNull().NotEmpty();
         }

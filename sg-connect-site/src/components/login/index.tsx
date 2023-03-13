@@ -14,6 +14,7 @@ import NotificationPopup from "./components/notification-popup";
 import { encodePwd } from "./helpers/encode";
 import { getStorage, LocalStorageKeys, setStorage } from "./helpers/local-storage";
 import Styles from "./styles.module.scss";
+import { encrypt } from "./helpers/encrypt";
 
 interface Props {
     t: Function;
@@ -101,7 +102,7 @@ class Login extends React.Component<Props, State> {
                 this.setState({ isUM: false });
             }
         });
-    };
+    };   
 
     async onSubmit(event: any) {
         event && event.preventDefault();
@@ -115,12 +116,11 @@ class Login extends React.Component<Props, State> {
         setStorage(LocalStorageKeys.username, this.state.username);
 
         const encodeKey = crypto.randomBytes(20).toString("hex");
-
         const request = {
             Username: username,
             EncodeKey: encodeKey,
-            Password: encodePwd(password, encodeKey),
-            Language: language,
+            EncryptedPassword: await encrypt(encodePwd(password, encodeKey)),
+            Language: language,            
         };
 
         Axios.post(`${appSettings.sgConnectApi.url}/Login`, request)

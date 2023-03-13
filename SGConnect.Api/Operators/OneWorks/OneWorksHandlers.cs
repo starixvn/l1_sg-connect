@@ -21,7 +21,7 @@ namespace SGConnect.Api.Operators.OneWorks
             this.memberApi = memberApi;
             settings = operatorSettings.OneWorks;
             this.logService = logService;
-        }
+        }        
 
         public async Task<OWLoginResult> HandleLogin(ConnectSiteLogin connectSiteLogin)
         {
@@ -29,7 +29,7 @@ namespace SGConnect.Api.Operators.OneWorks
                 new MemberLogin
                 {
                     Username = connectSiteLogin.Username,
-                    Password = connectSiteLogin.Password,
+                    Password = CryptoService.Decrypt(connectSiteLogin.EncryptedPassword),
                     PasswordEncodeKey = connectSiteLogin.EncodeKey
                 });
 
