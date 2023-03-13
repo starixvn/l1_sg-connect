@@ -25,7 +25,7 @@ namespace SGConnect.Api.Operators.OneWorks
 
         public async Task<OWLoginResult> HandleLogin(ConnectSiteLogin connectSiteLogin)
         {
-            var memberLoginRersult = await CallMemberLogin(
+            var memberLoginResult = await CallMemberLogin(
                 new MemberLogin
                 {
                     Username = connectSiteLogin.Username,
@@ -33,16 +33,16 @@ namespace SGConnect.Api.Operators.OneWorks
                     PasswordEncodeKey = connectSiteLogin.EncodeKey
                 });
 
-            if (memberLoginRersult.ErrorCode == 0)
+            if (memberLoginResult.ErrorCode == 0)
             {
-                var response = await CallOWLogin(InitOWLoginModel(connectSiteLogin, memberLoginRersult));
+                var response = await CallOWLogin(InitOWLoginModel(connectSiteLogin, memberLoginResult));
                 return AppendAppType(response.Result);
             }
 
             return new()
             {
-                ErrorCode = memberLoginRersult.ErrorCode,
-                ErrorDescription = memberLoginRersult.ErrorMsg
+                ErrorCode = memberLoginResult.ErrorCode,
+                ErrorDescription = memberLoginResult.ErrorMsg
             };
         }
 
@@ -108,17 +108,17 @@ namespace SGConnect.Api.Operators.OneWorks
             return owLoginResult;
         }
 
-        private OWLogin InitOWLoginModel(ConnectSiteLogin connectSiteLogin, MemberLoginResult memberLoginRersult)
+        private OWLogin InitOWLoginModel(ConnectSiteLogin connectSiteLogin, MemberLoginResult memberLoginResult)
         {
             return new(settings.ApiAuth.Login, settings.ApiAuth.Password)
             {
                 Call = new()
                 {
-                    ObCustId = memberLoginRersult.PublicUserInfo.UserID,
-                    ObCustName = memberLoginRersult.PublicUserInfo.UserName,
-                    Currency = memberLoginRersult.PublicUserInfo.UserInfo.Currency,
-                    SiteId = memberLoginRersult.PublicUserInfo.SiteID,
-                    SiteName = memberLoginRersult.PublicUserInfo.SiteName,
+                    ObCustId = memberLoginResult.PublicUserInfo.UserID,
+                    ObCustName = memberLoginResult.PublicUserInfo.UserName,
+                    Currency = memberLoginResult.PublicUserInfo.UserInfo.Currency,
+                    SiteId = memberLoginResult.PublicUserInfo.SiteID,
+                    SiteName = memberLoginResult.PublicUserInfo.SiteName,
                     IP = connectSiteLogin.Ip,
                     BrowserUserAgent = connectSiteLogin.BrowserUserAgent,
                     Language = connectSiteLogin.Language
