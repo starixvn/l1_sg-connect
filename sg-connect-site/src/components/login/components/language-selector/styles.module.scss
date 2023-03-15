@@ -6,6 +6,11 @@
     padding: 0.8rem;
     margin-right: 2.1rem;
 
+    &.show {
+        position: fixed;
+        z-index: 110;
+    }
+
     .flag-icon {
         margin-right: 0.8rem;
         max-width: 2.4rem;

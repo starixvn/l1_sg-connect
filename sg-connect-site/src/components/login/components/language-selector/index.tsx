@@ -1,6 +1,7 @@
 import { LanguageFlagMapper } from "@/common/constants/language";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+
 import Styles from "./styles.module.scss";
 
 interface Props {
@@ -35,7 +36,10 @@ export default function LanguageSelector(props: Props) {
 
     return (
         <>
-            <button className={Styles["language-btn"]} onClick={() => setIsOpenPopup(!isOpenPopup)}>
+            <button
+                className={`${Styles["language-btn"]} ${isOpenPopup ? Styles["show"] : ""}`}
+                onClick={() => setIsOpenPopup(!isOpenPopup)}
+            >
                 <img src={`/images/flags/${LanguageFlagMapper[langCode]}.png`} alt="flag-icon" className={Styles["flag-icon"]} />
                 <i className={Styles["caret-down"]}></i>
             </button>
