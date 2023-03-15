@@ -20,6 +20,10 @@
 .logo {
     display: flex;
     justify-content: center;
+
+    img {
+        width: 22rem;
+    }
 }
 
 .login-form {

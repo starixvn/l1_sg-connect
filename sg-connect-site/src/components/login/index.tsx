@@ -152,7 +152,7 @@ class Login extends React.Component<Props, State> {
                     <LanguageSelector langCode={language} onUpdateLanguage={this.updateLanguage.bind(this)} />
                 </div>
                 <div className={Styles.logo}>
-                    <img src="/images/login/logo.png?v=1" alt="logo" />
+                    <img src="/images/login/logo.png?v=2" alt="logo" />
                 </div>
 
                 <form id="login-form" className={Styles["login-form"]} onSubmit={this.onSubmit.bind(this)}>
