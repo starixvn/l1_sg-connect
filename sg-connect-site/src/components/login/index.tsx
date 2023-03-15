@@ -152,7 +152,7 @@ class Login extends React.Component<Props, State> {
                     <LanguageSelector langCode={language} onUpdateLanguage={this.updateLanguage.bind(this)} />
                 </div>
                 <div className={Styles.logo}>
-                    <img src="/images/login/logo.png" alt="logo" />
+                    <img src="/images/login/logo.png?v=1" alt="logo" />
                 </div>
 
                 <form id="login-form" className={Styles["login-form"]} onSubmit={this.onSubmit.bind(this)}>
@@ -160,7 +160,7 @@ class Login extends React.Component<Props, State> {
                     <div className={Styles["form-action"]}>
                         <div className={Styles["input-group"]}>
                             <span className={Styles["icon"]}>
-                                <img className="" src={`/images/login/username-icon.png`}></img>
+                                <img className="" src={`/images/login/username-icon.png`} />
                             </span>
                             <input
                                 className={Styles["form-control"]}
@@ -173,7 +173,7 @@ class Login extends React.Component<Props, State> {
                         </div>
                         <div className={Styles["input-group"]}>
                             <span className={Styles["icon"]}>
-                                <img src={`/images/login/password-icon.png`}></img>
+                                <img src={`/images/login/password-icon.png`} />
                             </span>
                             <input
                                 className={Styles["form-control"]}
@@ -184,7 +184,7 @@ class Login extends React.Component<Props, State> {
                                 id="password"
                             />
                             <button type="button" className={Styles["icon-view"]} onClick={this.updatePasswordHint.bind(this)}>
-                                <img src={`/images/login/password-append-icon.png`}></img>
+                                <img src={`/images/login/icon-eye${passwordHint ? "-slash" : ""}.png`} />
                             </button>
                         </div>
 
