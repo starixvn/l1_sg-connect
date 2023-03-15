@@ -13,18 +13,22 @@
 
 .popup {
     position: fixed;
-    padding: 1.6rem;
+    display: flex;
+    height: 100%;
     z-index: 110;
-    top: 44%;
     right: 18%;
     left: 18%;
-    background-color: #f8f8f8;
-    backdrop-filter: blur(27.1828px);
-    border-radius: 1.4rem;
     font-size: 1.8rem;
     text-align: center;
 
     .container {
+        position: relative;
+        width: 100%;
+        margin: auto;
+        padding: 1.6rem;
+        border-radius: 1.4rem;
+        background: #f8f8f8;
+
         .header {
             .close-icon {
                 position: absolute;
@@ -61,6 +65,7 @@
             margin-top: 1.9rem;
             text-align: center;
             font-weight: 300;
+            word-wrap: break-word;
         }
     }
 }

@@ -2,9 +2,8 @@
     display: flex;
     flex-direction: column;
     background-image: url("/images/login/background.jpg");
-    background-size: 100%;
+    background-size: cover;
     height: 100%;
-    font-family: "Roboto", sans-serif;
     line-height: 2.4rem;
     font-weight: 300;
     font-size: 1.6rem;
@@ -19,11 +18,8 @@
 }
 
 .logo {
-    text-align: center;
-
-    img {
-        width: 50%;
-    }
+    display: flex;
+    justify-content: center;
 }
 
 .login-form {
@@ -52,6 +48,7 @@
     input:-webkit-autofill:focus,
     input:-webkit-autofill:active {
         -webkit-box-shadow: #f9f9f4 !important;
+        background-color: transparent;
     }
 
     .icon-view {
@@ -68,73 +65,17 @@
     }
 }
 
-.remember-btn {
-    display: block;
-    position: relative;
-    padding-left: 3.5rem;
-    margin-bottom: 1.2rem;
-    margin-left: 1.2rem;
-    font-weight: 500;
-    color: #f9f9f4;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    text-align: left;
-    cursor: pointer;
-
-    input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
-
-    .checkmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 2.4rem;
-        width: 2.4rem;
-        border: 2px solid #fff;
-        border-radius: 0.4rem;
-    }
-
-    .checked {
-        background-color: #00af12;
-    }
-
-    .checked::before {
-        content: "";
-        background-color: transparent;
-
-        position: absolute;
-        left: 0.6rem;
-        top: 0.3rem;
-
-        width: 0.8rem;
-        border-bottom: 3px solid #fff;
-        height: 1.2rem;
-        border-right: 3px solid #fff;
-        box-sizing: border-box;
-
-        transform: rotate(45deg);
-        -o-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-    }
-}
-
 .login-btn {
     position: relative;
     width: 100%;
     height: 5.2rem;
-    margin-top: 7rem;
+    margin-top: 3.6rem;
     background: linear-gradient(180deg, #ff7144 0%, #f99f2c 100%);
     border-radius: 20rem;
     color: #fff;
     border: none;
+    font-size: inherit;
+    text-transform: uppercase;
 
     .overlay {
         background: rgba(0, 0, 0, 0.6);
@@ -146,15 +87,6 @@
         right: 0;
         z-index: 5;
     }
-}
-
-.footer {
-    position: fixed;
-    bottom: 4.5rem;
-    width: 100%;
-    font-size: 1.4rem;
-    color: #fff;
-    text-align: center;
 }
 
 .form-control {

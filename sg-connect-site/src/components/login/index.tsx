@@ -12,9 +12,9 @@ import { withTranslation } from "react-i18next";
 import LanguageSelector from "./components/language-selector";
 import NotificationPopup from "./components/notification-popup";
 import { encodePwd } from "./helpers/encode";
+import { encrypt } from "./helpers/encrypt";
 import { getStorage, LocalStorageKeys, setStorage } from "./helpers/local-storage";
 import Styles from "./styles.module.scss";
-import { encrypt } from "./helpers/encrypt";
 
 interface Props {
     t: Function;
@@ -102,7 +102,7 @@ class Login extends React.Component<Props, State> {
                 this.setState({ isUM: false });
             }
         });
-    };   
+    };
 
     async onSubmit(event: any) {
         event && event.preventDefault();
@@ -120,7 +120,7 @@ class Login extends React.Component<Props, State> {
             Username: username,
             EncodeKey: encodeKey,
             EncryptedPassword: await encrypt(encodePwd(password, encodeKey)),
-            Language: language,            
+            Language: language,
         };
 
         Axios.post(`${appSettings.sgConnectApi.url}/Login`, request)
@@ -188,16 +188,12 @@ class Login extends React.Component<Props, State> {
                             </button>
                         </div>
 
-                        <div style={{ textAlign: "center" }}>
-                            <button className={Styles["login-btn"]} type="submit" disabled={password == "" || username == ""}>
-                                {t("login")}
-                                {(password == "" || username == "") && <div className={Styles["overlay"]}></div>}
-                            </button>
-                        </div>
+                        <button className={Styles["login-btn"]} type="submit" disabled={password == "" || username == ""}>
+                            {t("login")}
+                            {(password == "" || username == "") && <div className={Styles["overlay"]}></div>}
+                        </button>
                     </div>
                 </form>
-
-                <div className={Styles.footer}>Version 1.124</div>
             </div>
         );
     }
