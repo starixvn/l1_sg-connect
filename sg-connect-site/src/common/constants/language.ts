@@ -7,4 +7,4 @@ export const LanguageFlagMapper: { [key: string]: string } = {
     "vi-VN": "vi",
 };
 
-export const DefaultLanguage = "vi-VN";
+export const DefaultLanguage = "en-US";

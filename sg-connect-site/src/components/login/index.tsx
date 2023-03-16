@@ -80,7 +80,8 @@ class Login extends React.Component<Props, State> {
 
     async componentDidMount() {
         const language = getStorage(LocalStorageKeys.language);
-        this.setState({ language: language ?? DefaultLanguage });
+        const username = getStorage(LocalStorageKeys.username);
+        this.setState({ language: language ?? DefaultLanguage, username: username ?? "" });
 
         this.getUMInfo();
         this.UMInterval = setInterval(() => this.getUMInfo(), 1000 * 60); // 1m
@@ -104,7 +105,7 @@ class Login extends React.Component<Props, State> {
         });
     };
 
-    async onSubmit(event: any) {
+    async onSubmit(event: any) {        
         event && event.preventDefault();
 
         const { username, password, language } = this.state;
