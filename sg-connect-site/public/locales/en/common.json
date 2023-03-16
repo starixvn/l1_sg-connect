@@ -5,10 +5,10 @@
     "from": "from",
     "to": "to",
     "en-US": "English",
-    "vi-VN": "Vietnamese",
-    "th-TH": "Thailand",
-    "id-ID": "Indonesia",
-    "zh-CN": "Chinese Simplified",
-    "zh-TW": "Chinese Original",
+    "vi-VN": "Tiếng Việt",
+    "th-TH": "ภาษาไทย",
+    "id-ID": "Indonesian",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
     "notification": "Notification"
 }
