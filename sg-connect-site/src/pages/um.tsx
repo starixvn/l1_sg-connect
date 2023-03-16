@@ -24,6 +24,10 @@ export default function UM() {
     }, [router]);
 
     useEffect(() => {
+        !isUM && router.push("/");
+    }, [isUM]);
+
+    useEffect(() => {
         const interval = setInterval(() => getUMInfo(operatorId), 1000 * 60); // 1m
         return () => clearInterval(interval);
     }, [operatorId]);
@@ -50,7 +54,7 @@ export default function UM() {
                     <div>
                         <img className="logo" src="/images/um/logo.png" alt="Image" decoding="async" />
                     </div>
-                    <img className="image" src="/images/um/icon-um.png" alt="Image" />
+                    <img className="image" src={`/images/um/icon-um_${i18n.language}.png`} alt="Image" />
                     <div className="title">{t("maintenanceTime")}</div>
                     <div>{`(GMT + 8)`}</div>
                     <div className="time">

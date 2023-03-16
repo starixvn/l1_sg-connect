@@ -14,7 +14,7 @@ export default function Timeout() {
     }, [router]);
 
     const redirectToLoginPage = () => {
-        router.push("/login");
+        router.push("/");
     };
 
     return (
