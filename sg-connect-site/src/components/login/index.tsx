@@ -34,6 +34,8 @@ interface State {
     notificationContent: string;
 
     isKeyboardOpen: boolean;
+
+    isLoading: boolean;
 }
 
 class Login extends React.Component<Props, State> {
@@ -51,7 +53,12 @@ class Login extends React.Component<Props, State> {
             showNotification: false,
             notificationContent: "",
             isKeyboardOpen: false,
+            isLoading: false,
         };
+    }
+
+    setLoading(isLoading: boolean) {
+        this.setState({ isLoading });
     }
 
     setIsKeyboardOpen(isOpen: boolean) {
@@ -136,6 +143,8 @@ class Login extends React.Component<Props, State> {
             return;
         }
 
+        this.setLoading(true);
+
         setStorage(LocalStorageKeys.username, this.state.username);
 
         const encodeKey = crypto.randomBytes(20).toString("hex");
@@ -159,12 +168,14 @@ class Login extends React.Component<Props, State> {
             .catch((error) => {
                 this.showNotification(error.toString());
                 Sentry.captureException(error);
-            });
+            })
+            .finally(() => this.setLoading(false));
     }
 
     render() {
         const { t } = this.props;
-        const { username, password, passwordHint, isUM, language, showNotification, notificationContent, isKeyboardOpen } = this.state;
+        const { username, password, passwordHint, isUM, language, showNotification, notificationContent, isKeyboardOpen, isLoading } =
+            this.state;
         if (isUM) {
             return null;
         }
@@ -216,7 +227,7 @@ class Login extends React.Component<Props, State> {
                         </div>
 
                         <button className={Styles["login-btn"]} type="submit" disabled={password == "" || username == ""}>
-                            {t("login")}
+                            {isLoading ? <span className={Styles["loading"]}></span> : t("login")}
                             {(password == "" || username == "") && <div className={Styles["overlay"]}></div>}
                         </button>
                     </div>
