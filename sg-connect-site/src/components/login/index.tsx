@@ -155,12 +155,14 @@ class Login extends React.Component<Props, State> {
             Language: language,
         };
 
+        
         Axios.post(`${appSettings.sgConnectApi.url}/Login`, request)
             .then((data) => data.data)
             .then((data) => (data.error ? Promise.reject(data.error) : data))
             .then((data) => {
                 if (data.errorCode) {
-                    this.showNotification(this.props.t(`message:${ErrorCodeDictionary[data.errorCode]}`, { errorCode: data.errorCode }));
+                    const messageKey = ErrorCodeDictionary[data.errorCode] ?? "errorOccurred";
+                    this.showNotification(this.props.t(`message:${messageKey}`, { errorCode: data.errorCode }));
                 } else {
                     location.href = data.redirectUri;
                 }
