@@ -8,13 +8,15 @@ import crypto from "crypto";
 import Router from "next/router";
 import React from "react";
 import { withTranslation } from "react-i18next";
-
+import { isMobile } from "react-device-detect";
 import LanguageSelector from "./components/language-selector";
 import NotificationPopup from "./components/notification-popup";
 import { encodePwd } from "./helpers/encode";
 import { encrypt } from "./helpers/encrypt";
 import { getStorage, LocalStorageKeys, setStorage } from "./helpers/local-storage";
 import Styles from "./styles.module.scss";
+
+const MinHeightKeyBoard = 300;
 
 interface Props {
     t: Function;
@@ -30,6 +32,8 @@ interface State {
     showNotification: boolean;
 
     notificationContent: string;
+
+    isKeyboardOpen: boolean;
 }
 
 class Login extends React.Component<Props, State> {
@@ -46,7 +50,12 @@ class Login extends React.Component<Props, State> {
             language: "en-US",
             showNotification: false,
             notificationContent: "",
+            isKeyboardOpen: false,
         };
+    }
+
+    setIsKeyboardOpen(isOpen: boolean) {
+        this.setState({ isKeyboardOpen: isOpen });
     }
 
     hideNotification() {
@@ -78,6 +87,14 @@ class Login extends React.Component<Props, State> {
         setStorage(LocalStorageKeys.language, language);
     }
 
+    keyboardOpenListener = () => {
+        const newState = window.screen.height - MinHeightKeyBoard > (window.visualViewport?.height ?? 0);
+
+        if (this.state.isKeyboardOpen != newState) {
+            this.setIsKeyboardOpen(newState);
+        }
+    };
+
     async componentDidMount() {
         const language = getStorage(LocalStorageKeys.language);
         const username = getStorage(LocalStorageKeys.username);
@@ -85,10 +102,15 @@ class Login extends React.Component<Props, State> {
 
         this.getUMInfo();
         this.UMInterval = setInterval(() => this.getUMInfo(), 1000 * 60); // 1m
+
+        if (isMobile && typeof visualViewport != "undefined") {
+            window.visualViewport?.addEventListener("resize", this.keyboardOpenListener);
+        }
     }
 
     componentWillUnmount(): void {
         this.UMInterval && clearInterval(this.UMInterval);
+        isMobile && window.visualViewport?.removeEventListener("resize", this.keyboardOpenListener);
     }
 
     getUMInfo = () => {
@@ -105,7 +127,7 @@ class Login extends React.Component<Props, State> {
         });
     };
 
-    async onSubmit(event: any) {        
+    async onSubmit(event: any) {
         event && event.preventDefault();
 
         const { username, password, language } = this.state;
@@ -142,7 +164,7 @@ class Login extends React.Component<Props, State> {
 
     render() {
         const { t } = this.props;
-        const { username, password, passwordHint, isUM, language, showNotification, notificationContent } = this.state;
+        const { username, password, passwordHint, isUM, language, showNotification, notificationContent, isKeyboardOpen } = this.state;
         if (isUM) {
             return null;
         }
@@ -156,7 +178,11 @@ class Login extends React.Component<Props, State> {
                     <img src="/images/login/logo.png?v=2" alt="logo" />
                 </div>
 
-                <form id="login-form" className={Styles["login-form"]} onSubmit={this.onSubmit.bind(this)}>
+                <form
+                    id="login-form"
+                    className={`${Styles["login-form"]} ${isKeyboardOpen ? Styles["show-keyboard"] : ""}`}
+                    onSubmit={this.onSubmit.bind(this)}
+                >
                     <p className={Styles.description}>{t("description")}</p>
                     <div className={Styles["form-action"]}>
                         <div className={Styles["input-group"]}>
