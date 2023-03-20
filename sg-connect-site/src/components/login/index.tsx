@@ -145,7 +145,7 @@ class Login extends React.Component<Props, State> {
 
         this.setLoading(true);
 
-        setStorage(LocalStorageKeys.username, this.state.username);
+        
 
         const encodeKey = crypto.randomBytes(20).toString("hex");
         const request = {
@@ -163,6 +163,7 @@ class Login extends React.Component<Props, State> {
                     const messageKey = ErrorCodeDictionary[data.errorCode] ?? "errorOccurred";
                     this.showNotification(this.props.t(`message:${messageKey}`, { errorCode: data.errorCode }));
                 } else {
+                    setStorage(LocalStorageKeys.username, username);
                     location.href = data.redirectUri;
                 }
             })
