@@ -155,7 +155,6 @@ class Login extends React.Component<Props, State> {
             Language: language,
         };
 
-        
         Axios.post(`${appSettings.sgConnectApi.url}/Login`, request)
             .then((data) => data.data)
             .then((data) => (data.error ? Promise.reject(data.error) : data))
@@ -209,6 +208,7 @@ class Login extends React.Component<Props, State> {
                                 placeholder={t("username")}
                                 id="username"
                                 onChange={this.onInputUsernameChange.bind(this)}
+                                onFocus={(e) => e.preventDefault()}
                             />
                         </div>
                         <div className={Styles["input-group"]}>
@@ -222,6 +222,7 @@ class Login extends React.Component<Props, State> {
                                 placeholder={t("password")}
                                 onChange={this.onInputPasswordChange.bind(this)}
                                 id="password"
+                                onFocus={(e) => e.preventDefault()}
                             />
                             <button type="button" className={Styles["icon-view"]} onClick={this.updatePasswordHint.bind(this)}>
                                 <img src={`/images/login/icon-eye${passwordHint ? "-slash" : ""}.png`} />
