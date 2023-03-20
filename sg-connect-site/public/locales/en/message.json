@@ -1,18 +1,11 @@
 {
-    "underMaintain": "underMaintain",
-    "loginTooOften": "Login Too Often",
-    "systemError": "ipAccessDenied",
-    "useNickname": "wrongUsername",
+    "loginTooOften": "Login Too Often. ({{errorCode}})",
+    "useNickname": "Please use username to login. ({{errorCode}})",
     "lockedAccount": "Your account is locked. Please contact CSD to unlock your account. ({{errorCode}})",
-    "closedAccount": "Your account is closed. Please contact CSD to re-open your account. ({{errorCode}})",
-    "invalidToken": "invalidToken",
+    "closedAccount": "Account has been closed. Please contact CSD for details. ({{errorCode}})",
     "errorOccurred":"An error has occurred. Please contact CSD for details, thank you. ({{errorCode}})",
     "sessionTimeout":"System timed out, please closed the current game window and try again. ({{errorCode}})",
     "loginFailed":"Incorrect login name or password. ({{errorCode}})",
-    "accountClosed":"Account has been closed. Please contact your upline for details, thank you. ({{errorCode}})",
-    "ipRestricted":"Your IP address is restricted. ({{errorCode}})",
-    "accountBlacklisted":"Account has been closed. Please contact CSD for details. ({{errorCode}})",
-    "userNotFound":"User was not found. ({{errorCode}})",
-    "networkError":"Network error. ({{errorCode}})",
-    "sysMaintenance":"The game is under maintenance. ({{errorCode}})"
+    "sysMaintenance":"The game is under maintenance. ({{errorCode}})",
+    "ipAccessDenied": "You are not allowed to login from your location. Please contact CSD for further information. ({{errorCode}})"
 }

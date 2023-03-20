@@ -1,18 +1,11 @@
 {
-    "underMaintain": "underMaintain",
-    "loginTooOften": "Login Too Often",
-    "systemError": "ipAccessDenied",
-    "useNickname": "wrongUsername",
+    "loginTooOften": "Login Too Often. ({{errorCode}})",
+    "useNickname": "Please use username to login. ({{errorCode}})",
     "lockedAccount": "Your account is locked. Please contact CSD to unlock your account. ({{errorCode}})",
-    "closedAccount": "Your account is closed. Please contact CSD to re-open your account. ({{errorCode}})",
-    "invalidToken": "invalidToken",
+    "closedAccount": "您的帐号已被锁定，有关更多信息，请联系客户服务。({{errorCode}})",
     "errorOccurred":"发生错误，有关详细信息请联系客户服务，谢谢。({{errorCode}})",
     "sessionTimeout":"系统逾时，请重新启动游戏。({{errorCode}})",
     "loginFailed":"登录名或密码错误。({{errorCode}})",
-    "accountClosed":"您的帐号已被关闭，有关详细信息请联系您的上线，谢谢。({{errorCode}})",
-    "ipRestricted":"您的 IP 地址受限。({{errorCode}})",
-    "accountBlacklisted":"您的帐号已被锁定，有关更多信息，请联系客户服务。({{errorCode}})",
-    "userNotFound":"User was not found. ({{errorCode}})",
-    "networkError":"Network error. ({{errorCode}})",
-    "sysMaintenance":"游戏正在维护中。({{errorCode}})"
+    "sysMaintenance":"游戏正在维护中。({{errorCode}})",
+    "ipAccessDenied": "You are not allowed to login from your location. Please contact CSD for further information. ({{errorCode}})"
 }

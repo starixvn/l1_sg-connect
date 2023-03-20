@@ -1,18 +1,11 @@
 {
-    "underMaintain": "underMaintain",
-    "loginTooOften": "Login Too Often",
-    "systemError": "ipAccessDenied",
-    "useNickname": "wrongUsername",
+    "loginTooOften": "Login Too Often. ({{errorCode}})",
+    "useNickname": "Please use username to login. ({{errorCode}})",
     "lockedAccount": "Your account is locked. Please contact CSD to unlock your account. ({{errorCode}})",
-    "closedAccount": "Your account is closed. Please contact CSD to re-open your account. ({{errorCode}})",
-    "invalidToken": "invalidToken",
+    "closedAccount": "Account has been closed. Please contact CSD for details. ({{errorCode}})",
     "errorOccurred":"Terjadi kesalahan. Harap hubungi CSD untuk detailnya, terima kasih. ({{errorCode}})",
     "sessionTimeout":"Waktu sistem habis, harap tutup layar permainan saat ini lalu coba lagi. ({{errorCode}})",
     "loginFailed":"Incorrect login name or password. ({{errorCode}})",
-    "accountClosed":"Akun telah ditutup. Harap hubungi upline Anda untuk detailnya, terima kasih. ({{errorCode}})",
-    "ipRestricted":"Your IP address is restricted. ({{errorCode}})",
-    "accountBlacklisted":"Account has been closed. Please contact CSD for details. ({{errorCode}})",
-    "userNotFound":"User was not found. ({{errorCode}})",
-    "networkError":"Network error. ({{errorCode}})",
-    "sysMaintenance":"Game sedang dalam pemeliharaan. ({{errorCode}})"
+    "sysMaintenance":"Game sedang dalam pemeliharaan. ({{errorCode}})",
+    "ipAccessDenied": "You are not allowed to login from your location. Please contact CSD for further information. ({{errorCode}})"
 }

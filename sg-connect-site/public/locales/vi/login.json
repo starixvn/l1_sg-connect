@@ -1,6 +1,6 @@
 {
-    "description": "Please use the betting account given by your Upline to login",
-    "username": "Username",
-    "password": "Password",
-    "login": "Login"
+    "description": "Vui lòng đăng nhập bằng tài khoản được cấp bởi quản lý cấp trên của bạn",
+    "username": "Tên Truy Cập",
+    "password": "Mật Khẩu",
+    "login": "Đăng Nhập"
 }

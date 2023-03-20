@@ -1,6 +1,6 @@
 {
-    "description": "Please use the betting account given by your Upline to login",
-    "username": "Username",
-    "password": "Password",
-    "login": "Login"
+    "description": "โปรดใช้บัญชีเดิมพันที่อัพไลน์มอบให้เพื่อเข้าสู่ระบบ",
+    "username": "บัญชีผู้ใช้งาน",
+    "password": "รหัสผ่าน",
+    "login": "เข้าสู่ระบบ"
 }

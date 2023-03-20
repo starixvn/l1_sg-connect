@@ -1,18 +1,11 @@
 {
-    "underMaintain": "underMaintain",
-    "loginTooOften": "Login Too Often",
-    "systemError": "ipAccessDenied",
-    "useNickname": "wrongUsername",
+    "loginTooOften": "Login Too Often. ({{errorCode}})",
+    "useNickname": "Please use username to login. ({{errorCode}})",
     "lockedAccount": "Your account is locked. Please contact CSD to unlock your account. ({{errorCode}})",
-    "closedAccount": "Your account is closed. Please contact CSD to re-open your account. ({{errorCode}})",
-    "invalidToken": "invalidToken",
+    "closedAccount": "Account has been closed. Please contact CSD for details. ({{errorCode}})",
     "errorOccurred":"Đã xảy ra lỗi. Vui lòng liên hệ với CSD để biết chi tiết, cảm ơn bạn. ({{errorCode}})",
     "sessionTimeout":"Hệ thống đã hết thời gian chờ, vui lòng đóng cửa sổ trò chơi hiện tại rồi thử lại. ({{errorCode}})",
     "loginFailed":"Incorrect login name or password. ({{errorCode}})",
-    "accountClosed":"Tài khoản đã bị đóng. Vui lòng liên hệ với cấp trên để biết chi tiết, cảm ơn bạn. ({{errorCode}})",
-    "ipRestricted":"Your IP address is restricted. ({{errorCode}})",
-    "accountBlacklisted":"Account has been closed. Please contact CSD for details. ({{errorCode}})",
-    "userNotFound":"User was not found. ({{errorCode}})",
-    "networkError":"Network error. ({{errorCode}})",
-    "sysMaintenance":"Trò chơi đang được bảo trì. ({{errorCode}})"
+    "sysMaintenance":"Trò chơi đang được bảo trì. ({{errorCode}})",
+    "ipAccessDenied": "You are not allowed to login from your location. Please contact CSD for further information. ({{errorCode}})"
 }
