@@ -3,7 +3,7 @@ const ErrorCodeDictionary: { [key: string]: string } = {
     "11004": "loginFailed",
     "11005": "loginFailed",
     "21511": "ipAccessDenied",
-    "21532": "useNickname",
+    "21532": "loginFailed",
     "21561": "lockedAccount",
     "21563": "closedAccount",
     "21702": "sessionTimeout",

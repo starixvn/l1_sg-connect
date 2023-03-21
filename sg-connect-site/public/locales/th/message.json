@@ -1,11 +1,10 @@
 {
-    "loginTooOften": "Login Too Often. ({{errorCode}})",
-    "useNickname": "Please use username to login. ({{errorCode}})",
-    "lockedAccount": "Your account is locked. Please contact CSD to unlock your account. ({{errorCode}})",
-    "closedAccount": "Account has been closed. Please contact CSD for details. ({{errorCode}})",
+    "loginTooOften": "เข้าระบบบ่อยเกิน ({{errorCode}})",
+    "lockedAccount": "บัญชีของคุณล็อกอยู่ กรุณาติดต่อ CSD เพื่อปลดล็อกบัญชีของคุณ ({{errorCode}})",
+    "closedAccount": "บัญชีของคุณปิดอยู่ กรุณาติดต่อ CSD เพื่อปลดล็อกบัญชีของคุณ ({{errorCode}})",
     "errorOccurred":"เกิดข้อผิดพลาด กรุณาติดต่อ CSD เพื่อทราบรายละเอียด ขอบคุณ ({{errorCode}})",
     "sessionTimeout":"ระบบหมดเวลา กรุณาปิดหน้าต่างเกมปัจจุบันและลองอีกครั้ง ({{errorCode}})",
-    "loginFailed":"Incorrect login name or password. ({{errorCode}})",
+    "loginFailed":"คุณกรอกชื่อและรหัสในการเข้าระบบผิด ({{errorCode}})",
     "sysMaintenance":"การแข่งขันอยู่ระหว่างการปิดปรับปรุง ({{errorCode}})",
-    "ipAccessDenied": "You are not allowed to login from your location. Please contact CSD for further information. ({{errorCode}})"
+    "ipAccessDenied": "คุณไม่ได้รับอนุญาตให้เข้าสู่ระบบจากตำแหน่งของคุณ กรุณาติดต่อฝ่ายบริการลูกค้าสำหรับข้อมูลเพิ่มเติม ({{errorCode}})"
 }

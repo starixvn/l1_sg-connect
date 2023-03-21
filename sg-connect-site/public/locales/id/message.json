@@ -1,11 +1,10 @@
 {
-    "loginTooOften": "Login Too Often. ({{errorCode}})",
-    "useNickname": "Please use username to login. ({{errorCode}})",
-    "lockedAccount": "Your account is locked. Please contact CSD to unlock your account. ({{errorCode}})",
-    "closedAccount": "Account has been closed. Please contact CSD for details. ({{errorCode}})",
+    "loginTooOften": "Terlalu Sering Login. ({{errorCode}})",
+    "lockedAccount": "Akun Anda terkunci. Hubungi CSD untuk membuka akun Anda. ({{errorCode}})",
+    "closedAccount": "Akun Anda ditutup. Hubungi CSD untuk membuka akun Anda. ({{errorCode}})",
     "errorOccurred":"Terjadi kesalahan. Harap hubungi CSD untuk detailnya, terima kasih. ({{errorCode}})",
     "sessionTimeout":"Waktu sistem habis, harap tutup layar permainan saat ini lalu coba lagi. ({{errorCode}})",
-    "loginFailed":"Incorrect login name or password. ({{errorCode}})",
+    "loginFailed":"Nama pengguna/kata sandi salah. ({{errorCode}})",
     "sysMaintenance":"Game sedang dalam pemeliharaan. ({{errorCode}})",
-    "ipAccessDenied": "You are not allowed to login from your location. Please contact CSD for further information. ({{errorCode}})"
+    "ipAccessDenied": "Anda tidak diperbolehkan masuk dari lokasi Anda. Silakan hubungi CSD untuk informasi lebih lanjut. ({{errorCode}})"
 }

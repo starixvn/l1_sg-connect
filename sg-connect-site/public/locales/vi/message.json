@@ -1,11 +1,10 @@
 {
-    "loginTooOften": "Login Too Often. ({{errorCode}})",
-    "useNickname": "Please use username to login. ({{errorCode}})",
-    "lockedAccount": "Your account is locked. Please contact CSD to unlock your account. ({{errorCode}})",
-    "closedAccount": "Account has been closed. Please contact CSD for details. ({{errorCode}})",
+    "loginTooOften": "Đăng nhập quá thường xuyên. ({{errorCode}})",
+    "lockedAccount": "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Bộ Phận CSKH để mở khóa tài khoản. ({{errorCode}})",
+    "closedAccount": "Tài khoản của bạn đã bị đóng. Vui lòng liên hệ Bộ Phận CSKH để mở lại tài khoản. ({{errorCode}})",
     "errorOccurred":"Đã xảy ra lỗi. Vui lòng liên hệ với CSD để biết chi tiết, cảm ơn bạn. ({{errorCode}})",
     "sessionTimeout":"Hệ thống đã hết thời gian chờ, vui lòng đóng cửa sổ trò chơi hiện tại rồi thử lại. ({{errorCode}})",
-    "loginFailed":"Incorrect login name or password. ({{errorCode}})",
+    "loginFailed":"Tên người dùng hoặc mật khẩu không chính xác. ({{errorCode}})",
     "sysMaintenance":"Trò chơi đang được bảo trì. ({{errorCode}})",
-    "ipAccessDenied": "You are not allowed to login from your location. Please contact CSD for further information. ({{errorCode}})"
+    "ipAccessDenied": "Bạn không thể đăng nhập từ quốc gia bạn đang sống. Vui lòng liên hệ Bộ Phận CSKH để biết thêm chi tiết. ({{errorCode}})"
 }
