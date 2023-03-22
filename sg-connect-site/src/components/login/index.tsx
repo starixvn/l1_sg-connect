@@ -48,7 +48,7 @@ class Login extends React.Component<Props, State> {
             username: "",
             password: "",
             passwordHint: false,
-            isUM: false,
+            isUM: true,
             language: "en-US",
             showNotification: false,
             notificationContent: "",
