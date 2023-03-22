@@ -13,12 +13,18 @@ export default function LanguageSelector(props: Props) {
     const { langCode, onUpdateLanguage } = props;
     const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
     const { t } = useTranslation("common");
+    const { i18n } = useTranslation();
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     const updateLanguage = (langCode: string) => {
         onUpdateLanguage(langCode);
         setIsOpenPopup(false);
+        i18n.changeLanguage(langCode);
     };
+
+    useEffect(() => {
+        i18n.changeLanguage(langCode);
+    }, [langCode, i18n]);
 
     useEffect(() => {
         const handleClickOutside = (event: any) => {
