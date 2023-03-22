@@ -29,6 +29,11 @@
             border-top: 0.8rem solid #b8b8b8;
         }
     }
+
+    .current-lang-name {
+        color: #fff;
+        margin: auto 0.8rem auto 0;
+    }
 }
 
 .language-selector {
@@ -69,6 +74,8 @@
         .status {
             margin-right: -0.5rem;
         }
+
+       
     }
 }
 

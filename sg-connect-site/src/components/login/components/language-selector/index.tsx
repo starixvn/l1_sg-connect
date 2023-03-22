@@ -41,6 +41,7 @@ export default function LanguageSelector(props: Props) {
                 onClick={() => setIsOpenPopup(!isOpenPopup)}
             >
                 <img src={`/images/flags/${LanguageFlagMapper[langCode]}.png`} alt="flag-icon" className={Styles["flag-icon"]} />
+                <label className={Styles["current-lang-name"]}>{t(langCode)}</label>
                 <i className={Styles["caret-down"]}></i>
             </button>
             {isOpenPopup && (
