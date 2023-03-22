@@ -48,7 +48,7 @@ class Login extends React.Component<Props, State> {
             username: "",
             password: "",
             passwordHint: false,
-            isUM: true,
+            isUM: false,
             language: "en-US",
             showNotification: false,
             notificationContent: "",
@@ -60,6 +60,14 @@ class Login extends React.Component<Props, State> {
     setLoading(isLoading: boolean) {
         this.setState({ isLoading });
     }
+
+    keyboardOpenListener = () => {
+        const newState = window.screen.height - MinHeightKeyBoard > (window.visualViewport?.height ?? 0);
+
+        if (this.state.isKeyboardOpen != newState) {
+            this.setIsKeyboardOpen(newState);
+        }
+    };
 
     setIsKeyboardOpen(isOpen: boolean) {
         this.setState({ isKeyboardOpen: isOpen });
@@ -94,25 +102,19 @@ class Login extends React.Component<Props, State> {
         setStorage(LocalStorageKeys.language, language);
     }
 
-    keyboardOpenListener = () => {
-        const newState = window.screen.height - MinHeightKeyBoard > (window.visualViewport?.height ?? 0);
-
-        if (this.state.isKeyboardOpen != newState) {
-            this.setIsKeyboardOpen(newState);
-        }
-    };
-
     async componentDidMount() {
         const language = getStorage(LocalStorageKeys.language);
         const username = getStorage(LocalStorageKeys.username);
         this.setState({ language: language ?? DefaultLanguage, username: username ?? "" });
 
-        this.getUMInfo();
-        this.UMInterval = setInterval(() => this.getUMInfo(), 1000 * 60); // 1m
-
         if (isMobile && typeof visualViewport != "undefined") {
             window.visualViewport?.addEventListener("resize", this.keyboardOpenListener);
         }
+        this.getUMInfo();
+        this.UMInterval && clearInterval(this.UMInterval);
+        this.UMInterval = setInterval(() => {
+            this.getUMInfo();
+        }, 1000 * 60); // 1m
     }
 
     componentWillUnmount(): void {
@@ -145,8 +147,6 @@ class Login extends React.Component<Props, State> {
 
         this.setLoading(true);
 
-        
-
         const encodeKey = crypto.randomBytes(20).toString("hex");
         const request = {
             Username: username,
@@ -163,7 +163,7 @@ class Login extends React.Component<Props, State> {
                     const messageKey = ErrorCodeDictionary[data.errorCode] ?? "errorOccurred";
                     this.showNotification(this.props.t(`message:${messageKey}`, { errorCode: data.errorCode }));
                 } else {
-                    setStorage(LocalStorageKeys.username, username);
+                    setStorage(LocalStorageKeys.username, this.state.username);
                     location.href = data.redirectUri;
                 }
             })
@@ -172,6 +172,16 @@ class Login extends React.Component<Props, State> {
                 Sentry.captureException(error);
             })
             .finally(() => this.setLoading(false));
+    }
+
+    onFocus(event: any) {
+        event.preventDefault();
+        this.setIsKeyboardOpen(true);
+        event.target.focus({ preventScroll: true });
+
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100);
     }
 
     render() {
@@ -183,20 +193,26 @@ class Login extends React.Component<Props, State> {
         }
         return (
             <div className={Styles.container}>
-                {showNotification && <NotificationPopup onCloseModal={this.hideNotification.bind(this)} content={notificationContent} />}
-                <div className={Styles.header}>
-                    <LanguageSelector langCode={language} onUpdateLanguage={this.updateLanguage.bind(this)} />
-                </div>
-                <div className={Styles.logo}>
-                    <img src="/images/login/logo.png?v=2" alt="logo" />
-                </div>
+                {!isKeyboardOpen && (
+                    <>
+                        {showNotification && (
+                            <NotificationPopup onCloseModal={this.hideNotification.bind(this)} content={notificationContent} />
+                        )}
+                        <div className={Styles.header}>
+                            <LanguageSelector langCode={language} onUpdateLanguage={this.updateLanguage.bind(this)} />
+                        </div>
+                        <div className={Styles.logo}>
+                            <img src="/images/login/logo.png?v=2" alt="logo" />
+                        </div>
+                    </>
+                )}
 
                 <form
                     id="login-form"
                     className={`${Styles["login-form"]} ${isKeyboardOpen ? Styles["show-keyboard"] : ""}`}
                     onSubmit={this.onSubmit.bind(this)}
                 >
-                    <p className={Styles.description}>{t("description")}</p>
+                    <p className={`${Styles.description} ${isKeyboardOpen ? Styles["keyboard-open"] : ""}`}>{t("description")}</p>
                     <div className={Styles["form-action"]}>
                         <div className={Styles["input-group"]}>
                             <span className={Styles["icon"]}>
@@ -209,7 +225,7 @@ class Login extends React.Component<Props, State> {
                                 placeholder={t("username")}
                                 id="username"
                                 onChange={this.onInputUsernameChange.bind(this)}
-                                onFocus={(e) => e.preventDefault()}
+                                onTouchEnd={this.onFocus.bind(this)}
                             />
                         </div>
                         <div className={Styles["input-group"]}>
@@ -222,8 +238,8 @@ class Login extends React.Component<Props, State> {
                                 value={password}
                                 placeholder={t("password")}
                                 onChange={this.onInputPasswordChange.bind(this)}
+                                onTouchEnd={this.onFocus.bind(this)}
                                 id="password"
-                                onFocus={(e) => e.preventDefault()}
                             />
                             <button type="button" className={Styles["icon-view"]} onClick={this.updatePasswordHint.bind(this)}>
                                 <img src={`/images/login/icon-eye${passwordHint ? "-slash" : ""}.png`} />

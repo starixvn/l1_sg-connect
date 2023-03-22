@@ -83,10 +83,15 @@
     .description {
         padding: 0 2rem 1rem;
         color: rgba(255, 255, 255, 0.8);
+
+        &.keyboard-open {
+            margin-top: 0rem;
+            padding-top: 0rem;
+        }
     }
 
     &.show-keyboard {
-        margin-top: 4rem;
+        margin-top: 3rem;
     }
 }
 
