@@ -7,8 +7,9 @@ import Axios from "axios";
 import crypto from "crypto";
 import Router from "next/router";
 import React from "react";
-import { withTranslation } from "react-i18next";
 import { isMobile } from "react-device-detect";
+import { withTranslation } from "react-i18next";
+
 import LanguageSelector from "./components/language-selector";
 import NotificationPopup from "./components/notification-popup";
 import { encodePwd } from "./helpers/encode";
@@ -193,19 +194,17 @@ class Login extends React.Component<Props, State> {
         }
         return (
             <div className={Styles.container}>
-                {!isKeyboardOpen && (
-                    <>
-                        {showNotification && (
-                            <NotificationPopup onCloseModal={this.hideNotification.bind(this)} content={notificationContent} />
-                        )}
-                        <div className={Styles.header}>
-                            <LanguageSelector langCode={language} onUpdateLanguage={this.updateLanguage.bind(this)} />
-                        </div>
-                        <div className={Styles.logo}>
-                            <img src="/images/login/logo.png?v=2" alt="logo" />
-                        </div>
-                    </>
-                )}
+                <div className={`${Styles["top-area"]} ${isKeyboardOpen ? Styles["show-keyboard"] : ""}`}>
+                    {showNotification && (
+                        <NotificationPopup onCloseModal={this.hideNotification.bind(this)} content={notificationContent} />
+                    )}
+                    <div className={Styles.header}>
+                        <LanguageSelector langCode={language} onUpdateLanguage={this.updateLanguage.bind(this)} />
+                    </div>
+                    <div className={Styles.logo}>
+                        <img src="/images/login/logo.png?v=2" alt="logo" />
+                    </div>
+                </div>
 
                 <form
                     id="login-form"

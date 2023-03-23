@@ -1,61 +1,48 @@
 @keyframes mulShdSpin {
     0%,
     100% {
-      box-shadow: 0 -3em 0 0.2em, 
-      2em -2em 0 0em, 3em 0 0 -1em, 
-      2em 2em 0 -1em, 0 3em 0 -1em, 
-      -2em 2em 0 -1em, -3em 0 0 -1em, 
-      -2em -2em 0 0;
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em,
+            -2em -2em 0 0;
     }
     12.5% {
-      box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 
-      3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, 
-      -2em 2em 0 -1em, -3em 0 0 -1em, 
-      -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
     }
     25% {
-      box-shadow: 0 -3em 0 -0.5em, 
-      2em -2em 0 0, 3em 0 0 0.2em, 
-      2em 2em 0 0, 0 3em 0 -1em, 
-      -2em 2em 0 -1em, -3em 0 0 -1em, 
-      -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em,
+            -2em -2em 0 -1em;
     }
     37.5% {
-      box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
-       3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, 
-       -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em,
+            -2em -2em 0 -1em;
     }
     50% {
-      box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
-       3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, 
-       -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em,
+            -2em -2em 0 -1em;
     }
     62.5% {
-      box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
-       3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, 
-       -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
     }
     75% {
-      box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 
-      3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
-      -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em,
+            -2em -2em 0 0;
     }
     87.5% {
-      box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 
-      3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
-      -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
     }
-  }
+}
 
 .container {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    background-image: url("/images/login/background.jpg");
-    background-size: cover;
-    height: 100%;
+    background: radial-gradient(farthest-side at center left, #435c83, #020d1f);
     line-height: 2.4rem;
     font-weight: 300;
     font-size: 1.6rem;
+}
+
+.top-area.show-keyboard {
+    display: none;
 }
 
 .header {
@@ -78,7 +65,7 @@
 .login-form {
     margin: 9rem 2.5rem 2.5rem;
     text-align: center;
-    transition: margin 0.3s ease-out;
+    transition: margin 0.2s ease-out;
 
     .description {
         padding: 0 2rem 1rem;
@@ -161,7 +148,7 @@
         text-indent: -9999em;
         animation: mulShdSpin 1.3s infinite linear;
         transform: translateZ(0);
-      }
+    }
 }
 
 .form-control {
