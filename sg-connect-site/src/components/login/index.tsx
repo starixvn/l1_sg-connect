@@ -181,8 +181,11 @@ class Login extends React.Component<Props, State> {
         event.target.focus({ preventScroll: true });
 
         setTimeout(() => {
-            window.scrollTo(0, 0);
-        }, 100);
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        }, 150);
     }
 
     render() {
