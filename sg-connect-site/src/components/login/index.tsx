@@ -50,7 +50,7 @@ class Login extends React.Component<Props, State> {
             password: "",
             passwordHint: false,
             isUM: true,
-            language: "en-US",
+            language: DefaultLanguage,
             showNotification: false,
             notificationContent: "",
             isKeyboardOpen: false,

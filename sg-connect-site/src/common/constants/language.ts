@@ -1,10 +1,10 @@
 export const LanguageFlagMapper: { [key: string]: string } = {
-    en: "en",
-    vi: "vi",
-    zh_tw: "cn",
-    zh_cn: "cn",
-    th: "th",
-    id: "id",
+    "en-US": "en",
+    "vi-VN": "vi",
+    "zh-TW": "cn",
+    "zh-CN": "cn",
+    "th-TH": "th",
+    "id-ID": "id",
 };
 
 export const DefaultLanguage = "en";
