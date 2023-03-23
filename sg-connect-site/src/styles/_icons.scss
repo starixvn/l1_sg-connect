@@ -1,0 +1,42 @@
+%icon {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-image: url("/images/login/login-page-sprites.png");
+    background-image: -webkit-image-set(
+        url("/images/login/login-page-sprites.png") 1x,
+        url("/images/login/login-page-sprites@2x.png") 2x,
+        url("/images/login/login-page-sprites@3x.png") 3x
+    );
+    background-image: image-set(
+        url("/images/login/login-page-sprites.png") 1x,
+        url("/images/login/login-page-sprites@2x.png") 2x,
+        url("/images/login/login-page-sprites@3x.png") 3x
+    );
+    width: 2.4rem;
+    height: 2rem;
+}
+
+.icon-user {
+    @extend %icon;
+    background-position: 0 -2px;
+}
+
+.icon-password {
+    @extend %icon;
+    background-position: 0 -42px;
+}
+
+.icon-eye {
+    @extend %icon;
+    background-position: -36px 0;
+}
+
+.icon-eye-slash {
+    @extend %icon;
+    background-position: -36px -40px;
+}
+
+.icon-check {
+    @extend %icon;
+    background-position: -77px -2px;
+}

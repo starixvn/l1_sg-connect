@@ -66,7 +66,7 @@ export default function LanguageSelector(props: Props) {
                                     />
                                     <div className={`${Styles["locale-name"]} ${isSelected ? "" : Styles["blur"]}`}>{t(code)}</div>
                                     <div className={Styles["status"]}>
-                                        {isSelected && <img className={Styles["check-icon"]} src="/images/checked-icon.png" />}
+                                        {isSelected && <span className={`${Styles["check-icon"]} icon-check`}></span>}
                                     </div>
                                 </button>
                             );

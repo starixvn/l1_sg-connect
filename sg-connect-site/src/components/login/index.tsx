@@ -217,9 +217,9 @@ class Login extends React.Component<Props, State> {
                     <p className={`${Styles.description} ${isKeyboardOpen ? Styles["keyboard-open"] : ""}`}>{t("description")}</p>
                     <div className={Styles["form-action"]}>
                         <div className={Styles["input-group"]}>
-                            <span className={Styles["icon"]}>
-                                <img className="" src={`/images/login/username-icon.png`} />
-                            </span>
+                            <div className={Styles["icon"]}>
+                                <span className="icon-user"></span>
+                            </div>
                             <input
                                 className={Styles["form-control"]}
                                 type="text"
@@ -231,9 +231,9 @@ class Login extends React.Component<Props, State> {
                             />
                         </div>
                         <div className={Styles["input-group"]}>
-                            <span className={Styles["icon"]}>
-                                <img src={`/images/login/password-icon.png`} />
-                            </span>
+                            <div className={Styles["icon"]}>
+                                <span className="icon-password"></span>
+                            </div>
                             <input
                                 className={Styles["form-control"]}
                                 type={passwordHint ? "text" : "password"}
@@ -244,7 +244,7 @@ class Login extends React.Component<Props, State> {
                                 id="password"
                             />
                             <button type="button" className={Styles["icon-view"]} onClick={this.updatePasswordHint.bind(this)}>
-                                <img src={`/images/login/icon-eye${passwordHint ? "-slash" : ""}.png`} />
+                                <span className={`${Styles["icon"]} ${passwordHint ? "icon-eye-slash" : "icon-eye"}`}></span>
                             </button>
                         </div>
 

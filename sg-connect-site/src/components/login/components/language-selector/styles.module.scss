@@ -1,14 +1,17 @@
 .language-btn {
     display: flex;
+    align-items: center;
     background: none;
     border: none;
-    text-align: center;
     padding: 0.8rem;
     margin-right: 2.1rem;
+    font-size: 1.6rem;
+    text-align: center;
 
     &.show {
         position: fixed;
         z-index: 110;
+        right: 0;
     }
 
     .flag-icon {
@@ -74,8 +77,6 @@
         .status {
             margin-right: -0.5rem;
         }
-
-       
     }
 }
 
