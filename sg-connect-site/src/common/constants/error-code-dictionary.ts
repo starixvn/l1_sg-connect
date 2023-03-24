@@ -1,4 +1,5 @@
 const ErrorCodeDictionary: { [key: string]: string } = {
+    "10001": "sysMaintenance",
     "11002": "loginTooOften",
     "11004": "loginFailed",
     "11005": "loginFailed",
@@ -13,7 +14,7 @@ const ErrorCodeDictionary: { [key: string]: string } = {
     "2001": "loginFailed",
     "2002": "closedAccount",
     "2004": "ipAccessDenied",
-    "2005": "closedAccount",   
+    "2005": "closedAccount",
     "5003": "sysMaintenance",
 };
 
