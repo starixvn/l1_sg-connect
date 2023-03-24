@@ -29,8 +29,8 @@ const BaseDialog: React.FC<Props> = ({ onCloseModal, content }: Props) => {
     return (
         <>
             <div className={`overlay-mask ${Styles["overlay"]}`}></div>
-            <div ref={wrapperRef} className={Styles.popup}>
-                <div className={Styles.container}>
+            <div className={Styles.popup}>
+                <div ref={wrapperRef} className={Styles.container}>
                     <div className={Styles.header}>
                         <i className={Styles["close-icon"]} onClick={() => onCloseModal()}></i>
                     </div>
