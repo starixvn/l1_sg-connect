@@ -15,6 +15,7 @@ export default function LanguageSelector(props: Props) {
     const { t } = useTranslation("common");
     const { i18n } = useTranslation();
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const btnRef = useRef<HTMLButtonElement>(null);
 
     const updateLanguage = (langCode: string) => {
         onUpdateLanguage(langCode);
@@ -28,7 +29,7 @@ export default function LanguageSelector(props: Props) {
 
     useEffect(() => {
         const handleClickOutside = (event: any) => {
-            if (!wrapperRef?.current?.contains(event.target)) {
+            if (!wrapperRef?.current?.contains(event.target) && !btnRef?.current?.contains(event.target)) {
                 setIsOpenPopup(false);
             }
         };
@@ -38,12 +39,13 @@ export default function LanguageSelector(props: Props) {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [wrapperRef]);
+    }, [wrapperRef, btnRef]);
 
     return (
         <>
             <button
                 className={`${Styles["language-btn"]} ${isOpenPopup ? Styles["show"] : ""}`}
+                ref={btnRef}
                 onClick={() => setIsOpenPopup(!isOpenPopup)}
             >
                 <img src={`/images/flags/${LanguageFlagMapper[langCode]}.png`} alt="flag-icon" className={Styles["flag-icon"]} />

@@ -177,7 +177,6 @@ class Login extends React.Component<Props, State> {
 
     onFocus(event: any) {
         event.preventDefault();
-        this.setIsKeyboardOpen(true);
         event.target.focus({ preventScroll: true });
 
         setTimeout(() => {
