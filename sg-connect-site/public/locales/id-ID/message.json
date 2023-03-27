@@ -5,6 +5,6 @@
     "errorOccurred":"Terjadi kesalahan. Harap hubungi CSD untuk detailnya, terima kasih. ({{errorCode}})",
     "sessionTimeout":"Waktu sistem habis, harap tutup layar permainan saat ini lalu coba lagi. ({{errorCode}})",
     "loginFailed":"Nama pengguna/kata sandi salah. ({{errorCode}})",
-    "sysMaintenance":"Permainan sedang dalam pemeliharaan.",
+    "sysMaintenance":"Permainan sedang dalam pemeliharaan. ({{errorCode}})",
     "ipAccessDenied": "Anda tidak diperbolehkan masuk dari lokasi Anda. Silakan hubungi CSD untuk informasi lebih lanjut. ({{errorCode}})"
 }

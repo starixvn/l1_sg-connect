@@ -5,6 +5,6 @@
     "errorOccurred":"Đã xảy ra lỗi. Vui lòng liên hệ với CSD để biết chi tiết, cảm ơn bạn. ({{errorCode}})",
     "sessionTimeout":"Hệ thống đã hết thời gian chờ, vui lòng đóng cửa sổ trò chơi hiện tại rồi thử lại. ({{errorCode}})",
     "loginFailed":"Tên người dùng hoặc mật khẩu không chính xác. ({{errorCode}})",
-    "sysMaintenance":"Hệ thống đang được bảo trì.",
+    "sysMaintenance":"Hệ thống đang được bảo trì. ({{errorCode}})",
     "ipAccessDenied": "Bạn không thể đăng nhập từ quốc gia bạn đang sống. Vui lòng liên hệ Bộ Phận CSKH để biết thêm chi tiết. ({{errorCode}})"
 }

@@ -5,6 +5,6 @@
     "errorOccurred":"發生錯誤，有關詳細訊息請聯繫客戶服務，謝謝。({{errorCode}})",
     "sessionTimeout":"系統逾時，請重新啟動遊戲。({{errorCode}})",
     "loginFailed":"登入帳號或密碼不正確。({{errorCode}})",
-    "sysMaintenance":"遊戲正在維護中。",
+    "sysMaintenance":"遊戲正在維護中。({{errorCode}})",
     "ipAccessDenied": "您的地點不能登錄。請聯繫 CSD 了解更多信息。({{errorCode}})"
 }

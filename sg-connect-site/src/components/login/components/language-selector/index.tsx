@@ -17,14 +17,28 @@ export default function LanguageSelector(props: Props) {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const btnRef = useRef<HTMLButtonElement>(null);
 
+    const updateFontByLanguage = (langCode: string) => {
+        if (langCode == "th-TH") {
+            const fontFamily = "Noto-Thai";
+
+            document.documentElement.style.fontFamily = fontFamily;
+            document.body.style.fontFamily = fontFamily;
+        } else {
+            const fontFamily = `"Roboto", sans-serif`;
+
+            document.documentElement.style.fontFamily = fontFamily;
+            document.body.style.fontFamily = fontFamily;
+        }
+    };
+
     const updateLanguage = (langCode: string) => {
         onUpdateLanguage(langCode);
         setIsOpenPopup(false);
-        i18n.changeLanguage(langCode);
     };
 
     useEffect(() => {
         i18n.changeLanguage(langCode);
+        updateFontByLanguage(langCode);
     }, [langCode, i18n]);
 
     useEffect(() => {
