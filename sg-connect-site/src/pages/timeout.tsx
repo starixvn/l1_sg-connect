@@ -22,7 +22,11 @@ export default function Timeout() {
             <div>
                 <img className="image" src="/images/timeout/icon-expired.png" alt="Image" />
                 <p className="title">{t("sessionTimeout")}</p>
-                <button type="button" onClick={redirectToLoginPage}>
+                <button
+                    type="button"
+                    onClick={redirectToLoginPage}
+                    style={{ fontFamily: i18n.language === "th-TH" ? "Noto-Thai" : `"Roboto", sans-serif` }}
+                >
                     {t("login")}
                 </button>
             </div>
