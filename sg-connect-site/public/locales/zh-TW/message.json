@@ -1,10 +1,10 @@
 {
     "loginTooOften": "登录次数过于频繁。({{errorCode}})",
     "lockedAccount": "您的账号已锁定，请联络客户服务解锁您的账号。({{errorCode}})",
-    "closedAccount": "您的帳號已被鎖定，有關更多信息，請聯繫客戶服務。({{errorCode}})",
+    "closedAccount": "帳戶已關閉。詳情請聯絡 CSD。({{errorCode}})",
     "errorOccurred":"發生錯誤，有關詳細訊息請聯繫客戶服務，謝謝。({{errorCode}})",
     "sessionTimeout":"系統逾時，請重新啟動遊戲。({{errorCode}})",
     "loginFailed":"登入帳號或密碼不正確。({{errorCode}})",
-    "sysMaintenance":"游戏正在维护中。({{errorCode}})",
+    "sysMaintenance":"遊戲正在維護中。",
     "ipAccessDenied": "您的地點不能登錄。請聯繫 CSD 了解更多信息。({{errorCode}})"
 }

@@ -5,6 +5,6 @@
     "errorOccurred":"An error has occurred. Please contact CSD for details, thank you. ({{errorCode}})",
     "sessionTimeout":"System timed out, please closed the current game window and try again. ({{errorCode}})",
     "loginFailed":"Incorrect login name or password. ({{errorCode}})",
-    "sysMaintenance":"The game is under maintenance. ({{errorCode}})",
+    "sysMaintenance":"The game is under maintenance.",
     "ipAccessDenied": "You are not allowed to login from your location. Please contact CSD for further information. ({{errorCode}})"
 }
