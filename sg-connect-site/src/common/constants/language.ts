@@ -7,4 +7,4 @@ export const LanguageFlagMapper: { [key: string]: string } = {
     "id-ID": "id",
 };
 
-export const DefaultLanguage = "en";
+export const DefaultLanguage = "en-US";
