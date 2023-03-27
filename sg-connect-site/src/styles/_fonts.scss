@@ -15,6 +15,13 @@
 @font-face {
     font-family: "Noto-Thai";
     src: url("/fonts/NotoSerifThai-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Noto-Thai";
+    src: url("/static/fonts/noto/NotoSerifThai-Bold.ttf") format("truetype");
     font-weight: 500;
     font-display: swap;
 }
