@@ -12,8 +12,10 @@ namespace SGConnect.Api.Operators.OneWorks
 
         public string Username { get; set; }
 
+        [BsonIgnore]
         public string Password { get; set; }
 
+        [BsonIgnore]
         public string PasswordEncodeKey { get; set; }
 
         public string Seq { get; set; } = Guid.NewGuid().ToString();

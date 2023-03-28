@@ -61,7 +61,7 @@ namespace SGConnect.Api.Operators.OneWorks
             {
                 await logService.WriteFailedLog(new FailedLog(request.TimeStamp, response.TimeStamp)
                 {
-                    Call = request,
+                    Call = request.Call,
                     Result = response.Result,
                     OperatorId = OperatorIds.Oneworks,
                     System = AppTypes.MobileApp

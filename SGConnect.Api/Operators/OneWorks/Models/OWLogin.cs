@@ -3,8 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace SGConnect.Api.Operators.OneWorks
 {
-    [BsonDiscriminator("OWSignInCall")]
-    public class OWLogin : RequestLog
+    public class OWLogin
     {
         public OWLogin(string login, string password)
         {
@@ -27,7 +26,8 @@ namespace SGConnect.Api.Operators.OneWorks
         public string Password { get; set; }
     }
 
-    public class OWLoginCall
+    [BsonDiscriminator("OWSignInCall")]
+    public class OWLoginCall : RequestLog
     {
         public int ObCustId { get; set; }
         public string ObCustName { get; set; }
