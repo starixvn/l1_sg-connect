@@ -6,7 +6,6 @@ namespace SGConnect.Api.Operators.OneWorks
     [BsonDiscriminator("MemberSignInResult")]
     public class MemberLoginResult : OWResult
     {
-        //public int ErrorCode { get; set; }
         public string ErrorMsg { get; set; }
 
         public PublicUserInfo PublicUserInfo { get; set; }
