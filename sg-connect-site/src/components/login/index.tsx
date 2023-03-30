@@ -6,7 +6,7 @@ import * as Sentry from "@sentry/nextjs";
 import Axios from "axios";
 import Router from "next/router";
 import React from "react";
-import { isMobile } from "react-device-detect";
+import { isIOS, isMobile } from "react-device-detect";
 import { withTranslation } from "react-i18next";
 
 import LanguageSelector from "./components/language-selector";
@@ -176,15 +176,17 @@ class Login extends React.Component<Props, State> {
     }
 
     onFocus(event: any) {
-        event.preventDefault();
-        event.target.focus({ preventScroll: true });
+        if (isIOS) {
+            event.preventDefault();
+            event.target.focus({ preventScroll: true });
 
-        setTimeout(() => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
-        }, 150);
+            setTimeout(() => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            }, 150);
+        }
     }
 
     render() {
