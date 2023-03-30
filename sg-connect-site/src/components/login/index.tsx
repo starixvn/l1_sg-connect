@@ -4,7 +4,6 @@ import { DefaultLanguage } from "@/common/constants/language";
 import { getUnfinishedUM } from "@/shared/userService";
 import * as Sentry from "@sentry/nextjs";
 import Axios from "axios";
-import crypto from "crypto";
 import Router from "next/router";
 import React from "react";
 import { isMobile } from "react-device-detect";
@@ -148,7 +147,8 @@ class Login extends React.Component<Props, State> {
 
         this.setLoading(true);
 
-        const encodeKey = crypto.randomBytes(20).toString("hex");
+        const encodeKey = `${Math.floor(Math.random() * 9000) + 1000}`;
+
         const request = {
             Username: username,
             EncodeKey: encodeKey,
