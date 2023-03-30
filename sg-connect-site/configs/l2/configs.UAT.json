@@ -2,7 +2,7 @@
     "system": "L2",
     "defaultOperatorId": "ONEworksVGCash",
     "sgConnectApi": {
-        "url": "https://l2uatconnectapi.lumigame.com/api/ow/"
+        "url": "https://l2uatconnectapi.sgamesuat.com/api/ow/"
     },
     "userServiceApi": "https://l2uatproxy.sgamesuat.com/uat/user",
     "sentry": {
