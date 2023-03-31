@@ -1,6 +1,6 @@
 import appSettings from "@/common/app-settings";
 import ErrorCodeDictionary from "@/common/constants/error-code-dictionary";
-import { DefaultLanguage } from "@/common/constants/language";
+import { DefaultLanguage, LanguageFlagMapper } from "@/common/constants/language";
 import { getUnfinishedUM } from "@/shared/userService";
 import * as Sentry from "@sentry/nextjs";
 import Axios from "axios";
@@ -153,7 +153,7 @@ class Login extends React.Component<Props, State> {
             Username: username,
             EncodeKey: encodeKey,
             EncryptedPassword: await encrypt(encodePwd(password, encodeKey)),
-            Language: language,
+            Language: LanguageFlagMapper[language],
         };
 
         Axios.post(`${appSettings.sgConnectApi.url}/Login`, request)
