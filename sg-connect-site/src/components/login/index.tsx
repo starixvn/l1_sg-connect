@@ -14,6 +14,7 @@ import { encrypt } from "./helpers/encrypt";
 import { getStorage, LocalStorageKeys, setStorage } from "./helpers/local-storage";
 import Styles from "./styles.module.scss";
 
+
 const MinHeightKeyBoard = 300;
 
 interface Props {
@@ -113,6 +114,8 @@ class Login extends React.Component<Props, State> {
         this.UMInterval = setInterval(() => {
             this.getUMInfo();
         }, 1000 * 60); // 1m
+
+        this.registryServerWorker();
     }
 
     componentWillUnmount(): void {
@@ -256,6 +259,13 @@ class Login extends React.Component<Props, State> {
                 </form>
             </div>
         );
+    }
+
+    registryServerWorker() {       
+        navigator.serviceWorker.register('/static/service-worker.js')
+            .then(reg => {
+            console.log('Service worker registered.', reg)
+            })
     }
 }
 
