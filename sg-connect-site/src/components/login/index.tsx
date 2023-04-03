@@ -262,7 +262,7 @@ class Login extends React.Component<Props, State> {
     }
 
     registryServerWorker() {       
-        navigator.serviceWorker.register('/static/service-worker.js')
+        navigator.serviceWorker.register('/service-worker.js')
             .then(reg => {
             console.log('Service worker registered.', reg)
             })
