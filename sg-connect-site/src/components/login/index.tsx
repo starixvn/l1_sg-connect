@@ -7,7 +7,7 @@ import Axios from "axios";
 import Router from "next/router";
 import React from "react";
 import { isIOS, isMobile } from "react-device-detect";
-import { withTranslation } from "react-i18next";
+import { Trans, withTranslation } from "react-i18next";
 
 import LanguageSelector from "./components/language-selector";
 import NotificationPopup from "./components/notification-popup";
@@ -215,7 +215,9 @@ class Login extends React.Component<Props, State> {
                     className={`${Styles["login-form"]} ${isKeyboardOpen ? Styles["show-keyboard"] : ""}`}
                     onSubmit={this.onSubmit.bind(this)}
                 >
-                    <p className={`${Styles.description} ${isKeyboardOpen ? Styles["keyboard-open"] : ""}`}>{t("description")}</p>
+                    <Trans>
+                        <p className={`${Styles.description} ${isKeyboardOpen ? Styles["keyboard-open"] : ""}`}>{t("description")}</p>
+                    </Trans>
                     <div className={Styles["form-action"]}>
                         <div className={Styles["input-group"]}>
                             <div className={Styles["icon"]}>
