@@ -36,7 +36,7 @@ namespace SGConnect.Api.Operators.OneWorks
         public string IP { get; set; }
         public string BrowserUserAgent { get; set; }
         public string BetFrom { get; set; } = "{";
-        public string Platform { get; set; } = "D";
+        public string Platform { get; set; } = "A";
         public string Language { get; set; }
         public string SiteId { get; set; }
         public string SiteName { get; set; }
