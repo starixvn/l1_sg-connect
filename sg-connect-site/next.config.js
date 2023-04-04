@@ -7,6 +7,13 @@ const appSettings = {
     ...configs,
 };
 
+const securityHeaders = [
+    {
+        key: "Strict-Transport-Security",
+        value: "max-age=63072000; includeSubDomains; preload",
+    },
+];
+
 const nextConfig = withSentryConfig({
     reactStrictMode: true,
     i18n,
@@ -17,15 +24,15 @@ const nextConfig = withSentryConfig({
         disableClientWebpackPlugin: true,
     },
     excludeFile: (str) => /\*.{spec,test}.js/.test(str),
-    async redirect() {
+    async headers() {
         return [
             {
-                source: "/login",
-                destination: "/",
-                permanent: true,
+                source: "/:path*",
+                headers: securityHeaders,
             },
         ];
     },
+    poweredByHeader: false,
 });
 
 module.exports = nextConfig;
