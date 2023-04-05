@@ -2,7 +2,7 @@
     "system": "L1",
     "defaultOperatorId": "ONEworks1",
     "sgConnectApi": {
-        "url": "https://l1-connectapi.lumigame.com/api/ow"
+        "url": "http://l1_sg_connect_api_local:5000/api/ow"
     },
     "userServiceApi": "https://l1-proxy.lumigame.com/user",
     "sentry": {

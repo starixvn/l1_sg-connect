@@ -8,10 +8,8 @@ import Router from "next/router";
 import React from "react";
 import { isIOS, isMobile } from "react-device-detect";
 import { Trans, withTranslation } from "react-i18next";
-
 import LanguageSelector from "./components/language-selector";
 import NotificationPopup from "./components/notification-popup";
-import { encodePwd } from "./helpers/encode";
 import { encrypt } from "./helpers/encrypt";
 import { getStorage, LocalStorageKeys, setStorage } from "./helpers/local-storage";
 import Styles from "./styles.module.scss";
@@ -140,23 +138,22 @@ class Login extends React.Component<Props, State> {
         event && event.preventDefault();
 
         const { username, password, language } = this.state;
-        if (!username) {
-            alert("Username are required");
-            return;
-        }
 
         this.setLoading(true);
 
-        const encodeKey = `${Math.floor(Math.random() * 9000) + 1000}`;
-
-        const request = {
-            Username: username,
-            EncodeKey: encodeKey,
-            EncryptedPassword: await encrypt(encodePwd(password, encodeKey)),
-            Language: LanguageFlagMapper[language],
+        const encryptPassword = {
+            timestamp: new Date().toUTCString(),
+            username,
+            password,
         };
 
-        Axios.post(`${appSettings.sgConnectApi.url}/Login`, request)
+        const request = {
+            username,
+            encryptedPassword: await encrypt(JSON.stringify(encryptPassword)),
+            language: LanguageFlagMapper[language],
+        };
+
+        Axios.post("/api/login", request)
             .then((data) => data.data)
             .then((data) => (data.error ? Promise.reject(data.error) : data))
             .then((data) => {
@@ -169,7 +166,7 @@ class Login extends React.Component<Props, State> {
                 }
             })
             .catch((error) => {
-                this.showNotification(error.toString());
+                this.showNotification(this.props.t(`message:errorOccurred`));
                 Sentry.captureException(error);
             })
             .finally(() => this.setLoading(false));

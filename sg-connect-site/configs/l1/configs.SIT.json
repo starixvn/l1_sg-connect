@@ -2,7 +2,7 @@
     "system": "L1",
     "defaultOperatorId": "ONEworks1",
     "sgConnectApi": {
-        "url": "https://l1sitconnectapi.sgamesuat.com/api/ow"
+        "url": "http://l1_sg_connect_api_sit:5000/api/ow"
     },
     "userServiceApi": "https://l1uatproxy.sgamesuat.com/sit/user",
     "sentry": {

@@ -95,17 +95,7 @@ function MD5(string) {
         lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29;
         return lWordArray;
     }
-    /*
-       function WordToHex(lValue) {
-           var WordToHexValue="",WordToHexValue_temp="",lByte,lCount;
-           for (lCount = 0;lCount<=3;lCount++) {
-               lByte = (lValue>>>(lCount*8)) & 255;
-               WordToHexValue_temp = "0" + lByte.toString(16);
-               WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length-2,2);
-           }
-           return WordToHexValue;
-       };
-    */
+
     function Utf8Encode(string) {
         string = string.replace(/\r\n/g, "\n");
         var utftext = "";
@@ -291,6 +281,3 @@ function CFS(codeStr) {
     }
     return CfsEncodeStr.toUpperCase();
 }
-
-const pwd = encodePwd("1234aaAA", 2142);
-console.log(pwd);
