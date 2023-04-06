@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using SGConnect.Api.Extensions;
 using SGConnect.Api.Filters;
 using SGConnect.Api.Operators.OneWorks;
@@ -9,10 +10,7 @@ builder.WebHost.UseSentry(opt => opt.Environment = builder.Configuration["Env"])
 
 var app = builder.Build();
 app.UseCors();
-app.UseForwardedHeaders(new ForwardedHeadersOptions
-{
-    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-});
+
 var corsList = builder.Configuration.GetSection("Cors").Get<string[]>();
 
 app.MapGet("/", () => Results.Ok("SG Connect Api is running!"));
