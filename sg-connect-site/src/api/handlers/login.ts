@@ -16,8 +16,9 @@ const isValidEncryptData = (username: string, encryptData: EncryptData): boolean
     const { username: encryptUsername, timestamp, password } = encryptData;
     const reqTime = new Date(timestamp);
     const expireTime = new Date(reqTime.getTime() + ExpiredTimeInMilliseconds);
+    const currentTime = new Date();
 
-    return username == encryptUsername && password !== "" && new Date() < expireTime;
+    return username == encryptUsername && password !== "" && reqTime < currentTime && currentTime < expireTime;
 };
 
 export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -36,10 +37,13 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 EncodeKey: encodeKey,
                 EncryptedPassword: encrypt(encodePassword, SG_API_PUBLIC_KEY),
                 Language: language,
+                BrowserUserAgent: req.headers["user-agent"],
+                Ip: req.connection.remoteAddress,
             };
 
             const result = await Axios.post(`${appSettings.sgConnectApi.url}/login`, request).catch((error) => {
                 Sentry.captureException(error);
+                res.status(500).end();
             });
 
             res.send(result?.data);
@@ -47,6 +51,7 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             res.status(400).end();
         }
     } catch (error) {
+        Sentry.captureException(error);
         res.status(500).end();
     }
 };
