@@ -18,7 +18,7 @@ const isValidEncryptData = (username: string, encryptData: EncryptData): boolean
     const expireTime = new Date(reqTime.getTime() + ExpiredTimeInMilliseconds);
     const currentTime = new Date();
 
-    return username == encryptUsername && password !== "" && reqTime < currentTime && currentTime < expireTime;
+    return username == encryptUsername && password !== "" && currentTime < expireTime;
 };
 
 export const handler = async (req: NextApiRequest, res: NextApiResponse) => {

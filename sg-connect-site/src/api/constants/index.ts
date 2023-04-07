@@ -21,6 +21,6 @@ xFxdU6jE0NQ+Z+zEdhUTooNRaY5nZiu5PgDB0ED/ZKBUSLKL7eibMxZtMlUDHjm4
 gwQco1KRMDSmXSMkDwIDAQAB
 -----END PUBLIC KEY-----`;
 
-const ExpiredTimeInMilliseconds = 1 * 60 * 1000;
+const ExpiredTimeInMilliseconds = 3 * 60 * 1000;
 
 export { PRIVATE_KEY, SG_API_PUBLIC_KEY, ExpiredTimeInMilliseconds };
