@@ -118,7 +118,7 @@ namespace SGConnect.Api.Operators.OneWorks
                     ObCustName = memberLoginResult.PublicUserInfo.UserName,
                     Currency = memberLoginResult.PublicUserInfo.UserInfo.Currency,
                     SiteId = memberLoginResult.PublicUserInfo.SiteID.ToString(),
-                    SiteName = memberLoginResult.PublicUserInfo.SiteName,
+                    SiteName = memberLoginResult.PublicUserInfo.AgentSite,
                     IP = connectSiteLogin.Ip,
                     BrowserUserAgent = connectSiteLogin.BrowserUserAgent,
                     Language = connectSiteLogin.Language
