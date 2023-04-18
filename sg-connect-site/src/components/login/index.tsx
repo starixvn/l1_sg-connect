@@ -166,7 +166,7 @@ class Login extends React.Component<Props, State> {
                 }
             })
             .catch((error) => {
-                this.showNotification(this.props.t(`message:errorOccurred`));
+                this.showNotification(this.props.t(`message:unknownErrorOccurred`));
                 Sentry.captureException(error);
             })
             .finally(() => this.setLoading(false));
