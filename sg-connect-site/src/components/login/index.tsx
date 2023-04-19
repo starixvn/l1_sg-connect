@@ -14,7 +14,6 @@ import { encrypt } from "./helpers/encrypt";
 import { getStorage, LocalStorageKeys, setStorage } from "./helpers/local-storage";
 import Styles from "./styles.module.scss";
 
-
 const MinHeightKeyBoard = 300;
 
 interface Props {
@@ -153,7 +152,7 @@ class Login extends React.Component<Props, State> {
         const request = {
             username,
             encryptedPassword: await encrypt(JSON.stringify(encryptPassword)),
-            language: LanguageFlagMapper[language],
+            language,
         };
 
         Axios.post("/api/login", request)
@@ -261,11 +260,10 @@ class Login extends React.Component<Props, State> {
         );
     }
 
-    registryServerWorker() {       
-        navigator.serviceWorker.register('/service-worker.js')
-            .then(reg => {
-            console.log('Service worker registered.', reg)
-            })
+    registryServerWorker() {
+        navigator.serviceWorker.register("/service-worker.js").then((reg) => {
+            console.log("Service worker registered.", reg);
+        });
     }
 }
 
