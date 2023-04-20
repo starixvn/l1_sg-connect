@@ -1,6 +1,6 @@
 import appSettings from "@/common/app-settings";
 import ErrorCodeDictionary from "@/common/constants/error-code-dictionary";
-import { DefaultLanguage, LanguageFlagMapper } from "@/common/constants/language";
+import { DefaultLanguage, LanguageAPIMapper } from "@/common/constants/language";
 import { getUnfinishedUM } from "@/shared/userService";
 import * as Sentry from "@sentry/nextjs";
 import Axios from "axios";
@@ -152,7 +152,7 @@ class Login extends React.Component<Props, State> {
         const request = {
             username,
             encryptedPassword: await encrypt(JSON.stringify(encryptPassword)),
-            language,
+            language: LanguageAPIMapper[language],
         };
 
         Axios.post("/api/login", request)
