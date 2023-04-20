@@ -11,7 +11,7 @@ export const LanguageAPIMapper: { [key: string]: string } = {
     "en-US": "en",
     "vi-VN": "vn",
     "zh-TW": "ch",
-    "zh-CN": "cn",
+    "zh-CN": "cs",
     "th-TH": "th",
     "id-ID": "id",
 };
