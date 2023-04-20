@@ -6,7 +6,7 @@
     },
     "userServiceApi": "https://proxy.sabagame.com/user",
     "sentry": {
-        "dsn": "http://174909163ce54026b40e87212856dbeb@10.2.189.50:9009/152",
+        "dsn": "https://174909163ce54026b40e87212856dbeb@10.2.189.50:9009/152",
         "environment": "PROD"
     }
 }

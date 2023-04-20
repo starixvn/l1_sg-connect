@@ -6,7 +6,7 @@
     },
     "userServiceApi": "https://l1uatproxy.sgamesuat.com/uat/user",
     "sentry": {
-        "dsn": "http://456fc5c65b204851974d4eb4b353f5f5@10.2.190.51:9009/221",
+        "dsn": "https://456fc5c65b204851974d4eb4b353f5f5@10.2.190.51:9009/221",
         "environment": "UAT"
     }
 }
