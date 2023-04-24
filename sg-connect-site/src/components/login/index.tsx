@@ -13,10 +13,11 @@ import NotificationPopup from "./components/notification-popup";
 import { encrypt } from "./helpers/encrypt";
 import { getStorage, LocalStorageKeys, setStorage } from "./helpers/local-storage";
 import Styles from "./styles.module.scss";
+import { IWithGoogleReCaptchaProps, withGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const MinHeightKeyBoard = 300;
 
-interface Props {
+interface Props extends IWithGoogleReCaptchaProps {
     t: Function;
 }
 
@@ -34,6 +35,10 @@ interface State {
     isKeyboardOpen: boolean;
 
     isLoading: boolean;
+
+    captchaToken: string;
+
+    refreshReCaptcha: boolean;
 }
 
 class Login extends React.Component<Props, State> {
@@ -52,6 +57,8 @@ class Login extends React.Component<Props, State> {
             notificationContent: "",
             isKeyboardOpen: false,
             isLoading: false,
+            captchaToken: "",
+            refreshReCaptcha: false,
         };
     }
 
@@ -136,9 +143,7 @@ class Login extends React.Component<Props, State> {
         });
     };
 
-    async onSubmit(event: any) {
-        event && event.preventDefault();
-
+    async login(token: string) {
         const { username, password, language } = this.state;
 
         this.setLoading(true);
@@ -153,6 +158,7 @@ class Login extends React.Component<Props, State> {
             username,
             encryptedPassword: await encrypt(JSON.stringify(encryptPassword)),
             language: LanguageAPIMapper[language],
+            token,
         };
 
         Axios.post("/api/login", request)
@@ -174,6 +180,14 @@ class Login extends React.Component<Props, State> {
             .finally(() => this.setLoading(false));
     }
 
+    async onSubmit(event: any) {
+        event && event.preventDefault();
+
+        const token = await this.handleVerifyRecaptcha();
+
+        this.login(token || "");
+    }
+
     onFocus(event: any) {
         if (isIOS) {
             event.preventDefault();
@@ -187,6 +201,20 @@ class Login extends React.Component<Props, State> {
             }, 150);
         }
     }
+
+    handleVerifyRecaptcha = async () => {
+        const { executeRecaptcha } = this.props.googleReCaptchaProps;
+
+        if (!executeRecaptcha) {
+            console.log("Recaptcha has not been loaded");
+
+            return;
+        }
+
+        const token = await executeRecaptcha("login");
+
+        return token;
+    };
 
     render() {
         const { t } = this.props;
@@ -267,4 +295,4 @@ class Login extends React.Component<Props, State> {
     }
 }
 
-export default withTranslation(["login", "message"])(Login);
+export default withGoogleReCaptcha(withTranslation(["login", "message"])(Login));

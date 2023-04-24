@@ -8,5 +8,17 @@
     "sentry": {
         "dsn": "https://9f9238fac97b4a8ca50e835cb4aac8ad@sentry.lumigame.com/4",
         "environment": "DEV"
+    },
+    "chatBotSettings": {
+        "url": "https://bot.nexdev.net/skynex/api/messages/",
+        "token": "0A40aOc7CtpzjbBSJu8KNWQRoXyjRvf9",
+        "requestTimeout": 5000,
+        "conversationIds": {
+            "captchaFailed": -1001987747210
+        }
+    },
+    "googleReCaptchaSetting": {
+        "siteKey": "6LdZ97ElAAAAAAODhXexeB1CfWvOCxPoSCG2ss4e",
+        "privateKey": "6LdZ97ElAAAAACDDcaaTHPLZjvDBp1DESO44IxAO"
     }
 }

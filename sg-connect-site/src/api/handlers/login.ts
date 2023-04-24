@@ -5,6 +5,7 @@ import { encodePwd } from "../helper/encode";
 import Axios from "axios";
 import * as Sentry from "@sentry/nextjs";
 import appSettings from "../../../configs.json";
+import { sendReCaptchaFailedMessage } from "../helper/chat-bot";
 
 interface EncryptData {
     username: string;
@@ -21,12 +22,40 @@ const isValidEncryptData = (username: string, encryptData: EncryptData): boolean
     return username == encryptUsername && password !== "" && currentTime < expireTime;
 };
 
+const verifyRecaptcha = async (req: NextApiRequest) => {
+    try {
+        const { token } = req.body;
+
+        var verificationUrl =
+            "https://www.google.com/recaptcha/api/siteverify?secret=" +
+            appSettings.googleReCaptchaSetting.privateKey +
+            "&response=" +
+            token;
+
+        const response = await Axios.post(verificationUrl);
+
+        if (response.data.success && response.data.score >= 0.7) {
+            return true;
+        } else {
+            const { username } = req.body;
+            sendReCaptchaFailedMessage(username, req.socket.remoteAddress || "undefined", response.data.score);
+
+            return false;
+        }
+    } catch (error) {
+        Sentry.captureException(error);
+
+        return false;
+    }
+};
+
 export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         const { encryptedPassword, language, username } = req.body;
         const encryptData = JSON.parse(decrypt(encryptedPassword, PRIVATE_KEY) || "{}") as EncryptData;
+        const isValidCaptcha = await verifyRecaptcha(req);
 
-        if (isValidEncryptData(username, encryptData)) {
+        if (isValidCaptcha && isValidEncryptData(username, encryptData)) {
             const { password } = encryptData;
 
             const encodeKey = `${Math.floor(Math.random() * 9000) + 1000}`;
@@ -38,7 +67,7 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 EncryptedPassword: encrypt(encodePassword, SG_API_PUBLIC_KEY),
                 Language: language,
                 BrowserUserAgent: req.headers["user-agent"],
-                Ip: req.connection.remoteAddress,
+                Ip: req.socket.remoteAddress,
             };
 
             const result = await Axios.post(`${appSettings.sgConnectApi.url}/login`, request).catch((error) => {
