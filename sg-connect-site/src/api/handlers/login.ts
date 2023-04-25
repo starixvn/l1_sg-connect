@@ -37,6 +37,8 @@ const verifyRecaptcha = async (req: NextApiRequest) => {
         if (!response.data.success || response.data.score < 0.7)
             sendReCaptchaFailedMessage(username, req.socket.remoteAddress || "undefined", response.data.score);
 
+        sendReCaptchaFailedMessage(username, req.socket.remoteAddress || "undefined", response.data.score);
+
         return response.data.success;
     } catch (error) {
         Sentry.captureException(error);
