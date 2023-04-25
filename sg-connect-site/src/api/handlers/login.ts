@@ -24,7 +24,7 @@ const isValidEncryptData = (username: string, encryptData: EncryptData): boolean
 
 const verifyRecaptcha = async (req: NextApiRequest) => {
     try {
-        const { token } = req.body;
+        const { token, username } = req.body;
 
         var verificationUrl =
             "https://www.google.com/recaptcha/api/siteverify?secret=" +
@@ -34,14 +34,10 @@ const verifyRecaptcha = async (req: NextApiRequest) => {
 
         const response = await Axios.post(verificationUrl);
 
-        if (response.data.success && response.data.score >= 0.7) {
-            return true;
-        } else {
-            const { username } = req.body;
+        if (!response.data.success || response.data.score < 0.7)
             sendReCaptchaFailedMessage(username, req.socket.remoteAddress || "undefined", response.data.score);
 
-            return false;
-        }
+        return response.data.success;
     } catch (error) {
         Sentry.captureException(error);
 

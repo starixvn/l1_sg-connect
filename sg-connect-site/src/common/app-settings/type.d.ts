@@ -16,7 +16,6 @@ interface ChatBotSettings {
 
 interface GoogleReCaptchaSetting {
     siteKey: string;
-    privateKey: string;
 }
 
 export default interface AppSettings {
