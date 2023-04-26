@@ -7,7 +7,7 @@ import appSettings from "@/common/app-settings";
 import type { AppProps } from "next/app";
 function App({ Component, pageProps }: AppProps) {
     return (
-        <GoogleReCaptchaProvider reCaptchaKey={appSettings.googleReCaptchaSetting.siteKey}>
+        <GoogleReCaptchaProvider reCaptchaKey={appSettings.googleReCaptchaSetting.siteKey} container={{ parameters: { badge: "inline" } }}>
             <Component {...pageProps} />
         </GoogleReCaptchaProvider>
     );

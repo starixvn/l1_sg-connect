@@ -223,6 +223,7 @@ class Login extends React.Component<Props, State> {
         if (isUM) {
             return null;
         }
+
         return (
             <div className={Styles.container}>
                 <div className={`${Styles["top-area"]} ${isKeyboardOpen ? Styles["show-keyboard"] : ""}`}>

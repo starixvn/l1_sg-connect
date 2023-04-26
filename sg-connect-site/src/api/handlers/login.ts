@@ -38,12 +38,8 @@ const verifyRecaptcha = async (req: NextApiRequest) => {
             sendReCaptchaFailedMessage(username, req.socket.remoteAddress || "undefined", response.data.score);
 
         sendReCaptchaFailedMessage(username, req.socket.remoteAddress || "undefined", response.data.score);
-
-        return response.data.success;
     } catch (error) {
         Sentry.captureException(error);
-
-        return false;
     }
 };
 
@@ -51,9 +47,9 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         const { encryptedPassword, language, username } = req.body;
         const encryptData = JSON.parse(decrypt(encryptedPassword, PRIVATE_KEY) || "{}") as EncryptData;
-        const isValidCaptcha = await verifyRecaptcha(req);
+        verifyRecaptcha(req);
 
-        if (isValidCaptcha && isValidEncryptData(username, encryptData)) {
+        if (isValidEncryptData(username, encryptData)) {
             const { password } = encryptData;
 
             const encodeKey = `${Math.floor(Math.random() * 9000) + 1000}`;
