@@ -3,7 +3,7 @@ import { NextRequest } from "next/server";
 import { isAuth } from "./middleware/auth";
 
 export async function middleware(request: NextRequest) {
-    if (isAuth(request)) {
+    if (await isAuth(request)) {
         return NextResponse.next();
     }
 
@@ -11,5 +11,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: "/",
+    matcher: "/um",
 };
