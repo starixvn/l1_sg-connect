@@ -120,8 +120,6 @@ class Login extends React.Component<Props, State> {
         this.UMInterval = setInterval(() => {
             this.getUMInfo();
         }, 1000 * 60); // 1m
-
-        this.registryServerWorker();
     }
 
     componentWillUnmount(): void {
@@ -287,12 +285,6 @@ class Login extends React.Component<Props, State> {
                 </form>
             </div>
         );
-    }
-
-    registryServerWorker() {
-        navigator.serviceWorker.register("/service-worker.js").then((reg) => {
-            console.log("Service worker registered.", reg);
-        });
     }
 }
 
