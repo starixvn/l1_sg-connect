@@ -24,7 +24,7 @@ export default function UM() {
     }, [router]);
 
     useEffect(() => {
-        !isUM && router.push("/");
+        !isUM && router.push("/relogin");
     }, [isUM]);
 
     useEffect(() => {
