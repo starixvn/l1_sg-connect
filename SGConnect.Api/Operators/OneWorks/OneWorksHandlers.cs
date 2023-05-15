@@ -102,7 +102,7 @@ namespace SGConnect.Api.Operators.OneWorks
         {
             if (!string.IsNullOrWhiteSpace(owLoginResult.RedirectUri))
             {
-                owLoginResult.RedirectUri = $"{owLoginResult.RedirectUri}&appType={AppTypes.MobileApp}";
+                owLoginResult.RedirectUri = $"{owLoginResult.RedirectUri}&appType={AppTypes.MobileApp}&ref=m_connect";
             }
 
             return owLoginResult;
