@@ -8,5 +8,9 @@
     "sentry": {
         "dsn": "http://2589366e00b74945ae920194c18c25fe@10.2.190.51:9009/255",
         "environment": "LOCAL_1"
+    },
+    "googleReCaptchaSetting": {
+        "siteKey": "6LfISRImAAAAABJ5dOk-Wh9vlUIbWFLyhPEQg8CO",
+        "privateKey": "6LfISRImAAAAAC_ol4CgJIzR3jLLHluxbCcKkzt-"
     }
 }
