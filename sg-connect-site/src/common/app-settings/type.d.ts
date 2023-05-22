@@ -22,16 +22,17 @@ interface GoogleReCaptchaSetting {
     privateKey: string;
 }
 
-export default interface AppSettings {
+export interface ServerSettings {
+    sentry: SentryOptions;
+    sgConnectApi: SGConnectApi;
+    chatBotSettings: ChatBotSettings;
+    googleReCaptchaSetting: GoogleReCaptchaSetting;
+    proxy?: AxiosProxyConfig;
+}
+
+export interface ClientSettings {
     sentry: SentryOptions;
     userServiceApi: string;
-    sgConnectApi: SGConnectApi;
-    system: string;
     defaultOperatorId: string;
-
-    chatBotSettings: ChatBotSettings;
-
     googleReCaptchaSetting: GoogleReCaptchaSetting;
-
-    proxy?: AxiosProxyConfig;
 }

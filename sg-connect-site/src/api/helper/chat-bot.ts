@@ -1,4 +1,4 @@
-import appSettings from "@/common/app-settings";
+import { serverSettings } from "@/common/app-settings";
 import Axios from "axios";
 import * as Sentry from "@sentry/nextjs";
 import { Severity } from "@sentry/nextjs";
@@ -8,7 +8,7 @@ const Channels = {
 };
 
 const post = async (channel: string, message: string, options?: any) => {
-    const { chatBotSettings } = appSettings;
+    const { chatBotSettings } = serverSettings;
     if (!chatBotSettings) {
         Sentry.captureMessage("chat-bot-helper has not been initialized properly.", { level: Severity.Error });
     }
@@ -32,7 +32,7 @@ const post = async (channel: string, message: string, options?: any) => {
 };
 
 export const sendReCaptchaFailedMessage = async (username: string, ip: string, score: number) => {
-    const { sentry } = appSettings;
+    const { sentry } = serverSettings;
 
     const message = `${sentry.environment} - ${username} - ${ip} - ReCaptcha failed with score ${score}`;
 

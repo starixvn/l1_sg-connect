@@ -1,7 +1,10 @@
 import getConfig from "next/config";
 
-import AppSettings from "./type";
+import { ClientSettings, ServerSettings } from "./type";
 
-const appSettings: AppSettings = getConfig().publicRuntimeConfig;
+const clientSettings: ClientSettings = getConfig().publicRuntimeConfig;
+const serverSettings: ServerSettings = getConfig().serverRuntimeConfig;
 
-export default appSettings;
+export default clientSettings;
+
+export { serverSettings, clientSettings };

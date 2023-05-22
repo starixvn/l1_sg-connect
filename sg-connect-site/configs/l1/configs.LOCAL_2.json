@@ -1,24 +1,33 @@
 {
-    "system": "L1",
-    "defaultOperatorId": "ONEworks1",
-    "sgConnectApi": {
-        "url": "http://l1_sg_connect_api_local_2:5000/api/ow"
+    "client": {
+        "defaultOperatorId": "ONEworks1",
+        "sentry": {
+            "dsn": "https://9f9238fac97b4a8ca50e835cb4aac8ad@sentry.lumigame.com/4",
+            "environment": "LOCAL_2"
+        },
+        "googleReCaptchaSetting": {
+            "siteKey": "6LfISRImAAAAABJ5dOk-Wh9vlUIbWFLyhPEQg8CO"
+        },
+        "userServiceApi": "https://l1-proxy2.lumigame.com/user"
     },
-    "userServiceApi": "https://l1-proxy2.lumigame.com/user",
-    "sentry": {
-        "dsn": "https://9f9238fac97b4a8ca50e835cb4aac8ad@sentry.lumigame.com/4",
-        "environment": "LOCAL_2"
-    },
-    "chatBotSettings": {
-        "url": "https://bot.nexdev.net/skynex/api/messages/",
-        "token": "0A40aOc7CtpzjbBSJu8KNWQRoXyjRvf9",
-        "requestTimeout": 5000,
-        "conversationIds": {
-            "captchaFailed": -1001987747210
+    "server": {
+        "sgConnectApi": {
+            "url": "http://l1_sg_connect_api_local_2:5000/api/ow"
+        },
+        "sentry": {
+            "dsn": "https://9f9238fac97b4a8ca50e835cb4aac8ad@sentry.lumigame.com/4",
+            "environment": "LOCAL_2"
+        },
+        "chatBotSettings": {
+            "url": "https://bot.nexdev.net/skynex/api/messages/",
+            "token": "0A40aOc7CtpzjbBSJu8KNWQRoXyjRvf9",
+            "requestTimeout": 5000,
+            "conversationIds": {
+                "captchaFailed": -1001987747210
+            }
+        },
+        "googleReCaptchaSetting": {
+            "privateKey": "6LfISRImAAAAAC_ol4CgJIzR3jLLHluxbCcKkzt-"
         }
-    },
-    "googleReCaptchaSetting": {
-        "siteKey": "6LfISRImAAAAABJ5dOk-Wh9vlUIbWFLyhPEQg8CO",
-        "privateKey": "6LfISRImAAAAAC_ol4CgJIzR3jLLHluxbCcKkzt-"
     }
 }

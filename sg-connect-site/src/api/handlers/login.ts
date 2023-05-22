@@ -4,7 +4,7 @@ import { ExpiredTimeInMilliseconds, PRIVATE_KEY, SG_API_PUBLIC_KEY } from "../co
 import { encodePwd } from "../helper/encode";
 import Axios, { AxiosRequestConfig } from "axios";
 import * as Sentry from "@sentry/nextjs";
-import appSettings from "@/common/app-settings";
+import { serverSettings } from "@/common/app-settings";
 import { sendReCaptchaFailedMessage } from "../helper/chat-bot";
 import { HttpsProxyAgent } from "https-proxy-agent";
 
@@ -28,14 +28,14 @@ const verifyRecaptcha = async (req: NextApiRequest) => {
         const { token, username } = req.body;
         const axiosOptions = {} as AxiosRequestConfig;
 
-        if (appSettings.proxy && appSettings.proxy) {
-            const { proxy } = appSettings;
+        if (serverSettings.proxy && serverSettings.proxy) {
+            const { proxy } = serverSettings;
             axiosOptions.httpsAgent = new HttpsProxyAgent(`${proxy.protocol}://${proxy.host}:${proxy.port}`);
         }
 
         var verificationUrl =
             "https://www.google.com/recaptcha/api/siteverify?secret=" +
-            appSettings.googleReCaptchaSetting.privateKey +
+            serverSettings.googleReCaptchaSetting.privateKey +
             "&response=" +
             token;
 
@@ -75,7 +75,7 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 Ip: req.socket.remoteAddress,
             };
 
-            const result = await Axios.post(`${appSettings.sgConnectApi.url}/login`, request).catch((error) => {
+            const result = await Axios.post(`${serverSettings.sgConnectApi.url}/login`, request).catch((error) => {
                 Sentry.captureException(error);
                 res.status(500).end();
             });

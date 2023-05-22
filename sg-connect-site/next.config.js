@@ -3,10 +3,6 @@ const { i18n } = require("./next-i18next.config");
 const configs = require("./configs.json");
 const { withSentryConfig } = require("@sentry/nextjs");
 
-const appSettings = {
-    ...configs,
-};
-
 const securityHeaders = [
     {
         key: "Strict-Transport-Security",
@@ -17,7 +13,8 @@ const securityHeaders = [
 const nextConfig = withSentryConfig({
     reactStrictMode: true,
     i18n,
-    publicRuntimeConfig: appSettings,
+    publicRuntimeConfig: { ...configs.client },
+    serverRuntimeConfig: { ...configs.server },
     productionBrowserSourceMaps: configs.enableSourceMap,
     sentry: {
         disableServerWebpackPlugin: true,

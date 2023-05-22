@@ -1,29 +1,38 @@
 {
-    "system": "L1",
-    "defaultOperatorId": "ONEworks1",
-    "sgConnectApi": {
-        "url": "http://l1_sg_connect_api_uat:5000/api/ow"
+    "client": {
+        "defaultOperatorId": "ONEworks1",
+        "sentry": {
+            "dsn": "https://456fc5c65b204851974d4eb4b353f5f5@scsentry.sgamesuat.com/221",
+            "environment": "UAT"
+        },
+        "googleReCaptchaSetting": {
+            "siteKey": "6LfISRImAAAAABJ5dOk-Wh9vlUIbWFLyhPEQg8CO"
+        },
+        "userServiceApi": "https://l1uatproxy.sgamesuat.com/uat/user"
     },
-    "userServiceApi": "https://l1uatproxy.sgamesuat.com/uat/user",
-    "sentry": {
-        "dsn": "https://456fc5c65b204851974d4eb4b353f5f5@10.2.190.51:9009/221",
-        "environment": "UAT"
-    },
-    "chatBotSettings": {
-        "url": "https://bot.nexdev.net/skynex/api/messages/",
-        "token": "0A40aOc7CtpzjbBSJu8KNWQRoXyjRvf9",
-        "requestTimeout": 5000,
-        "conversationIds": {
-            "captchaFailed": -1001987747210
+    "server": {
+        "sgConnectApi": {
+            "url": "http://l1_sg_connect_api_uat:5000/api/ow"
+        },
+        "sentry": {
+            "dsn": "http://456fc5c65b204851974d4eb4b353f5f5@10.2.190.51:9009/221",
+            "environment": "UAT"
+        },
+        "chatBotSettings": {
+            "url": "https://bot.nexdev.net/skynex/api/messages/",
+            "token": "0A40aOc7CtpzjbBSJu8KNWQRoXyjRvf9",
+            "requestTimeout": 5000,
+            "conversationIds": {
+                "captchaFailed": -1001987747210
+            }
+        },
+        "googleReCaptchaSetting": {
+            "privateKey": "6LfISRImAAAAAC_ol4CgJIzR3jLLHluxbCcKkzt-"
+        },
+        "proxy": {
+            "host": "10.2.252.100",
+            "port": 8801,
+            "protocol": "http"
         }
-    },
-    "googleReCaptchaSetting": {
-        "siteKey": "6LfISRImAAAAABJ5dOk-Wh9vlUIbWFLyhPEQg8CO",
-        "privateKey": "6LfISRImAAAAAC_ol4CgJIzR3jLLHluxbCcKkzt-"
-    },
-    "proxy": {
-        "host": "10.2.252.100",
-        "port": 8801,
-        "protocol": "http"
     }
 }
