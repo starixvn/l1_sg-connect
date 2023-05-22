@@ -2,10 +2,11 @@ import { decrypt, encrypt } from "@/api/helper/encrypt";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ExpiredTimeInMilliseconds, PRIVATE_KEY, SG_API_PUBLIC_KEY } from "../constants";
 import { encodePwd } from "../helper/encode";
-import Axios, { AxiosProxyConfig } from "axios";
+import Axios, { AxiosProxyConfig, AxiosRequestConfig } from "axios";
 import * as Sentry from "@sentry/nextjs";
 import appSettings from "@/common/app-settings";
 import { sendReCaptchaFailedMessage } from "../helper/chat-bot";
+import { HttpsProxyAgent } from "https-proxy-agent";
 
 interface EncryptData {
     username: string;
@@ -25,8 +26,12 @@ const isValidEncryptData = (username: string, encryptData: EncryptData): boolean
 const verifyRecaptcha = async (req: NextApiRequest) => {
     try {
         const { token, username } = req.body;
-        const proxy = appSettings.proxy ? (appSettings.proxy as AxiosProxyConfig) : undefined;
-        Sentry.captureMessage("test");
+        const axiosOptions = {} as AxiosRequestConfig;
+
+        if (appSettings.proxy && appSettings.proxy) {
+            const { proxy } = appSettings;
+            axiosOptions.httpAgent = new HttpsProxyAgent(`${proxy.protocol}://${proxy.host}:${proxy.port}`);
+        }
 
         var verificationUrl =
             "https://www.google.com/recaptcha/api/siteverify?secret=" +
@@ -34,7 +39,7 @@ const verifyRecaptcha = async (req: NextApiRequest) => {
             "&response=" +
             token;
 
-        const response = await Axios.post(verificationUrl, undefined, { proxy }).catch((error) => {
+        const response = await Axios.post(verificationUrl, undefined, axiosOptions).catch((error) => {
             Sentry.captureException(error);
 
             return { data: { success: false } };
