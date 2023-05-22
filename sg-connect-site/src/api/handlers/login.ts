@@ -2,7 +2,7 @@ import { decrypt, encrypt } from "@/api/helper/encrypt";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ExpiredTimeInMilliseconds, PRIVATE_KEY, SG_API_PUBLIC_KEY } from "../constants";
 import { encodePwd } from "../helper/encode";
-import Axios, { AxiosProxyConfig, AxiosRequestConfig } from "axios";
+import Axios, { AxiosRequestConfig } from "axios";
 import * as Sentry from "@sentry/nextjs";
 import appSettings from "@/common/app-settings";
 import { sendReCaptchaFailedMessage } from "../helper/chat-bot";
@@ -30,7 +30,7 @@ const verifyRecaptcha = async (req: NextApiRequest) => {
 
         if (appSettings.proxy && appSettings.proxy) {
             const { proxy } = appSettings;
-            axiosOptions.httpAgent = new HttpsProxyAgent(`${proxy.protocol}://${proxy.host}:${proxy.port}`);
+            axiosOptions.httpsAgent = new HttpsProxyAgent(`${proxy.protocol}://${proxy.host}:${proxy.port}`);
         }
 
         var verificationUrl =
