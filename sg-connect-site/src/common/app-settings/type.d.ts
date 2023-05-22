@@ -1,3 +1,5 @@
+import { AxiosProxyConfig } from "axios";
+
 interface SGConnectApi {
     url: string;
 }
@@ -16,6 +18,8 @@ interface ChatBotSettings {
 
 interface GoogleReCaptchaSetting {
     siteKey: string;
+
+    privateKey: string;
 }
 
 export default interface AppSettings {
@@ -28,4 +32,6 @@ export default interface AppSettings {
     chatBotSettings: ChatBotSettings;
 
     googleReCaptchaSetting: GoogleReCaptchaSetting;
+
+    proxy?: AxiosProxyConfig;
 }

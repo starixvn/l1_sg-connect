@@ -12,5 +12,10 @@
     "googleReCaptchaSetting": {
         "siteKey": "6LfISRImAAAAABJ5dOk-Wh9vlUIbWFLyhPEQg8CO",
         "privateKey": "6LfISRImAAAAAC_ol4CgJIzR3jLLHluxbCcKkzt-"
+    },
+    "proxy": {
+        "host": "10.2.252.100",
+        "port": 8801,
+        "protocol": "http"
     }
 }
