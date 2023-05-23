@@ -29,7 +29,7 @@ namespace SGConnect.Api._Shared
                 var decryptedBytes = rsa.Decrypt( Convert.FromBase64String(encryptedText), RSAEncryptionPadding.Pkcs1);
                 return Encoding.UTF8.GetString(decryptedBytes);                
             }
-            catch ()
+            catch
             {
                 return string.Empty;
             }                        
