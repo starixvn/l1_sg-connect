@@ -35,8 +35,8 @@ namespace SGConnect.Api.Extensions
 
         public static void AddRestServices(this IServiceCollection services, OperatorSettings operatorSettings)
         {
-            services.AddScoped((serviceProvider) => RestService.For<IOWApi>(operatorSettings.OneWorks.ApiUrl));
-            services.AddScoped((serviceProvider) => RestService.For<IMemberApi>(operatorSettings.OneWorks.MemberApiUrl));
+            services.AddScoped((_) => RestService.For<IOWApi>(operatorSettings.OneWorks.ApiUrl));
+            services.AddScoped((_) => RestService.For<IMemberApi>(operatorSettings.OneWorks.MemberApiUrl));
         }
 
         public static void AddValidators(this IServiceCollection services)
