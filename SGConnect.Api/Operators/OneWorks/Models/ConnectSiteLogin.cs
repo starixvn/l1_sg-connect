@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace SGConnect.Api.Operators.OneWorks
 {
