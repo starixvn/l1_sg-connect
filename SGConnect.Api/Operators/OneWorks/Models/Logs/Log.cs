@@ -3,9 +3,9 @@ using MongoDB.Bson;
 
 namespace SGConnect.Api.Operators.OneWorks
 {
-    public abstract class Log
+    public class Log
     {
-        public Log(DateTimeOffset requestTime, DateTimeOffset responseTime)
+        protected Log(DateTimeOffset requestTime, DateTimeOffset responseTime)
         {
             RequestTimeStamp = requestTime;
             ResponseTimeStamp = responseTime;

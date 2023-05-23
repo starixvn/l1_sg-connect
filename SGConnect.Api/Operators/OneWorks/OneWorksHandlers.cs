@@ -98,7 +98,7 @@ namespace SGConnect.Api.Operators.OneWorks
             return result;
         }
 
-        private OWLoginResult AppendAppType(OWLoginResult owLoginResult)
+        private static OWLoginResult AppendAppType(OWLoginResult owLoginResult)
         {
             if (!string.IsNullOrWhiteSpace(owLoginResult.RedirectUri))
             {
