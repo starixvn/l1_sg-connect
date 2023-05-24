@@ -3,7 +3,7 @@ import { NextRequest } from "next/server";
 import { isAuth } from "./middleware/auth";
 
 export async function middleware(request: NextRequest) {
-    if (true) {
+    if (await isAuth(request)) {
         return NextResponse.next();
     }
 
