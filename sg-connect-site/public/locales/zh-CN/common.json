@@ -1,0 +1,14 @@
+{
+    "sessionTimeout": "您的会话已超时。 请重新登录。",
+    "login": "登录",
+    "maintenanceTime": "维护时间",
+    "from": "从",
+    "to": "到",
+    "en-US": "English",
+    "vi-VN": "Tiếng Việt",
+    "th-TH": "ภาษาไทย",
+    "id-ID": "Indonesian",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
+    "notification": "通知"
+}

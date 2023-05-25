@@ -1,0 +1,14 @@
+{
+    "sessionTimeout": "หมดเวลาการใช้งาน. กรุณาเข้าสู่ระบบอีกครั้ง",
+    "login": "เข้าสู่ระบบ",
+    "maintenanceTime": "เวลาปรับปรุงระบบ",
+    "from": "จาก",
+    "to": "ถึง",
+    "en-US": "English",
+    "vi-VN": "Tiếng Việt",
+    "th-TH": "ภาษาไทย",
+    "id-ID": "Indonesian",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
+    "notification": "การแจ้งเตือน"
+}

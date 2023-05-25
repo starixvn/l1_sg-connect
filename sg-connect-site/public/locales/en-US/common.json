@@ -1,0 +1,14 @@
+{
+    "sessionTimeout": "Your session has timed out. Please login again.",
+    "login": "Login",
+    "maintenanceTime": "Maintenance time",
+    "from": "from",
+    "to": "to",
+    "en-US": "English",
+    "vi-VN": "Tiếng Việt",
+    "th-TH": "ภาษาไทย",
+    "id-ID": "Indonesian",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
+    "notification": "Notification"
+}

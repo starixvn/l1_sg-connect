@@ -1,0 +1,175 @@
+@keyframes mulShdSpin {
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em,
+            -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em,
+            -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em,
+            -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em,
+            -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em,
+            -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(farthest-side at center left, #435c83, #020d1f);
+    line-height: 2.4rem;
+    font-weight: 300;
+    font-size: 1.6rem;
+}
+
+.top-area.show-keyboard {
+    display: none;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 6.2rem;
+    margin-bottom: 2.3rem;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 22rem;
+    }
+}
+
+.login-form {
+    margin: 9rem 2.5rem 2.5rem;
+    text-align: center;
+    transition: margin 0.2s ease-out;
+
+    .description {
+        padding: 0 2rem 1rem;
+        color: rgba(255, 255, 255, 0.8);
+
+        &.keyboard-open {
+            margin-top: 0rem;
+            padding-top: 0rem;
+        }
+    }
+
+    &.show-keyboard {
+        margin-top: 1rem;
+    }
+}
+
+.input-group {
+    position: relative;
+    display: grid;
+    grid-template-columns: 5.2rem 1fr;
+    align-items: center;
+    width: 100%;
+    height: 5.2rem;
+    margin-bottom: 2.4rem;
+    background: #f9f4f4;
+    border-radius: 0.8rem;
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: #f9f9f4 !important;
+        background-color: transparent;
+    }
+
+    .icon-view {
+        position: absolute;
+        right: 1.8rem;
+        outline: none;
+        border: none;
+        background: transparent;
+    }
+
+    .icon {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.login-btn {
+    position: relative;
+    width: 100%;
+    height: 5.2rem;
+    margin-top: 3.6rem;
+    background: linear-gradient(180deg, #ff7144 0%, #f99f2c 100%);
+    border-radius: 20rem;
+    color: #fff;
+    border: none;
+    font-size: inherit;
+    text-transform: uppercase;
+
+    .overlay {
+        background: rgba(0, 0, 0, 0.6);
+        position: absolute;
+        border-radius: 20rem;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        z-index: 5;
+    }
+
+    .loading {
+        color: #fff;
+        font-size: 0.5rem;
+        width: 0.65rem;
+        height: 0.65rem;
+        border-radius: 50%;
+        position: absolute;
+        text-indent: -9999em;
+        animation: mulShdSpin 1.3s infinite linear;
+        transform: translateZ(0);
+    }
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: #000;
+    font-size: 1.8rem;
+    height: 5.2rem;
+    line-height: 5.2rem;
+    border: none;
+
+    &:focus {
+        border-color: none;
+        outline: 0;
+    }
+
+    &::placeholder {
+        color: rgba(0, 0, 0, 0.32);
+    }
+}

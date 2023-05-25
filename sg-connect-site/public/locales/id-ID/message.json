@@ -1,0 +1,11 @@
+{
+    "loginTooOften": "Terlalu Sering Login. ({{errorCode}})",
+    "lockedAccount": "Akun Anda terkunci. Hubungi CSD untuk membuka akun Anda. ({{errorCode}})",
+    "closedAccount": "Akun telah ditutup. Silakan hubungi CSD untuk lebih lanjut. ({{errorCode}})",
+    "errorOccurred":"Terjadi kesalahan. Harap hubungi CSD untuk detailnya, terima kasih. ({{errorCode}})",
+    "unknownErrorOccurred":"Terjadi kesalahan. Harap hubungi CSD untuk detailnya, terima kasih.",
+    "sessionTimeout":"Waktu sistem habis, harap tutup layar permainan saat ini lalu coba lagi. ({{errorCode}})",
+    "loginFailed":"Nama pengguna/kata sandi salah. ({{errorCode}})",
+    "sysMaintenance":"Permainan sedang dalam pemeliharaan. ({{errorCode}})",
+    "ipAccessDenied": "Anda tidak diperbolehkan masuk dari lokasi Anda. Silakan hubungi CSD untuk informasi lebih lanjut. ({{errorCode}})"
+}

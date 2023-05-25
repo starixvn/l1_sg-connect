@@ -1,0 +1,16 @@
+{
+    "system": "L2",
+    "defaultOperatorId": "ONEworksVGCash",
+    "sgConnectApi": {
+        "url": "https://l2-connectapi1.lumigame.com/api/ow/"
+    },
+    "userServiceApi": "https://l2-proxy1.lumigame.com/user",
+    "sentry": {
+        "dsn": "https://24fd9dd0e97c4b8cb62b84168abb4a6a@sentry.lumigame.com/15",
+        "environment": "LOCAL_1"
+    },
+    "googleReCaptchaSetting": {
+        "siteKey": "6LfISRImAAAAABJ5dOk-Wh9vlUIbWFLyhPEQg8CO",
+        "privateKey": "6LfISRImAAAAAC_ol4CgJIzR3jLLHluxbCcKkzt-"
+    }
+}

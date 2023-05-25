@@ -1,0 +1,16 @@
+{
+    "system": "L2",
+    "defaultOperatorId": "ONEworksVGCash",
+    "sgConnectApi": {
+        "url": "https://vg-connectapi.vgaming.com/api/ow/"
+    },
+    "userServiceApi": "https://proxy.vgaming.net/user",
+    "sentry": {
+        "dsn": "http://a3c9e623acc14ffea3e1a1503e35e69c@10.2.189.50:9009/153",
+        "environment": "LOCAL_1"
+    },
+    "googleReCaptchaSetting": {
+        "siteKey": "6LfISRImAAAAABJ5dOk-Wh9vlUIbWFLyhPEQg8CO",
+        "privateKey": "6LfISRImAAAAAC_ol4CgJIzR3jLLHluxbCcKkzt-"
+    }
+}

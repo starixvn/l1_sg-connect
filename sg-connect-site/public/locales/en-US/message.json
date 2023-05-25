@@ -1,0 +1,11 @@
+{
+    "loginTooOften": "Login Too Often. ({{errorCode}})",
+    "lockedAccount": "Your account is locked. Please contact CSD to unlock your account. ({{errorCode}})",
+    "closedAccount": "Account has been closed. Please contact CSD for details. ({{errorCode}})",
+    "errorOccurred":"An error has occurred. Please contact CSD for details, thank you. ({{errorCode}})",
+    "unknownErrorOccurred":"An error has occurred. Please contact CSD for details, thank you.",
+    "sessionTimeout":"System timed out, please closed the current game window and try again. ({{errorCode}})",
+    "loginFailed":"Incorrect login name or password. ({{errorCode}})",
+    "sysMaintenance":"The game is under maintenance. ({{errorCode}})",
+    "ipAccessDenied": "You are not allowed to login from your location. Please contact CSD for further information. ({{errorCode}})"
+}
