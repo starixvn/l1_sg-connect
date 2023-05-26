@@ -144,8 +144,6 @@ class Login extends React.Component<Props, State> {
     async login(token: string) {
         const { username, password, language } = this.state;
 
-        this.setLoading(true);
-
         const encryptPassword = {
             timestamp: new Date().toUTCString(),
             username,
@@ -180,6 +178,7 @@ class Login extends React.Component<Props, State> {
 
     async onSubmit(event: any) {
         event && event.preventDefault();
+        this.setLoading(true);
 
         const token = await this.handleVerifyRecaptcha();
 
@@ -277,7 +276,7 @@ class Login extends React.Component<Props, State> {
                             </button>
                         </div>
 
-                        <button className={Styles["login-btn"]} type="submit" disabled={password == "" || username == ""}>
+                        <button className={Styles["login-btn"]} type="submit" disabled={password == "" || username == "" || isLoading}>
                             {isLoading ? <span className={Styles["loading"]}></span> : t("login")}
                             {(password == "" || username == "") && <div className={Styles["overlay"]}></div>}
                         </button>
