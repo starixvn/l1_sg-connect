@@ -278,7 +278,7 @@ class Login extends React.Component<Props, State> {
 
                         <button className={Styles["login-btn"]} type="submit" disabled={password == "" || username == "" || isLoading}>
                             {isLoading ? <span className={Styles["loading"]}></span> : t("login")}
-                            {(password == "" || username == "") && <div className={Styles["overlay"]}></div>}
+                            {(password == "" || username == "" || isLoading) && <div className={Styles["overlay"]}></div>}
                         </button>
                     </div>
                 </form>
