@@ -178,11 +178,14 @@ class Login extends React.Component<Props, State> {
 
     async onSubmit(event: any) {
         event && event.preventDefault();
-        this.setLoading(true);
+        const isLoading = this.state;
 
-        const token = await this.handleVerifyRecaptcha();
+        if (!isLoading) {
+            this.setLoading(true);
+            const token = await this.handleVerifyRecaptcha();
 
-        this.login(token || "");
+            this.login(token || "");
+        }
     }
 
     onFocus(event: any) {
