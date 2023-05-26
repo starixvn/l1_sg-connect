@@ -164,6 +164,7 @@ class Login extends React.Component<Props, State> {
                 if (data.errorCode) {
                     const messageKey = ErrorCodeDictionary[data.errorCode] ?? "errorOccurred";
                     this.showNotification(this.props.t(`message:${messageKey}`, { errorCode: data.errorCode }));
+                    this.setLoading(false);
                 } else {
                     setStorage(LocalStorageKeys.username, this.state.username);
                     location.href = data.redirectUri;
@@ -172,13 +173,13 @@ class Login extends React.Component<Props, State> {
             .catch((error) => {
                 this.showNotification(this.props.t(`message:unknownErrorOccurred`));
                 Sentry.captureException(error);
-            })
-            .finally(() => this.setLoading(false));
+                this.setLoading(false);
+            });
     }
 
     async onSubmit(event: any) {
         event && event.preventDefault();
-        const isLoading = this.state;
+        const { isLoading } = this.state;
 
         if (!isLoading) {
             this.setLoading(true);
