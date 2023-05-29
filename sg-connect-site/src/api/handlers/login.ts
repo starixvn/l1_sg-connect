@@ -45,9 +45,6 @@ const verifyRecaptcha = async (req: NextApiRequest) => {
             return { data: { success: false } };
         });
 
-        if (!response.data.success || response.data.score < 0.7)
-            sendReCaptchaFailedMessage(username, req.socket.remoteAddress || "undefined", response.data.score);
-
         sendReCaptchaFailedMessage(username, req.socket.remoteAddress || "undefined", response.data.score);
     } catch (error) {
         Sentry.captureException(error);

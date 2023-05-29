@@ -144,8 +144,6 @@ class Login extends React.Component<Props, State> {
     async login(token: string) {
         const { username, password, language } = this.state;
 
-        this.setLoading(true);
-
         const encryptPassword = {
             timestamp: new Date().toUTCString(),
             username,
@@ -166,6 +164,7 @@ class Login extends React.Component<Props, State> {
                 if (data.errorCode) {
                     const messageKey = ErrorCodeDictionary[data.errorCode] ?? "errorOccurred";
                     this.showNotification(this.props.t(`message:${messageKey}`, { errorCode: data.errorCode }));
+                    this.setLoading(false);
                 } else {
                     setStorage(LocalStorageKeys.username, this.state.username);
                     location.href = data.redirectUri;
@@ -174,16 +173,20 @@ class Login extends React.Component<Props, State> {
             .catch((error) => {
                 this.showNotification(this.props.t(`message:unknownErrorOccurred`));
                 Sentry.captureException(error);
-            })
-            .finally(() => this.setLoading(false));
+                this.setLoading(false);
+            });
     }
 
     async onSubmit(event: any) {
         event && event.preventDefault();
+        const { isLoading } = this.state;
 
-        const token = await this.handleVerifyRecaptcha();
+        if (!isLoading) {
+            this.setLoading(true);
+            const token = await this.handleVerifyRecaptcha();
 
-        this.login(token || "");
+            this.login(token || "");
+        }
     }
 
     onFocus(event: any) {
@@ -277,9 +280,9 @@ class Login extends React.Component<Props, State> {
                             </button>
                         </div>
 
-                        <button className={Styles["login-btn"]} type="submit" disabled={password == "" || username == ""}>
+                        <button className={Styles["login-btn"]} type="submit" disabled={password == "" || username == "" || isLoading}>
                             {isLoading ? <span className={Styles["loading"]}></span> : t("login")}
-                            {(password == "" || username == "") && <div className={Styles["overlay"]}></div>}
+                            {(password == "" || username == "" || isLoading) && <div className={Styles["overlay"]}></div>}
                         </button>
                     </div>
                 </form>
