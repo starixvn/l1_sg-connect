@@ -16,4 +16,4 @@ export const LanguageAPIMapper: { [key: string]: string } = {
     "id-ID": "id",
 };
 
-export const DefaultLanguage = "en-US";
+export const DefaultLanguage = "vi-VN";

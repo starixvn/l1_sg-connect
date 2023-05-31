@@ -1,12 +1,12 @@
 module.exports = {
     i18n: {
-        defaultLocale: "en-US",
-        locales: ["en-US", "vi-VN", "id-ID", "th-TH", "zh-CN", "zh-TW"],
+        defaultLocale: "vi-VN",
+        locales: ["vi-VN", "en-US", "id-ID", "th-TH", "zh-CN", "zh-TW"],
         localeDetection: false,
         detection: {
             order: ["querystring"],
             lookupQuerystring: "language",
         },
-        fallbackLng: ["en-US", "vi-VN", "id-ID", "th-TH", "zh-CN", "zh-TW"],
+        fallbackLng: ["vi-VN", "en-US", "id-ID", "th-TH", "zh-CN", "zh-TW"],
     },
 };

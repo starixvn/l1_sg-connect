@@ -14,7 +14,6 @@ const MyError = ({ statusCode, hasGetInitialPropsRun, err }: Props) => {
     if (!hasGetInitialPropsRun && err) {
         Sentry.captureException(err);
     }
-
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -42,11 +41,13 @@ MyError.getInitialProps = async (context: NextPageContext) => {
         hasGetInitialPropsRun: true,
     };
 
-    context.err
-        ? Sentry.captureException(context.err)
-        : Sentry.captureException(new Error(`_error.js getInitialProps missing data at path: ${context.asPath}`));
+    if (initialProps.statusCode != 404) {
+        context.err
+            ? Sentry.captureException(context.err)
+            : Sentry.captureException(new Error(`_error.js getInitialProps missing data at path: ${context.asPath}`));
 
-    await Sentry.flush(2000);
+        await Sentry.flush(2000);
+    }
 
     return errorInitialProps;
 };
