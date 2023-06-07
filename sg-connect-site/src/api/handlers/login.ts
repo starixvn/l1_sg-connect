@@ -7,6 +7,7 @@ import * as Sentry from "@sentry/nextjs";
 import { serverSettings } from "@/common/app-settings";
 import { sendReCaptchaFailedMessage } from "../helper/chat-bot";
 import { HttpsProxyAgent } from "https-proxy-agent";
+import { getClientIp } from "request-ip";
 
 interface EncryptData {
     username: string;
@@ -45,7 +46,7 @@ const verifyRecaptcha = async (req: NextApiRequest) => {
             return { data: { success: false } };
         });
 
-        sendReCaptchaFailedMessage(username, req.socket.remoteAddress || "undefined", response.data.score);
+        sendReCaptchaFailedMessage(username, getClientIp(req) || "undefined", response.data.score);
     } catch (error) {
         Sentry.captureException(error);
     }
@@ -69,7 +70,7 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 EncryptedPassword: encrypt(encodePassword, SG_API_PUBLIC_KEY),
                 Language: language,
                 BrowserUserAgent: req.headers["user-agent"],
-                Ip: req.socket.remoteAddress,
+                Ip: getClientIp(req),
             };
 
             const result = await Axios.post(`${serverSettings.sgConnectApi.url}/login`, request).catch((error) => {
