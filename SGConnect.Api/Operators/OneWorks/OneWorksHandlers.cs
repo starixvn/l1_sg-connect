@@ -31,7 +31,7 @@ namespace SGConnect.Api.Operators.OneWorks
                     Username = connectSiteLogin.Username,
                     Password = CryptoService.Decrypt(connectSiteLogin.EncryptedPassword),
                     PasswordEncodeKey = connectSiteLogin.EncodeKey
-                });
+                }, connectSiteLogin.Ip);
 
             if (memberLoginResult.ErrorCode == 0)
             {
@@ -71,10 +71,10 @@ namespace SGConnect.Api.Operators.OneWorks
             return response;
         }
 
-        private async Task<MemberLoginResult> CallMemberLogin(MemberLogin request)
+        private async Task<MemberLoginResult> CallMemberLogin(MemberLogin request, string ip)
         {
             var requestTime = DateTimeOffset.UtcNow;
-            var result = await memberApi.Login(request);
+            var result = await memberApi.Login(request, ip);
 
             if (result.ErrorCode == 0)
             {
