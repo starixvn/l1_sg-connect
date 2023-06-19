@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Net;
+using FluentValidation;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using Refit;
@@ -35,7 +36,26 @@ namespace SGConnect.Api.Extensions
 
         public static void AddRestServices(this IServiceCollection services, OperatorSettings operatorSettings)
         {
-            services.AddScoped((_) => RestService.For<IOWApi>(operatorSettings.OneWorks.ApiUrl));
+            services.AddScoped((_) =>
+            {
+                if (string.IsNullOrWhiteSpace(operatorSettings.OneWorks.ProxyUrl))
+                {
+                    return RestService.For<IOWApi>(operatorSettings.OneWorks.ApiUrl);
+                }
+                var httpHandler = new HttpClientHandler
+                {
+                    UseProxy = true,
+                    Proxy = new WebProxy(operatorSettings.OneWorks.ProxyUrl)
+                };
+
+                var httpClient = new HttpClient(httpHandler, true)
+                {
+                    BaseAddress = new Uri(operatorSettings.OneWorks.ApiUrl),
+                    
+                };
+
+                return RestService.For<IOWApi>(httpClient);
+            });
             services.AddScoped((_) => RestService.For<IMemberApi>(operatorSettings.OneWorks.MemberApiUrl));
         }
 

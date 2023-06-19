@@ -3,43 +3,37 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace SGConnect.Api.Operators.OneWorks
 {
-    public class OWLogin
+    [BsonDiscriminator("OWSignInCall")]
+    public class OWLogin : RequestLog
     {
-        public OWLogin(string login, string password)
-        {
-            Auth = new()
-            {
-                Login = login,
-                Password = password
-            };
-        }
-
         [BsonRepresentation(BsonType.String)]
         public DateTimeOffset TimeStamp { get; set; } = DateTimeOffset.UtcNow;
-        public OWAuth Auth { get; set; }
-        public OWLoginCall Call { get; set; }
+
+        public string Seq { get; set; } = Guid.NewGuid().ToString();
+        public ProductInfo ProductInfo { get; set; }
+        public CustInfo CustInfo { get; set; }
+        public bool EnableSingleWallet { get; set; }
     }
 
-    public class OWAuth
+    public class ProductInfo
     {
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public int SportTypeId { get; set; }
+        public int VendorId { get; set; }
+        public string AppType { get; set; } = "A";
     }
 
-    [BsonDiscriminator("OWSignInCall")]
-    public class OWLoginCall : RequestLog
+    public class CustInfo
     {
         public int ObCustId { get; set; }
         public string ObCustName { get; set; }
-        public int GameId { get; set; }
+        public int CurrencyId { get; set; }
         public string Currency { get; set; }
-        public string IP { get; set; }
+        public string Ip { get; set; }
         public string BrowserUserAgent { get; set; }
         public string BetFrom { get; set; } = "{";
         public string Platform { get; set; } = "A";
         public string Language { get; set; }
         public string SiteId { get; set; }
-        public string SiteName { get; set; }
-        public string Seq { get; set; } = Guid.NewGuid().ToString();
+        public string Site { get; set; }
     }
 }

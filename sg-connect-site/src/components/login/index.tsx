@@ -7,13 +7,13 @@ import Axios from "axios";
 import Router from "next/router";
 import React from "react";
 import { isIOS, isMobile } from "react-device-detect";
+import { IWithGoogleReCaptchaProps, withGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { Trans, withTranslation } from "react-i18next";
 import LanguageSelector from "./components/language-selector";
 import NotificationPopup from "./components/notification-popup";
 import { encrypt } from "./helpers/encrypt";
-import { getStorage, LocalStorageKeys, setStorage } from "./helpers/local-storage";
+import { LocalStorageKeys, getStorage, setStorage } from "./helpers/local-storage";
 import Styles from "./styles.module.scss";
-import { IWithGoogleReCaptchaProps, withGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const MinHeightKeyBoard = 300;
 
@@ -167,7 +167,7 @@ class Login extends React.Component<Props, State> {
                     this.setLoading(false);
                 } else {
                     setStorage(LocalStorageKeys.username, this.state.username);
-                    location.href = data.redirectUri;
+                    location.href = data.gameUrl;
                 }
             })
             .catch((error) => {

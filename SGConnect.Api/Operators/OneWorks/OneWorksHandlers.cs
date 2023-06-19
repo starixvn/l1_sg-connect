@@ -1,5 +1,4 @@
 ﻿using SGConnect.Api._Shared;
-using SGConnect.Api.Operators.OneWorks.Models;
 
 namespace SGConnect.Api.Operators.OneWorks
 {
@@ -21,7 +20,7 @@ namespace SGConnect.Api.Operators.OneWorks
             this.memberApi = memberApi;
             settings = operatorSettings.OneWorks;
             this.logService = logService;
-        }        
+        }
 
         public async Task<OWLoginResult> HandleLogin(ConnectSiteLogin connectSiteLogin)
         {
@@ -36,7 +35,7 @@ namespace SGConnect.Api.Operators.OneWorks
             if (memberLoginResult.ErrorCode == 0)
             {
                 var response = await CallOWLogin(InitOWLoginModel(connectSiteLogin, memberLoginResult));
-                return AppendAppType(response.Result);
+                return response;
             }
 
             return new()
@@ -46,23 +45,24 @@ namespace SGConnect.Api.Operators.OneWorks
             };
         }
 
-        private async Task<OWResponse<OWLoginResult>> CallOWLogin(OWLogin request)
+        private async Task<OWLoginResult> CallOWLogin(OWLogin request)
         {
             var response = await owApi.Login(request);
 
-            if (response.Result.ErrorCode == 0)
+            if (response.ErrorCode == 0)
             {
-                await logService.WriteOWLoginLog(new (request.TimeStamp, DateTimeOffset.UtcNow)
+                await logService.WriteOWLoginLog(new(request.TimeStamp, DateTimeOffset.UtcNow)
                 {
                     Request = request,
-                    Result = response.Result
+                    Result = response
                 });
-            } else
+            }
+            else
             {
-                await logService.WriteFailedLog(new FailedLog(request.TimeStamp, response.TimeStamp)
+                await logService.WriteFailedLog(new FailedLog(request.TimeStamp, DateTimeOffset.UtcNow)
                 {
-                    Call = request.Call,
-                    Result = response.Result,
+                    Call = request,
+                    Result = response,
                     OperatorId = OperatorIds.Oneworks,
                     System = AppTypes.MobileApp
                 });
@@ -78,7 +78,7 @@ namespace SGConnect.Api.Operators.OneWorks
 
             if (result.ErrorCode == 0)
             {
-                await logService.WriteMemberLoginLog(new (requestTime, DateTimeOffset.UtcNow)
+                await logService.WriteMemberLoginLog(new(requestTime, DateTimeOffset.UtcNow)
                 {
                     Request = request,
                     Result = result
@@ -98,28 +98,24 @@ namespace SGConnect.Api.Operators.OneWorks
             return result;
         }
 
-        private static OWLoginResult AppendAppType(OWLoginResult owLoginResult)
-        {
-            if (!string.IsNullOrWhiteSpace(owLoginResult.RedirectUri))
-            {
-                owLoginResult.RedirectUri = $"{owLoginResult.RedirectUri}&appType={AppTypes.MobileApp}&ref=m_connect";
-            }
-
-            return owLoginResult;
-        }
-
         private OWLogin InitOWLoginModel(ConnectSiteLogin connectSiteLogin, MemberLoginResult memberLoginResult)
         {
-            return new(settings.ApiAuth.Login, settings.ApiAuth.Password)
+            return new()
             {
-                Call = new()
+                ProductInfo = new()
+                {
+                    VendorId = settings.VendorId,
+                    SportTypeId = settings.SportTypeId
+                },
+                CustInfo = new()
                 {
                     ObCustId = memberLoginResult.PublicUserInfo.UserID,
                     ObCustName = memberLoginResult.PublicUserInfo.UserName,
+                    CurrencyId = memberLoginResult.PublicUserInfo.UserInfo.ExchangeId,
                     Currency = memberLoginResult.PublicUserInfo.UserInfo.Currency,
                     SiteId = memberLoginResult.PublicUserInfo.SiteID.ToString(),
-                    SiteName = memberLoginResult.PublicUserInfo.AgentSite,
-                    IP = connectSiteLogin.Ip,
+                    Site = memberLoginResult.PublicUserInfo.AgentSite,
+                    Ip = connectSiteLogin.Ip,
                     BrowserUserAgent = connectSiteLogin.BrowserUserAgent,
                     Language = connectSiteLogin.Language
                 }

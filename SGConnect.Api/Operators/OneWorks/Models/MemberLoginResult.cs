@@ -24,5 +24,6 @@ namespace SGConnect.Api.Operators.OneWorks
     public class UserInfo
     {
         public string Currency { get; set; }
+        public int ExchangeId { get; set; }
     }
 }
