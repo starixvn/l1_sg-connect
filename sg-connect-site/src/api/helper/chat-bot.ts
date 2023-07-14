@@ -1,7 +1,7 @@
 import { serverSettings } from "@/common/app-settings";
-import Axios from "axios";
-import * as Sentry from "@sentry/nextjs";
-import { Severity } from "@sentry/nextjs";
+import Axios, { AxiosRequestConfig } from "axios";
+import { Severity, captureMessage, captureException } from "@sentry/nextjs";
+import { HttpsProxyAgent } from "https-proxy-agent";
 
 const Channels = {
     captchaFailed: "captchaFailed",
@@ -10,16 +10,21 @@ const Channels = {
 const post = async (channel: string, message: string, options?: any) => {
     const { chatBotSettings } = serverSettings;
     if (!chatBotSettings) {
-        Sentry.captureMessage("chat-bot-helper has not been initialized properly.", { level: Severity.Error });
+        captureMessage("chat-bot-helper has not been initialized properly.", { level: Severity.Error });
     }
 
     try {
         const defaultRequestTimeout = 5000;
         const { url, token, conversationIds, requestTimeout } = chatBotSettings;
-        const requestConfigs = {
+        const requestConfigs: AxiosRequestConfig = {
             timeout: options?.requestTimeout || requestTimeout || defaultRequestTimeout,
             headers: {},
         };
+
+        if (serverSettings.proxy && serverSettings.proxy) {
+            const { proxy } = serverSettings;
+            requestConfigs.httpsAgent = new HttpsProxyAgent(`${proxy.protocol}://${proxy.host}:${proxy.port}`);
+        }
 
         await Axios.post(
             `${url}forwardwithtoken?token=${token}&conversationId=${conversationIds[channel]}&message=${message}`,
@@ -27,7 +32,7 @@ const post = async (channel: string, message: string, options?: any) => {
             requestConfigs
         );
     } catch (e) {
-        Sentry.captureException(e);
+        captureException(e);
     }
 };
 
