@@ -1,6 +1,4 @@
-﻿using SGConnect.Api.Operators.OneWorks.Models;
-
-namespace SGConnect.Api.Operators.OneWorks
+﻿namespace SGConnect.Api.Operators.OneWorks
 {
     public class FailedLog : Log
     {
