@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Net;
+using FluentValidation;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using Refit;
@@ -35,8 +36,13 @@ namespace SGConnect.Api.Extensions
 
         public static void AddRestServices(this IServiceCollection services, OperatorSettings operatorSettings)
         {
-            services.AddScoped((_) => RestService.For<IOWApi>(operatorSettings.OneWorks.ApiUrl));
-            services.AddScoped((_) => RestService.For<IMemberApi>(operatorSettings.OneWorks.MemberApiUrl));
+
+            HttpClient owApiClient = InitHttpClient(operatorSettings.OneWorks.ApiUrl, operatorSettings.Proxy);
+            HttpClient memberApiClient = InitHttpClient(operatorSettings.OneWorks.MemberApiUrl, operatorSettings.Proxy);
+
+
+            services.AddScoped((_) => RestService.For<IOWApi>(owApiClient));
+            services.AddScoped((_) => RestService.For<IMemberApi>(memberApiClient));
         }
 
         public static void AddValidators(this IServiceCollection services)
@@ -52,6 +58,25 @@ namespace SGConnect.Api.Extensions
         public static void AddLogServices(this IServiceCollection services)
         {
             services.AddScoped<ILogService, LogService>();
+        }
+
+        private static HttpClient InitHttpClient(string url, string proxy)
+        {
+            HttpClientHandler handler = null;
+
+            if (!string.IsNullOrEmpty(proxy))
+            {
+                handler = new HttpClientHandler
+                {
+                    Proxy = new WebProxy(proxy),
+                    UseProxy = true,
+                };
+            }
+
+            var client = (handler == null) ? new HttpClient() : new HttpClient(handler);
+            client.BaseAddress = new Uri(url);
+
+            return client;
         }
     }
 }
