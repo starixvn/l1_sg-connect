@@ -12,7 +12,7 @@
     },
     "server": {
         "sgConnectApi": {
-            "url": "http://l1_sg_connect_api_uat:5000/api/ow"
+            "url": "http:// l1-sg-connect-api-uat-service:5000/api/ow"
         },
         "sentry": {
             "dsn": "http://456fc5c65b204851974d4eb4b353f5f5@10.2.190.51:9009/221",
